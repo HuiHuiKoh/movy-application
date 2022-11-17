@@ -77,9 +77,8 @@
     <a href="" class="btn-get-started ms-5 mt-5">Check Booking</a>
 </div>
 <!-- ======= Pricing Section ======= -->
-<section id="showtimes" class="pricing">
-    
-    <div class="container" data-aos="fade-up">
+<section id="homepage" class="pricing">
+    <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="box">

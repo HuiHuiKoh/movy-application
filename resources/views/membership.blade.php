@@ -7,18 +7,8 @@
 
 @section('content')
     <!-- ======= Trainers Section ======= -->
-    @extends('layouts.app', ['pageTitle'=>'Membership'], ['title'=>'Membership'])
-@push('css')
-<style>
-
-</style>
-@endpush
-
-@section('content')
-    <!-- ======= Trainers Section ======= -->
     <section id="trainers" class="trainers">
-      <div class="container" data-aos="fade-up">
-
+      <div class="container">
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">

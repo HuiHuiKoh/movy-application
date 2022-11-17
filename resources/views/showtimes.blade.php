@@ -8,7 +8,7 @@
 @section('content')
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
 
         <div class="row">
 

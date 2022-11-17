@@ -77,7 +77,7 @@
         <main id="main">
             @if(!Request::is('home'))
             <!-- ======= Breadcrumbs ======= -->
-            <div class="breadcrumbs" data-aos="fade-in">
+            <div class="breadcrumbs">
                 <div class="container">
                     <h2>{{ $title ?? '' }}</h2>
                 </div>

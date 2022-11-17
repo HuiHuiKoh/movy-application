@@ -8,9 +8,9 @@
 @section('content')
     <!-- ======= Courses Section ======= -->
     <section id="courses" class="courses">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
 
-        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+        <div class="row">
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item">
