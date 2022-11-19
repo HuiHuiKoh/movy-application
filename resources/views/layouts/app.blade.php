@@ -27,6 +27,7 @@
 
         <!-- Template Main CSS File -->
         <link href="{{asset ('import/assets/css/style.css') }}" rel="stylesheet">
+        @stack('css')
     </head>
 
     <body>
@@ -77,7 +78,7 @@
         <main id="main">
             @if(!Request::is('home'))
             <!-- ======= Breadcrumbs ======= -->
-            <div class="breadcrumbs">
+            <div class="breadcrumbs" data-aos="fade-in">
                 <div class="container">
                     <h2>{{ $title ?? '' }}</h2>
                 </div>
@@ -95,16 +96,10 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-3 col-md-6 footer-contact">
+                        <div class="logo col-lg-3 col-md-6">
                             <h3>MOVY</h3>
-<!--                            <p>
-                                A108 Adam Street <br>
-                                New York, NY 535022<br>
-                                United States <br><br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@example.com<br>
-                            </p>-->
                         </div>
+                        <!--<h1 class="logo me-auto"><a href="{{ asset('home') }}">MOVY</a></h1>-->
 
                         <div class="col-lg-2 col-md-6 footer-links">
                             <h4>Site Links</h4>
@@ -135,25 +130,26 @@
                     </div>
                 </div>
             </div>
+            <!--            
+                        <hr />
             
-            <hr />
-
-            <div class="container d-md-flex py-4">
-
-                <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                    <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                </div>
-            </div>
+                        <div class="container d-md-flex py-4">
+            
+                            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                            </div>
+                        </div>-->
         </footer><!-- End Footer -->
 
-        <div id="preloader"></div>
+        <!--<div id="preloader"></div>-->
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
         <!-- Vendor JS Files -->
+        @stack('script')
         <script src="{{asset ('import/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
         <script src="{{asset ('import/assets/vendor/aos/aos.js') }}"></script>
         <script src="{{asset ('import/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -162,6 +158,7 @@
 
         <!-- Template Main JS File -->
         <script src="{{asset ('import/assets/js/main.js') }}"></script>
+
 
     </body>
 
