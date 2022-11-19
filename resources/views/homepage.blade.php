@@ -8,9 +8,9 @@
     </div>
 </div>
 <div>
-    <a href="" class="btn-get-started ms-5 mt-5">Check Booking</a>
+    <a href="" class="orange-btn ms-5 mt-5">Check Booking</a>
 </div>
-<!-- ======= Pricing Section ======= -->
+<!-- ======= Content Section ======= -->
 <section id="homepage" class="pricing">
     <div class="container">
         <div class="row">

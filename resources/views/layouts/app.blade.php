@@ -50,8 +50,8 @@
                         </li>
                         <li><a href="{{asset ('membership') }}">Membership</a></li>
                         <li><a href="{{asset ('forum') }}">Forum</a></li>
-                        <!--                        <li><a href="{{asset ('about') }}">About</a></li>
-                                                <li><a href="{{asset ('contact') }}">Contact</a></li>-->
+                        <!--                                                <li><a href="{{asset ('about') }}">About</a></li>
+                                                                        <li><a href="{{asset ('contact') }}">Contact</a></li>-->
 
 <!--                                  <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
   <ul>
@@ -75,7 +75,7 @@
                     <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->
 
-                <a href="" class="get-started-btn">Login</a>
+                <a href="" class="orange-btn">Login</a>
 
             </div>
         </header><!-- End Header -->
@@ -120,16 +120,8 @@
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Join Us Now</h4>
                             <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{{ asset('membership') }}">Member privileges</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="{{ asset('membership') }}">Member Specials</a></li>
                             </ul>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 footer-newsletter">
-                            <h4>Newsletter</h4>
-                            <!--<p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>-->
-                            <form action="" method="post">
-                                <input type="email" name="email"><input type="submit" value="Subscribe Now">
-                            </form>
                         </div>
 
                     </div>

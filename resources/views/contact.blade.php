@@ -1,9 +1,4 @@
 @extends('layouts.app', ['pageTitle'=>'Contact Us'], ['title'=>'Contact Us'])
-@push('css')
-<style>
-
-</style>
-@endpush
 
 @section('content')
     <!-- ======= Contact Section ======= -->

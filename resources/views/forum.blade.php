@@ -1,4 +1,4 @@
-@extends('layouts.app', ['pageTitle'=>'Forum'], ['title'=>'Forum'])
+@extends('layouts.app', ['pageTitle'=>'Movy Forum'], ['title'=>'Forum'])
 @push('css')
 <style>
     body{
