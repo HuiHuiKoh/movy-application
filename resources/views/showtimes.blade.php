@@ -24,7 +24,7 @@
                         <li>{{$shows['name']}}</li>                     
                     </ul>
                     <div class="btn-wrap">
-                        <a href="{{action('\App\Http\Controllers\MoviesController@movies',$shows['id'])}}" class="btn-buy">More Details</a>
+                        <a href="{{action('\App\Http\Controllers\MoviesController@moviesDetails',$shows['id'])}}" class="btn-buy">More Details</a>
                     </div>
                 </div>
             </div>  
