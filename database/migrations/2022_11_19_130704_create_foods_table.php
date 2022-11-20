@@ -17,7 +17,7 @@ class CreateFoodsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->string('price');
+            $table->double('price');
             $table->string('image');
             $table->softDeletes();
             $table->timestamps();

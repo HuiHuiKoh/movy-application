@@ -1,0 +1,126 @@
+@charset "utf-8";
+.movie-nav{
+    margin-left: 7%; 
+}
+.movie-nav li{
+    display: inline-block;
+    font-size: 150%;
+    margin-top: 13%;
+    padding-right: 4%;
+}
+
+.movie-nav a{
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    transform: scale(1,1) translateY(0px);
+    transition:all 0.8s linear;
+}
+
+.movie-nav a:hover{
+    cursor: pointer;
+    text-shadow: 0px 15px 4px rgba(255, 255, 255, 0.333);
+    transform: scale(2,2) translateY(-15px);
+}
+
+/*Grid Styles */
+.movies{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
+    margin-top: 3%;
+}
+
+.row-movie-container{
+    clear: both;
+}
+
+.row-movie-container::after{
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.col-1-4-movie-container{
+    width: 25%;
+    float: left;
+    position: relative;
+}
+
+/* Image Styles */
+.image{
+    display: block;
+    width: 100%;
+    padding: 7%;
+}
+
+.image:hover{
+    padding: 6%;
+}
+
+/* Overlay Styles */
+.overlay{
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+}
+
+.col-1-4-movie-container:hover .overlay{
+    height: 85%;
+}
+
+.text{
+    color: white;
+    font-size: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Movies Info Styles */
+.movie-name{
+    font-size: 140%;
+    font-weight: bold;
+    line-height: normal;
+}
+
+
+/* Button Styles */
+.btn-info{
+    border: 2px solid silver;
+    background-color: transparent;
+    color: white;
+    padding: 20px;
+    font-size: 100%;
+    cursor: pointer;
+}
+
+.btn-info:hover{
+    border-color: #002366 ;
+    color: #002366;
+}
+
+/* Media Queries */
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+    .col-1-4-movie-container {
+      width: 50%;
+    }
+  }
+  
+  /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .col-1-4-movie-container {
+      width: 100%;
+    }
+  }
