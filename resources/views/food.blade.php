@@ -91,10 +91,10 @@
         border-radius: 20%;
         color: #FFFFFF;
         text-align: center;
-        padding: 2%;
-        width: 30%;
+        padding: 3%;
+        width: 40%;
         cursor: pointer;
-        margin: 3% 45%;
+        margin: 3% 20%;
         font-size: 90%;
         transition: all 0.2s;
     }
@@ -138,8 +138,7 @@
     <div class="movie-info-container">
         <div class=movie-title>
             <h1>{{$foods->name}}</h1>
-        </div>
-        
+        </div>    
         <div class="movie-trailer">
             <img src="import/assets/img/{{$foods->image}}" alt="" width="25%" height="25%" >
         </div>
@@ -151,6 +150,5 @@
             <a href="#"><button class="btn-booking">&#128722;Add To Cart</button></a>
         </div>
     </div>
-
 </section>
 
