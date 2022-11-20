@@ -45,7 +45,7 @@
                                 <a class="nav-link" href="{{ url('booklist') }}">Movies List</a>
                             </nav>
                         </div>
-                        <a class="nav-link" href="{{ url('book_new') }}">
+                        <a class="nav-link" href="{{ url('addMovies') }}">
                             <div class="sb-nav-link-icon"><i class="fa fa-book"></i></div>
                             Add new Movies
                         </a>

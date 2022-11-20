@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/addMovies.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/header.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/navbar.blade.php</file>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/MoviesController.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/routes/web.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/f&amp;b.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/showtimes.css</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/movies.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2022_11_19_130704_create_foods_table.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/showtimes.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2022_11_19_074126_create_movies_table.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/moviesInfo.css</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/footer.blade.php</file>
         </group>
     </open-files>
 </project-private>

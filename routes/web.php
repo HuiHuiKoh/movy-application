@@ -40,11 +40,16 @@ Route::get('/f&b', function () {
 });
 
 //Siah Xin Ying
-
+//Movies
 Route::get('/showtimes', [MoviesController::class, 'show']);
 Route::get('/movies/{id}', [MoviesController::class, 'moviesDetails']);
 
+//Foods
 Route::get('/foods', [FoodsController::class, 'showFoods']);
 Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
+
+//add Movies
+Route::get('/addMovies', [MoviesController::class, 'newMovies']);
+Route::post('/addMovies/store', [MoviesController::class, 'store']);
 
 // Auth::routes();

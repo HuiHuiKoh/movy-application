@@ -1,11 +1,87 @@
-@include('stock_management.navbar');
+@include('admin.header');
+@include('admin.navbar');
 
-<link rel="stylesheet" href="{{asset('assets\css\bookUpdate.css')}}">
+<link rel="stylesheet" href="{{asset('assets\css\moviesUpdate.css')}}">
+
+<style>
+    .card-body {
+        color: #000;
+        overflow-x: hidden;
+        height: 100%;
+        background-image: url("https://cdn.tatlerasia.com/asiatatler/i/ph/2020/04/14145432-valdemaras-d-7vpfyhb-j8y-unsplash_cover_1920x1217.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%
+    }
+
+    .card {
+        padding: 30px 40px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        border: none !important;
+        box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
+    }
+
+    .blue-text {
+        color: #00BCD4
+    }
+
+    .form-control-label {
+        margin-bottom: 0
+    }
+
+    input,select,
+    textarea,
+    button {
+        padding: 8px 15px;
+        border-radius: 5px !important;
+        margin: 5px 0px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        font-size: 18px !important;
+        font-weight: 300
+    }
+
+    input:focus,
+    textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #00BCD4;
+        outline-width: 0;
+        font-weight: 400
+    }
+
+    .btn-block {
+        text-transform: uppercase;
+        font-size: 15px !important;
+        font-weight: 400;
+        height: 43px;
+        cursor: pointer
+    }
+
+    .btn-block:hover {
+        color: #fff !important
+    }
+
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0
+    }
+
+    .imageCenter {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
 
 <div id="layoutSidenav_content">
 
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Add a New Book into the Shelf</h1>
+        <h1 class="mt-4">Add a New Movies</h1>
     </div>
     <hr>
 
@@ -31,7 +107,7 @@
         <div class="container-fluid px-1 py-5 mx-auto">
             <div class="row d-flex justify-content-center">
                 <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-                    <form method="POST" action="{{action('\App\Http\Controllers\ProductController@store')}}" class="form-card" enctype="multipart/form-data">
+                    <form method="POST" action="{{action('\App\Http\Controllers\MoviesController@store')}}" class="form-card" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
                             <div class="row justify-content-between text-left">
@@ -86,3 +162,5 @@
             </div>
         </div>
     </div>
+
+    @include('admin.footer');
