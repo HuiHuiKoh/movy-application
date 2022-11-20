@@ -52,14 +52,15 @@ a:hover {
     text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Raleway", sans-serif;
+h1,h2,h3,h4,h5,h6{
+    font-weight: 700;
+    color: var(--softOrange);
 }
+.h1, h1 {
+    font-size: 1.8rem;
+}
+
+
 
 /*--------------------------------------------------------------
 # Back to top button
@@ -184,8 +185,67 @@ h6 {
 }
 
 /**
-* Get Startet Button 
+* Common class 
 */
+.font-size-small{
+    font-size: 0.7rem;
+}
+.font-size-normal{
+    font-size: 0.8rem;
+}
+.no-border .list-group-item{
+    border: transparent;
+}
+.less-spacing .list-group-item{
+    padding: .3rem 0;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.btn{
+    font-weight: bold;
+    padding: .4rem 1.5rem;
+    border-radius:  .6rem;
+    font-size: 0.8rem;
+}
+.btn-square{
+    padding: .4rem .7rem;
+    border-radius: .5rem;
+}
+.btn-orange{
+    background-color: var(--orange);
+    color:var(--white);
+}
+.btn-light-blue{
+    background-color: var(--lightBlue);
+    color:var(--white);
+}
+.btn-soft-red{
+    background-color: var(--softRed);
+    border: 1px solid var(--softRed);
+    color:var(--white);
+}
+.font-white{
+    color: var(--white);
+}
+.font-blue{
+    color: var(--blue) !important;
+}
+.font-light-blue{
+    color: var(--lightBlue);
+}
+.font-dark-blue{
+    color: var(--darkBlue)!important;
+}
+.font-orange{
+    color: var(--orange);
+}
+.font-lime-green{
+    color: var(--darkLimeGreen);
+}
+.font-dark-grey{
+    color: var(--darkGrey);
+}
 .orange-btn {
     margin-left: 22px;
     background: var(--white);
@@ -198,12 +258,10 @@ h6 {
     display: inline-block;
     text-decoration: none;
 }
-
 .orange-btn:hover {
     background: var(--softOrange);
     color: var(--white);
 }
-
 .orange-outline-btn{
     border: 2px solid var(--softOrange);
     background: transparent;
@@ -216,7 +274,18 @@ h6 {
     text-decoration: none;
     width: fit-content;
 }
-
+.orange-btn-active{
+    border: 2px solid var(--softOrange);
+    background: var(--softOrange);
+    color: var(--white);
+    border-radius: 50px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    display: inline-block;
+    text-decoration: none;
+    width: fit-content;
+}
 .orange-outline-btn:hover {
     background: var(--softOrange);
     color: var(--white);   
