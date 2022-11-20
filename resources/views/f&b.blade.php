@@ -1,38 +1,36 @@
 @extends('layouts.app', ['pageTitle'=>'F&B'], ['title'=>'Food & Beverages'])
 @push('css')
 <style>
-
+    .btn-buy:hover{
+        background-color: white;
+        color: black;
+    }
 </style>
 @endpush
 
 @section('content')
-<!-- ======= Courses Section ======= -->
-<section id="courses" class="courses">
+<!-- ======= Pricing Section ======= -->
+<section id="pricing" class="pricing">
     <div class="container">
 
         <div class="row">
-
             @foreach($foods as $food)
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                <div class="course-item">
-                    <img src="import/assets/img/{{$food['image']}}" class="img-fluid" alt="..." width="200px" height="200px" style="margin-top: 5%; margin-bottom: 5%;margin-left:25%; margin-right: 25%">
-                    <div class="course-content">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-<!--                            <h4></h4>-->
-                        </div>
-                        <p style="color:white;" class="price">{{$food['name']}}</p>
-                        <p style="color:white;">{{$food['price']}}</p>
-                        <p style="color:white;">{{$food['description']}}</p>
-
-                       
+            <div class="col-lg-3 col-md-6">
+                <div class="box">
+<!--                    <h3>Free</h3>
+                    <h4><sup>$</sup>0<span> / month</span></h4>-->
+                    <ul>
+                        <li><img src="import/assets/img/{{$food['image']}}" alt="" width="200px" height="200px"></li>
+                        <li>{{$food['name']}}</li>                     
+                    </ul>
+                    <div class="btn-wrap">
+                        <a href="{{action('\App\Http\Controllers\FoodsController@foodInfo',$food['id'])}}" class="btn-buy">More Details</a>
                     </div>
-                    <h3><a href="" style="font-size: 0.7em; margin-left: 10%">ADD TO CART</a></h3>
                 </div>
-
-            </div> <!-- End Course Item-->      
+            </div>  
             @endforeach
         </div>
 
     </div>
-</section><!-- End Courses Section -->
+</section><!-- End Pricing Section -->
 @endsection

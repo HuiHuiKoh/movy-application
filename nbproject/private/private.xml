@@ -5,9 +5,13 @@
         <group>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/MoviesController.php</file>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/routes/web.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/layouts/app.blade.php</file>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/f&amp;b.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/showtimes.css</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/movies.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2022_11_19_130704_create_foods_table.php</file>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/showtimes.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2022_11_19_074126_create_movies_table.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/moviesInfo.css</file>
         </group>
     </open-files>
 </project-private>

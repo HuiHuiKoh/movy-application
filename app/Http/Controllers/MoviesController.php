@@ -15,7 +15,6 @@ class MoviesController extends Controller
     public function moviesDetails($id){
         
         $movies = Movies::find($id);      
-        return view('movies',compact('movies','id'));
-               
+        return view('movies',compact('movies','id'));            
     }
 }

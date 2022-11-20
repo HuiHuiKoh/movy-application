@@ -12,4 +12,11 @@ class FoodsController extends Controller
         $foods = Foods::all();
         return view('f&b', ['foods' => $foods]);
     }
+    
+    public function foodInfo($id){  
+        
+        $foods = Foods::find($id);      
+        return view('food',compact('foods','id'));            
+    }
+    
 }

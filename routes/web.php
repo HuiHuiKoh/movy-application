@@ -45,5 +45,6 @@ Route::get('/showtimes', [MoviesController::class, 'show']);
 Route::get('/movies/{id}', [MoviesController::class, 'moviesDetails']);
 
 Route::get('/foods', [FoodsController::class, 'showFoods']);
+Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 
 // Auth::routes();
