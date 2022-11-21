@@ -40,6 +40,7 @@ Route::get('/f&b', function () {
 });
 
 //Siah Xin Ying
+//Client-side
 //Movies
 Route::get('/showtimes', [MoviesController::class, 'show']);
 Route::get('/movies/{id}', [MoviesController::class, 'moviesDetails']);
@@ -48,6 +49,7 @@ Route::get('/movies/{id}', [MoviesController::class, 'moviesDetails']);
 Route::get('/foods', [FoodsController::class, 'showFoods']);
 Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 
+//Admin-side
 //add Movies
 Route::get('/addMovies', [MoviesController::class, 'newMovies']);
 Route::post('/addMovies/store', [MoviesController::class, 'store']);
@@ -64,5 +66,18 @@ Route::get('updateMovies/{id}', [MoviesController::class, 'categoryOption']);
 Route::get('updateMovies/{id}', [MoviesController::class, 'edit']);
 Route::post('updateMovies/{id}', [MoviesController::class, 'update']);
 
+//add Foods
+Route::get('/addFoods', [FoodsController::class, 'newFoods']);
+Route::post('/addFoods/store', [FoodsController::class, 'store']);
+
+//show Food List
+Route::get('/foodList', [FoodsController::class, 'showFoodsList']);
+
+//delete Food
+Route::delete('foodList/{id}', [FoodsController::class, 'destroy']);
+
+//update Foods
+Route::get('updateFoods/{id}', [FoodsController::class, 'edit']);
+Route::post('updateFoods/{id}', [FoodsController::class, 'update']);
 
 // Auth::routes();

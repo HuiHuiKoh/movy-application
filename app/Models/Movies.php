@@ -5,8 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\SoftDeletes;
-use Carbon\Carbon;
-
 
 class Movies extends Model
 {
@@ -33,8 +31,5 @@ class Movies extends Model
         'categoryID',
 
     ];
-    
-//   public function releasedDateAttributes($value){
-//       $this->attributes['releasedDate'] = Carbon::createFromFormat('m/d/Y',$value)->format('Y-m-d');
-//   }
+
 }
