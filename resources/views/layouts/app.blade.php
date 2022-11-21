@@ -25,8 +25,9 @@
         <link href="{{asset ('import/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
         <link href="{{asset ('import/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-        <!--Bootstrap CSS-->
+        <!--Bootstrap core CSS-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Template Main CSS File -->
         <link href="{{asset ('import/assets/css/style.css') }}" rel="stylesheet">
@@ -88,7 +89,7 @@
             <!-- ======= Breadcrumbs ======= -->
             <div class="breadcrumbs" data-aos="fade-in">
                 <div class="container">
-                    <h2>{{ $title ?? '' }}</h2>
+                    <h2 class="font-white">{{ $title ?? '' }}</h2>
                 </div>
             </div>
             <!-- End Breadcrumbs -->
@@ -147,8 +148,8 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js"></script>
     </body>
 
 </html>
