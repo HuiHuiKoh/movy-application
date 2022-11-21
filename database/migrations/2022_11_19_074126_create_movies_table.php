@@ -20,11 +20,9 @@ class CreateMoviesTable extends Migration
             $table->string('image');
             $table->string('casts');
             $table->string('synopsis');
-            $table->string('distributor');
             $table->string('language');
             $table->string('type');
             $table->string('duration');
-            $table->double('price');
             $table->string('trailer');
             $table->string('director');
             $table->foreignId('categoryID')->references('id')->on('categories')->onDelete('cascade');

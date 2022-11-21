@@ -3,81 +3,6 @@
 
 <link rel="stylesheet" href="{{asset('assets\css\moviesUpdate.css')}}">
 
-<style>
-    .card-body {
-        color: #000;
-        overflow-x: hidden;
-        height: 100%;
-        background-image: url("https://cdn.tatlerasia.com/asiatatler/i/ph/2020/04/14145432-valdemaras-d-7vpfyhb-j8y-unsplash_cover_1920x1217.jpg");
-        background-repeat: no-repeat;
-        background-size: 100% 100%
-    }
-
-    .card {
-        padding: 30px 40px;
-        margin-top: 60px;
-        margin-bottom: 60px;
-        border: none !important;
-        box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
-    }
-
-    .blue-text {
-        color: #00BCD4
-    }
-
-    .form-control-label {
-        margin-bottom: 0
-    }
-
-    input,select,
-    textarea,
-    button {
-        padding: 8px 15px;
-        border-radius: 5px !important;
-        margin: 5px 0px;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        font-size: 18px !important;
-        font-weight: 300
-    }
-
-    input:focus,
-    textarea:focus {
-        -moz-box-shadow: none !important;
-        -webkit-box-shadow: none !important;
-        box-shadow: none !important;
-        border: 1px solid #00BCD4;
-        outline-width: 0;
-        font-weight: 400
-    }
-
-    .btn-block {
-        text-transform: uppercase;
-        font-size: 15px !important;
-        font-weight: 400;
-        height: 43px;
-        cursor: pointer
-    }
-
-    .btn-block:hover {
-        color: #fff !important
-    }
-
-    button:focus {
-        -moz-box-shadow: none !important;
-        -webkit-box-shadow: none !important;
-        box-shadow: none !important;
-        outline-width: 0
-    }
-
-    .imageCenter {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-    }
-</style>
-
 <div id="layoutSidenav_content">
 
     <div class="container-fluid px-4">
@@ -95,13 +20,13 @@
     </div>
     @endif
 
-    @if (\Session::has('success'))
-    <div class="alert alert-success">
-        <ul>
-            <li>{!! \Session::get('success') !!}</li>
-        </ul>
-    </div>
-    @endif
+    <!--    @if (\Session::has('success'))
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! \Session::get('success') !!}</li>
+            </ul>
+        </div>
+        @endif-->
 
     <div class="card-body">
         <div class="container-fluid px-1 py-5 mx-auto">
@@ -112,40 +37,61 @@
                         <div class="card">
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
-                                    <label class="form-control-label px-3">Title<span class="text-danger"> *</span></label> 
+                                    <label class="form-control-label px-3">Name<span class="text-danger"> *</span></label> 
                                     <input type="text" id="name" name="name" placeholder=""> 
                                 </div>
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
                                     <label class="form-control-label px-3">Language<span class="text-danger"> *</span></label> 
-                                    <input type="text" id="language" name="language" placeholder="English | Malay | Chinese | Other ..." > 
+                                    <input type="text" id="language" name="language" placeholder="English / Malay / Chinese / Other ..." > 
                                 </div>
                             </div>
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
-                                    <label class="form-control-label px-3">Author<span class="text-danger"> *</span></label> 
-                                    <input type="text" id="author" name="author" placeholder=""> 
+                                    <label class="form-control-label px-3">Type<span class="text-danger"> *</span></label> 
+                                    <input type="text" id="type" name="type" placeholder=""> 
                                 </div>
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
-                                    <label class="form-control-label px-3">Publisher<span class="text-danger"> *</span></label> 
-                                    <input type="text" id="publisher" name="publisher" placeholder=""> 
+                                    <label class="form-control-label px-3">Duration<span class="text-danger"> *</span></label> 
+                                    <input type="text" id="duration" name="duration" placeholder=""> 
                                 </div>
                             </div>
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
-                                    <label class="form-control-label px-3">Price<span class="text-danger"> *</span></label> 
-                                    <input type="text" id="price" name="price" placeholder=""> 
+                                    <label class="form-control-label px-3">Release Date <span class="text-danger"> *</span></label> 
+                                    <input type="date" id="date" name="date" placeholder=""> 
                                 </div>
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
-                                    <label class="form-control-label px-3">Stock<span class="text-danger"> *</span></label> 
-                                    <input type="number" id="stock" name="stock" min="0" max="9999">
+                                    <label class="form-control-label px-3">Category<span class="text-danger"> *</span></label> 
+                                    <select name="category" id="category">
+                                        @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->category}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-sm-6 flex-column d-flex"> 
+                                    <label class="form-control-label px-3">Casts <span class="text-danger"> *</span></label> 
+                                    <input type="text" id="casts" name="casts" placeholder=""> 
+                                </div>
+                                <div class="form-group col-sm-6 flex-column d-flex"> 
+                                    <label class="form-control-label px-3">Director<span class="text-danger"> *</span></label> 
+                                    <input type="text" id="director" name="director">
                                 </div>
                             </div>
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-12 flex-column d-flex"> 
-                                    <label class="form-control-label px-3">Description</label> 
-                                    <textarea id="description" name="description" placeholder=""></textarea>
+                                    <label class="form-control-label px-3">Trailer Link<span class="text-danger"> *</span></label> 
+                                    <textarea id="trailer" name="trailer" placeholder=""></textarea>
                                 </div>
                             </div>
+                            <div class="row justify-content-between text-left">
+                                <div class="form-group col-12 flex-column d-flex"> 
+                                    <label class="form-control-label px-3">Synopsis</label> 
+                                    <textarea id="synopsis" name="synopsis" placeholder=""></textarea>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="card">
                             <label class="form-control-label px-3">Image<span class="text-danger"> *</span></label> 
@@ -154,7 +100,7 @@
 
                         <div class="card">
                             <div class="row justify-content-center">
-                                <button type="submit" class="btn-block btn-info btn-lg">Create</button> 
+                                <button type="submit" class="btn-block btn-info btn-lg" style="background: #EFDDB8; border-color:#EFDDB8; ">Create</button> 
                             </div>
                         </div>
                     </form> 

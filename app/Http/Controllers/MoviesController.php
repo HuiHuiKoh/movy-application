@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MoviesRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Movies;
+use App\Models\Category;
 
 class MoviesController extends Controller
 {
@@ -22,6 +23,11 @@ class MoviesController extends Controller
         return view('admin.addMovies');
     }
     
+    public function categoryOption(){
+        $categories = Category::all();
+        return view('admin.addMovies', ['categories' => $categories]);
+    }
+    
     public function store(MoviesRequest $request) {
 
         $request->validationData();
@@ -36,9 +42,9 @@ class MoviesController extends Controller
         try {
             Product::create([
                 'name' => $request->get('name'),
-                'releasedDate' => $request->get('releasedDate'),
+                'releasedDate' => $request->get('date'),
                 'image' => $fileName,
-                
+                'synopsis' => $request->get('synopsis'),
                 
                 
                 'price' => $request->get('price'),

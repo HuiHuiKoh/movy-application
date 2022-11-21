@@ -1,5 +1,5 @@
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success bg-opacity-100">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success bg-opacity-100" style="background-color: #EFDDB8;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="{{ url('dashboard') }}">MOVY Management</a>
         <!-- Sidebar Toggle-->

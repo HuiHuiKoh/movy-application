@@ -51,5 +51,6 @@ Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 //add Movies
 Route::get('/addMovies', [MoviesController::class, 'newMovies']);
 Route::post('/addMovies/store', [MoviesController::class, 'store']);
+Route::get('/addMovies', [MoviesController::class, 'categoryOption']);
 
 // Auth::routes();
