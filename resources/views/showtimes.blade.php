@@ -40,9 +40,9 @@
 <section class="movies">
 
     <div class="row-movie-container">
-        @foreach($movi  es as $shows)
+        @foreach($movies as $shows)
         <div class="col-1-4-movie-container">        
-            <img src="import/assets/img/{{$shows['image']}}" alt="" class="image">
+            <img src="assets/img/{{$shows['image']}}" alt="" class="image">
             <div class="overlay">
                 <div class="text">
                     <p class="movie-name">{{$shows['name']}}</p>
