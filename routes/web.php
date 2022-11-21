@@ -53,4 +53,16 @@ Route::get('/addMovies', [MoviesController::class, 'newMovies']);
 Route::post('/addMovies/store', [MoviesController::class, 'store']);
 Route::get('/addMovies', [MoviesController::class, 'categoryOption']);
 
+//show Movies List
+Route::get('/moviesList', [MoviesController::class, 'showMoviesList']);
+
+//delete Movies
+Route::delete('moviesList/{id}', [MoviesController::class, 'destroy']);
+
+//update Movies
+Route::get('updateMovies/{id}', [MoviesController::class, 'categoryOption']);
+Route::get('updateMovies/{id}', [MoviesController::class, 'edit']);
+Route::post('updateMovies/{id}', [MoviesController::class, 'update']);
+
+
 // Auth::routes();
