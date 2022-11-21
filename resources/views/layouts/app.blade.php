@@ -31,6 +31,7 @@
 
         <!-- Template Main CSS File -->
         <link href="{{asset ('import/assets/css/style.css') }}" rel="stylesheet">
+        
         @stack('css')
     </head>
 
@@ -98,7 +99,7 @@
             @yield('content')
         </main>
 
-        <!-- ======= Footer ======= -->
+<!--         ======= Footer ======= 
         <footer id="footer">
 
             <div class="footer-top">
@@ -130,7 +131,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer>-->
 
         <!--<div id="preloader"></div>-->
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
