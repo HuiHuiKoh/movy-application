@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MoviesRequest;
 use App\Models\Movies;
 use App\Models\Category;
 use Carbon\Carbon;
@@ -29,9 +29,10 @@ class MoviesController extends Controller
         return view('admin.addMovies', ['categories' => $categories]);
     }
     
-    public function store(Request $request) {
+    public function store(MoviesRequest $request) {
 
-//        $request->validationData();
+        
+        $request->validationData();
 
         $file = $request->image;
 

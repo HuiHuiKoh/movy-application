@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
                                     <label class="form-control-label px-3">Duration<span class="text-danger"> *</span></label> 
-                                    <input type="text" id="duration" name="duration" placeholder="hours and minutes"> 
+                                    <input type="text" id="duration" name="duration" placeholder="hrs and mins"> 
                                 </div>
                             </div>
                             <div class="row justify-content-between text-left">
