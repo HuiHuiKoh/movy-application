@@ -1,19 +1,14 @@
 @extends('layouts.app', ['pageTitle'=>'Booking'], ['title'=>'Booking'])
 
-@push('css')
-<style>
-
-</style>
-@endpush
-
 @section('content')
-    <div class="text-center bg-black py-4">
+<section id="booking">
+    <div class="text-center bg-black py-4 font-white">
         <img class="rounded" width="200" height="300" 
              src="https://bst.icons8.com/wp-content/themes/icons8/app/uploads/2019/05/film-poster-graphic-design.jpg" />
-        <div class="font-white">
+        <div>
             Beauty and the Beast
         </div>
-        <div class="font-white">
+        <div>
             120 minutes
         </div>
     </div>
@@ -49,6 +44,7 @@
             </div>
         </div>
     </div>
+</section>
 @endsection
 
 @push('scripts')

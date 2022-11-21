@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-class BookingController extends Controller
-{
-    public function booking()
-    {
-        return view('book_datetime');
+class BookingController extends Controller {
+
+    public function index() {
+        return view('booking.datetime');
     }
+
+    public function seat() {
+        return view('booking.seat');
+    }
+
 }
