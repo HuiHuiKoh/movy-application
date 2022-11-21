@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\MoviesRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Movies;
 use App\Models\Category;
+use Carbon\Carbon;
 
 class MoviesController extends Controller
 {
@@ -28,33 +29,31 @@ class MoviesController extends Controller
         return view('admin.addMovies', ['categories' => $categories]);
     }
     
-    public function store(MoviesRequest $request) {
+    public function store(Request $request) {
 
-        $request->validationData();
+//        $request->validationData();
 
         $file = $request->image;
 
         $fileName = time() . '_' . $file->getClientOriginalName();
         $file->move('C:\Users\USER\Documents\GitHub\movy-application\public\assets\img', $fileName);
+        
 
-        $code = ProductController::generateUniqueCode();
+//        $code = MoviesController::generateUniqueCode();
 
         try {
-            Product::create([
+            Movies::create([
                 'name' => $request->get('name'),
-                'releasedDate' => $request->get('date'),
+                'releasedDate' => $request->get('releasedDate'),
                 'image' => $fileName,
+                'casts' => $request->get('casts'),
                 'synopsis' => $request->get('synopsis'),
-                
-                
-                'price' => $request->get('price'),
-                'description' => $request->get('description'),
-                'stock' => $request->get('stock'),
-                'author' => $request->get('author'),
                 'language' => $request->get('language'),
-                'publisher' => $request->get('publisher'),
-                'code' => $code,
-                'image' => $fileName,
+                'type' => $request->get('type'),
+                'duration' => $request->get('duration'),
+                'trailer' => $request->get('trailer'),
+                'director' => $request->get('director'),
+                'categoryID' => $request->get('category'),
                 'created_at' => Carbon::now()->toDateTimeString(),
             ]);
             return redirect()->back()->with('success', 'New Book has been added.');

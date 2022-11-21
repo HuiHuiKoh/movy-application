@@ -58,7 +58,7 @@
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
                                     <label class="form-control-label px-3">Release Date <span class="text-danger"> *</span></label> 
-                                    <input type="date" id="date" name="date" placeholder=""> 
+                                    <input type="date" id="releasedDate" name="releasedDate" placeholder=""> 
                                 </div>
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
                                     <label class="form-control-label px-3">Category<span class="text-danger"> *</span></label> 
