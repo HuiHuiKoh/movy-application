@@ -2,22 +2,22 @@
 
 @push('css')
 <style>
-    .close{
+    .payment-modal .close{
         font-size: 21px;
         cursor: pointer
     }
-    .modal-body{
-        height: 450px
+    .payment-modal .modal-body{
+        height: fit-content;
     }
-    .nav-tabs{
+    .payment-modal .nav-tabs{
         border:none !important
     }
-    .nav-tabs .nav-link.active{
+    .payment-modal .nav-tabs .nav-link.active{
         color: #495057;
         background-color: var(--white);
         border-top: 3px solid blue !important
     }
-    .nav-tabs .nav-link{
+    .payment-modal .nav-tabs .nav-link{
         margin-bottom: -1px;
         border: 1px solid transparent;
         border-top-left-radius: 0rem;
@@ -25,59 +25,40 @@
         border-top: 3px solid #eee;
         font-size: 20px
     }
-    .nav-tabs .nav-link:hover{
+    .payment-modal .nav-tabs .nav-link:hover{
         border-color: #e9ecef #ffffff #ffffff
     }
-    .nav-tabs{
+    .payment-modal .nav-tabs{
         display: table !important;
         width: 100%
     }
-    .nav-item{
+    .payment-modal .nav-item{
         display: table-cell
     }
-    .form-control{
+    .payment-modal .form-control{
         border-bottom: 1px solid #eee !important;
         border:none;
         font-weight: 600
     }
-    .form-control:focus{
+    .payment-modal .form-control:focus{
         color: #495057;
         background-color: #fff;
         border-color: #8bbafe;
         outline: 0;
         box-shadow: none
     }
-    .inputbox{
+    .payment-modal .inputbox{
         position: relative;
         margin-bottom: 20px;
         width: 100%
     }
-    .inputbox span{
+    .payment-modal .inputbox span{
         position: absolute;
         top:7px;
         left: 11px;
         transition: 0.5s
     }
-    .inputbox i{
-        position: absolute;
-        top: 13px;
-        right: 8px;
-        transition: 0.5s;
-        color: #3F51B5
-    }
-    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
-        -webkit-appearance: none;
-        margin: 0
-    }
-    .inputbox input:focus~span{
-        transform: translateX(-0px) translateY(-15px);
-        font-size: 12px
-    }
-    .inputbox input:valid~span{
-        transform: translateX(-0px) translateY(-15px);
-        font-size: 12px
-    }
-    .pay button{
+    .payment-modal .pay button{
         height: 47px;
         border-radius: 37px
     }
@@ -85,6 +66,17 @@
 @endpush
 
 @section('content')
+<?php
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    echo "User Has submitted the form and entered this name : <b> $name </b>";
+    echo "<br>You can use the following form again to enter a new name.";
+}
+?>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <input type="text" name="name"><br>
+    <input type="submit" name="submit" value="Submit Form"><br>
+</form>
 <section id="payment">
     <div class="container px-5 mt-5 mb-3 w-75 bg-black text-left">
         <div class="row">
@@ -140,7 +132,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" style="height: fit-content;">
+                <div class="modal-body">
                     <p>Are you sure you want to cancel your payment?</p>
                 </div>
                 <div class="modal-footer">
@@ -152,7 +144,7 @@
     </div>
 
     <!-- Payment Option Modal -->
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> 
+    <div class="modal fade payment-modal" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> 
         <div class="modal-dialog"> 
             <div class="modal-content">
                 <div class="modal-body"> 
@@ -177,43 +169,45 @@
                                 <div class="mt-4 mx-4"> 
                                     <div class="text-center"> 
                                         <div class="h5">Credit card / Debit Card</div> 
-                                    </div> 
-                                    <div class="form mt-3"> 
-                                        <div class="inputbox">
-                                            <input type="text" name="name" class="form-control" required="required"> 
-                                            <span>Cardholder Name</span>
-                                        </div> 
-                                        <div class="inputbox"> 
-                                            <input type="text" name="name" min="1" max="999" class="form-control" required="required"> 
-                                            <span>Card Number</span> 
-                                            <i class="fa fa-eye"></i> 
-                                        </div> 
-                                        <div class="d-flex flex-row"> 
-                                            <div class="inputbox"> 
-                                                <input type="text" name="name" min="1" max="999" class="form-control" required="required"> 
-                                                <span>Expiration Date</span> 
+                                    </div>
+                                    <form action="" method="post">
+                                        <div class="form mt-3"> 
+                                            <div class="inputbox">
+                                                <label for="cName">Cardholder Name</label>
+                                                <input type="text" name="cName" class="form-control" required="required"> 
+
                                             </div> 
                                             <div class="inputbox"> 
-                                                <input type="password" name="name" min="1" max="999" class="form-control" required="required"> 
-                                                <span>CVV</span> 
+                                                <label for="cNum">Card Number</label>
+                                                <input type="text" name="cNum" class="form-control" required="required"> 
                                             </div> 
+                                            <div class="d-flex flex-row"> 
+                                                <div class="inputbox mx-1">
+                                                    <label for="expDate">Expiration Date</label>
+                                                    <input type="month" name="expDate" class="form-control" min="2022-11" max="2028-12" required="required"> 
+                                                </div>
+                                                <div class="inputbox mx-1">
+                                                    <label for="cvv">CVV</label>
+                                                    <input type="password" name="cvv" min="1" max="999" class="form-control" required="required"> 
+                                                </div> 
+                                            </div> 
+                                            <div class="px-5 pay">
+                                                <button type="submit" class="btn btn-success btn-block">Pay with Card</button>
+                                                <button class="btn btn-secondary btn-block" data-dismiss='modal'>Cancel</button>
+                                            </div>
                                         </div> 
-                                        <div class="px-5 pay">
-                                            <button class="btn btn-success btn-block">Pay with Card</button>
-                                            <button class="btn btn-secondary btn-block" data-dismiss='modal'>Cancel</button>
-                                        </div>
-                                    </div> 
+                                    </form>
                                 </div> 
                             </div> 
                             <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab"> 
                                 <div class="px-5 mt-5"> 
                                     <div class="inputbox"> 
-                                        <input type="email" name="name" class="form-control" required="required"> 
-                                        <span>Paypal Email Address</span> 
+                                        <label for="email">Email Address</label>
+                                        <input type="email" name="email" class="form-control" required="required"> 
                                     </div>
                                     <div class="inputbox">
-                                        <input type="password" name="name" min="1" max="999" class="form-control" required="required"> 
-                                        <span>Password</span> 
+                                        <label for="pw">Password</label>
+                                        <input type="password" name="pw" class="form-control" required="required"> 
                                     </div>
                                     <div class="pay px-5">
                                         <button class="btn btn-primary btn-block">Pay with Paypal</button>
@@ -236,7 +230,6 @@
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/holder.min.js"></script>
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <script>
                         function showCancel() {
                             $("#cancel").modal('show');
