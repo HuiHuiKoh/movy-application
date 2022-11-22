@@ -207,11 +207,22 @@
                                             hideModal();
                                             showConfirmation();
                                             if (classicSeat === 0) {
-                                                document.getElementById("confirm-value").innerHTML = "You have selected " + twinSeat + " Twin ticket(s)";
+                                                var total = twinSeat * 20;
+                                                var totalPrice = "RM" + total;
+                                                document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + twinSeat + " Twin ticket(s)</p>" + "\n\n"
+                                                        + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
+
                                             } else if (twinSeat === 0) {
-                                                document.getElementById("confirm-value").innerHTML = "You have selected " + classicSeat + " Classic ticket(s)";
+                                                var total = classicSeat * 10;
+                                                var totalPrice = "RM" + total;
+                                                document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s)</p>" + "\n\n"
+                                                        + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
                                             } else {
-                                                document.getElementById("confirm-value").innerHTML = "You have selected " + classicSeat + " Classic ticket(s) and " + twinSeat + " Twin ticket(s)";
+                                                var totalTwin = twinSeat * 20;
+                                                var totalClassic = classicSeat * 10;
+                                                var totalPrice = "RM" + (totalTwin + totalClassic);
+                                                document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s) and " + twinSeat + " Twin ticket(s)</p>" + "\n\n"
+                                                        + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
                                             }
                                         }
                                     }
