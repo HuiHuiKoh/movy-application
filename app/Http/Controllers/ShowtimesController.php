@@ -20,7 +20,7 @@ class ShowtimesController extends Controller {
 //            $movies = Movies::all();
             $movies = DB::table('showtimes')
                 ->join('movies','cinemas','showtimes.moviesID', '=', 'movies.id','showtimes.cinemaID', '=', 'cinemas.id')
-                ->select('movies.*','cinemas.id as cinemas_id','cinemas.name as cinemas_name')              
+                ->select('movies.name as movies_name', 'movies.image as movies_image','cinemas.name as cinemas_name')              
                 ->get();
 //            return json_decode($books);
             return view('admin.showtimesList', compact('movies'));

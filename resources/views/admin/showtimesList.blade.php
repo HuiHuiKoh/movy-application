@@ -30,13 +30,9 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Image</th>
-                            <th>Language</th>
-                            <th>Type</th>
-                            <th>Casts</th>
-                            <th>Director</th>
-                            <th>Duration</th>
-                            <th>Released Date</th>            
-                            <th>Add</th>
+                            <th>Cinema</th>
+                            <th>Date and Time</th>
+                            <th>Hall</th>          
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -45,13 +41,9 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Image</th>
-                            <th>Language</th>
-                            <th>Type</th>
-                            <th>Casts</th>
-                            <th>Director</th>
-                            <th>Duration</th>
-                            <th>Released Date</th>            
-                            <th>Add</th>
+                            <th>Cinema</th>
+                            <th>Date and Time</th>
+                            <th>Hall</th>          
                             <th>Delete</th>
                         </tr>
                     </tfoot>
@@ -59,17 +51,12 @@
                         @foreach ($movies as $movie)
                         <tr>
                             <td>{{$movie['id']}}</td>
-                            <td>{{$movie['name']}}</td>
-                            <td><img src="assets/img/{{$movie['image']}}" width="100" height="130" alt="{{$movie['image']}}"></td>
-                            <td>{{$movie['language']}}</td>
-                            <td>{{$movie['type']}}</td>
-                            <td>{{$movie['casts']}}</td>
-                            <td>{{$movie['director']}}</td>
-                            <td>{{$movie['duration']}}</td>
-                            <td>{{$movie['releasedDate']}}</td>
-                            <td>
-                                <a href="{{action('\App\Http\Controllers\ShowtimesController@edit',$movie['id'])}}"
-                                   class="btn btn-outline-primary">Add</a>
+                            <td>{{$movie->movies_name}}</td>
+                            <td><img src="assets/img/{{$moviemovies_image}}" width="100" height="130" alt="{{$moviemovies_image}}"></td>
+                            <td>{{$movie->cinemas_name}}</td>
+                            <td>{{$movie['dateTime']}}</td>
+                            <td>{{$movie['hall']}}</td>
+                            
                             <td>
                                 <form method="POST" action="{{action('\App\Http\Controllers\ShowtimesController@destroy',$movie['id'])}}">
                                     @csrf

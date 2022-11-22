@@ -75,7 +75,7 @@ Route::get('/moviesList', [MoviesController::class, 'showMoviesList']);
 Route::delete('moviesList/{id}', [MoviesController::class, 'destroy']);
 
 //update Movies
-Route::get('updateMovies/{id}', [MoviesController::class, 'categoryOption']);
+//Route::get('updateMovies/{id}', [MoviesController::class, 'category']);
 Route::get('updateMovies/{id}', [MoviesController::class, 'edit']);
 Route::post('updateMovies/{id}', [MoviesController::class, 'update']);
 
@@ -99,12 +99,9 @@ Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
 Route::get('/addShowtimes', [ShowtimesController::class, 'cinemaOption']);
 
 
-//Route::get('/showtimesList', [ShowtimesController::class, 'showList']);
-//Route::get('addShowtimes/{id}', [ShowtimesController::class, 'edit']);
-
-//Route::get('addShowtimes/{id}', [ShowtimesController::class, 'add']);
-
 
 Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
+
+Route::get('showtimesList', [ShowtimesController::class, 'showList']);
 
 // Auth::routes();
