@@ -79,8 +79,8 @@
                                     <select name="category" id="category">
                                         
 <!--                                        <option value="{{$movies->categoryID}}">{{$movies->categoriesName}}</option>     -->
-                                        <option value="1">Now Showing</option>  
-                                        <option value="2">Coming Soon</option> 
+                                        <option value="2">Coming Soon</option>  
+                                        <option value="1">Now Showing</option> 
                                        
                                     </select>
                                 </div>
