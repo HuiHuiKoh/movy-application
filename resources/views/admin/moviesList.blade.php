@@ -63,10 +63,10 @@
                             <td><img src="assets/img/{{$shows['image']}}" width="100" height="130" alt="{{$shows['image']}}"></td>
                             <td>{{$shows['language']}}</td>
                             <td>{{$shows['type']}}</td>
-                            <td>{{$shows['duration']}}</td>
-                            <td>{{$shows['releasedDate']}}</td>
                             <td>{{$shows['casts']}}</td>
                             <td>{{$shows['director']}}</td>
+                            <td>{{$shows['duration']}}</td>
+                            <td>{{$shows['releasedDate']}}</td>
                             <td>
                                 <a href="{{action('\App\Http\Controllers\MoviesController@edit',$shows['id'])}}"
                                    class="btn btn-outline-primary">Edit</a>
