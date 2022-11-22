@@ -40,7 +40,7 @@
         <header id="header" class="fixed-top">
             <div class="container d-flex align-items-center">
 
-                <h1 class="logo me-auto"><a href="{{ asset('home') }}">MOVY</a></h1>
+                <h1 class="logo me-auto"><img width="70px" src="{{asset ('import/assets/img/favicon.png') }}"/></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html" class="logo me-auto"><img src="{{asset ('import/assets/img/logo.png') }}" alt="" class="img-fluid"></a>-->
 

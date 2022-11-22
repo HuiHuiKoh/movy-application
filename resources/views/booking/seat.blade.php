@@ -160,93 +160,90 @@
     </div>
 
     <section class="selectseats p-5 mt-3">
-        <form action="{{ asset('booking.datetime') }}">
-            <h1 class="text-center">Number of Seats</h1>
-            <div class="row justify-content-center">
-                <div class="col-auto font-white">
-                    <table class="table font-white mt-5">
-                        <tr>
-                            <td><label class="quantity m-3 d-inline" for="qtyTwin">Twin</label></td>
-                            <td><p class="d-inline font-softOrange mb-0 mr-2">RM 20.00</p></td>
-                            <td><input type="number" id="qtyTwin" name="qtyTwin" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
-                        </tr>
-                        <tr>
-                            <td><label class="quantity m-3 d-inline" for="qtyClassic">Classic</label></td>
-                            <td><p class="d-inline font-softOrange mb-0 mr-2">RM 10.00</p></td>
-                            <td><input type="number" id="qtyClassic" name="qtyClassic" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="col text-center">
-                <button onclick="showSeats()" class="btn orange-btn mt-3 ml-0 confirm-btn">Confirm</button>
-            </div>
-
-            <div id="seatStructure" class="mt-5 d-block p-5">
-                <div class="showcase">
-                    <li><div class="smallBox m-2" id="greenBox"></div><small>Selected</small></li>
-                    <li><div class="smallBox m-2" id="redBox"></div><small>Reserved</small></li>
-                    <li><div class="smallBox m-2" id="emptyBox"></div><small>Single</small></li>
-                    <li><div class="smallBox m-2" id="twinBox"></div><small>Twin</small></li>
-                    <li><div class="smallBox m-2" id="greyBox"></div><small>Unavailable</small></li>
-                </div>
-
-                <table id="seatsBlock" class="text-center">
-                    <tr><div class="screen"></div></tr>
-
-                    <!--Single seat-->
-                    @foreach (range('A', 'F') as $char)
+        <h1 class="text-center">Number of Seats</h1>
+        <div class="row justify-content-center">
+            <div class="col-auto font-white">
+                <table class="table font-white mt-5">
                     <tr>
-                        <th class="pt-2">{{$char}}</th>
-                        @for($i=0;$i<14;$i++)
-                        <td><input type="checkbox" class="seats single" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
-                        @endfor
-                        <th class="pt-2">{{$char}}</th>
+                        <td><label class="quantity m-3 d-inline" for="qtyTwin">Twin</label></td>
+                        <td><p class="d-inline font-softOrange mb-0 mr-2">RM 20.00</p></td>
+                        <td><input type="number" id="qtyTwin" name="qtyTwin" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
                     </tr>
-                    @endforeach
+                    <tr>
+                        <td><label class="quantity m-3 d-inline" for="qtyClassic">Classic</label></td>
+                        <td><p class="d-inline font-softOrange mb-0 mr-2">RM 10.00</p></td>
+                        <td><input type="number" id="qtyClassic" name="qtyClassic" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
+                    </tr>
                 </table>
+            </div>
+        </div>
+        <div class="col text-center">
+            <button onclick="showSeats();" class="btn orange-btn mt-3 ml-0 confirm-btn">Confirm</button>
+        </div>
 
-                @foreach (range('G', 'H') as $char)
-                <ul class="text-center twin-seats font-white mt-4 pl-0">
-                    <li class="d-inline-block position-relative pt-2">{{$char}}</th>
-                        @for($i=0;$i<5;$i++)
-                    <li class="d-inline-block position-relative mx-5"><input type="checkbox" class="seats twin" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
-                        @endfor
-                    <li class="d-inline-block position-relative pt-2">{{$char}}</th>
-                </ul>
+        <div id="seatStructure" class="mt-5 d-block p-5">
+            <div class="showcase">
+                <li><div class="smallBox m-2" id="greenBox"></div><small>Selected</small></li>
+                <li><div class="smallBox m-2" id="redBox"></div><small>Reserved</small></li>
+                <li><div class="smallBox m-2" id="emptyBox"></div><small>Single</small></li>
+                <li><div class="smallBox m-2" id="twinBox"></div><small>Twin</small></li>
+                <li><div class="smallBox m-2" id="greyBox"></div><small>Unavailable</small></li>
+            </div>
+
+            <table id="seatsBlock" class="text-center">
+                <tr><div class="screen"></div></tr>
+
+                <!--Single seat-->
+                @foreach (range('A', 'F') as $char)
+                <tr>
+                    <th class="pt-2">{{$char}}</th>
+                    @for($i=0;$i<14;$i++)
+                    <td><input type="checkbox" class="seats single" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
+                    @endfor
+                    <th class="pt-2">{{$char}}</th>
+                </tr>
                 @endforeach
+            </table>
+
+            @foreach (range('G', 'H') as $char)
+            <ul class="text-center twin-seats font-white mt-4 pl-0">
+                <li class="d-inline-block position-relative pt-2">{{$char}}</th>
+                    @for($i=0;$i<5;$i++)
+                <li class="d-inline-block position-relative mx-5"><input type="checkbox" class="seats twin" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
+                    @endfor
+                <li class="d-inline-block position-relative pt-2">{{$char}}</th>
+            </ul>
+            @endforeach
 
 
-                <table class="Displaytable mt-5 text-center w-100 font-white">
-                    <tr><th>Seats</th></tr>
-                    <tr><td><textarea id="seatsDisplay" class="text-center"></textarea></td></tr>
-                </table>
+            <table class="Displaytable mt-5 text-center w-100 font-white">
+                <tr><th>Seats</th></tr>
+                <tr><td><textarea id="seatsDisplay" class="text-center"></textarea></td></tr>
+            </table>
 
-                <div class="col text-center mt-3">
-                    <button type="submit" data-toggle="modal" data-target=".bd-example-modal-lg" 
-                            class="btn orange-btn mt-3 ml-0 float-end">Continue</button>
-                </div>
+            <div class="col text-center mt-3">
+                <button type="submit" class="btn orange-btn mt-3 ml-0 float-end">Continue</button>
+            </div>
 
-                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Warning</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Modal body text goes here.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
+            <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Warning</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="modal-inner-content"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </section>
 </section>
 @endsection
@@ -258,46 +255,41 @@
 <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/holder.min.js"></script>
 <script>
-                        const formInputTwin = document.querySelector("#qtyTwin");
-                        const formInputClassic = document.querySelector("#qtyClassic");
-                        const formButton = $(".confirm-button");
+                    const formInputTwin = document.querySelector("#qtyTwin");
+                    const formInputClassic = document.querySelector("#qtyClassic");
+                    const formButton = $(".confirm-button");
 
-                        formButton.disabled = true;
-                        formInputTwin.addEventListener('change', (e) => {
-                            if (formInputTwin.value === "") {
-                                formButton.disabled = true;
-                            } else {
-                                formButton.disabled = false;
-                            }
-                        });
-                        formInputClassic.addEventListener('change', (e) => {
-                            if (formInputClassic.value === "") {
-                                formButton.disabled = true;
-                            } else {
-                                formButton.disabled = false;
-                            }
-                        });
+                    formButton.disabled = true;
+                    formInputTwin.addEventListener('change', (e) => {
+                        if (formInputTwin.value === "") {
+                            formButton.disabled = true;
+                        } else {
+                            formButton.disabled = false;
+                        }
+                    });
+                    formInputClassic.addEventListener('change', (e) => {
+                        if (formInputClassic.value === "") {
+                            formButton.disabled = true;
+                        } else {
+                            formButton.disabled = false;
+                        }
+                    });
 
-                        function showSeats() {
-                            if (!formButton.disabled) {
-                                $("#seatStructure").addClass("d-block");
+                    function showSeats() {
+                        if (!formButton.disabled) {
+                            $("#seatStructure").addClass("d-block");
+                        }
+                    }
+
+                    function seatS() {
+                        var checkboxes = document.getElementsByClassName('seats');
+                        var checkboxesChecked = [];
+                        for (var i = 0; i < checkboxes.length; i++) {
+                            if (checkboxes[i].checked) {
+                                checkboxesChecked.push(checkboxes[i].value);
                             }
                         }
-
-                        function seatS() {
-                            var checkboxes = document.getElementsByClassName('seats');
-                            var checkboxesChecked = [];
-                            for (var i = 0; i < checkboxes.length; i++) {
-                                if (checkboxes[i].checked) {
-                                    checkboxesChecked.push(checkboxes[i].value);
-                                }
-                            }
-                            document.getElementById("seatsDisplay").value = checkboxesChecked;
-                        }
-                        
-                        var error=false;
-                        if(!error){
-                            $('#myModal').modal('hide');
-                        }
+                        document.getElementById("seatsDisplay").value = checkboxesChecked;
+                    }
 </script>
 @endpush
