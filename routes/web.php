@@ -6,11 +6,8 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\MoviesController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\PaymentController;
-=======
 use App\Http\Controllers\ShowtimesController;
->>>>>>> Stashed changes
 use Illuminate\Support\Facades\Route;
 
 /*
