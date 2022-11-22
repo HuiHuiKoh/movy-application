@@ -19,6 +19,7 @@ class CreateShowtimesTable extends Migration
             $table->integer('hall');
             $table->foreignId('cinemaID')->references('id')->on('cinemas')->onDelete('cascade');
             $table->foreignId('moviesID')->references('id')->on('movies')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

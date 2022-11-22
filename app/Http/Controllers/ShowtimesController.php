@@ -19,17 +19,16 @@ class ShowtimesController extends Controller {
         try {
 //            $movies = Movies::all();
             $movies = DB::table('showtimes')
-                ->join('movies','cinemas','showtimes.moviesID', '=', 'movies.id','showtimes.cinemaID', '=', 'cinemas.id')
-                ->select('movies.name as movies_name', 'movies.image as movies_image','cinemas.name as cinemas_name')              
-                ->get();
+                    ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
+                    ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
+                    ->select('movies.name as movies_name', 'movies.image as movies_image', 'cinemas.name as cinemas_name','showtimes.*')
+                    ->get();
 //            return json_decode($books);
             return view('admin.showtimesList', compact('movies'));
         } catch (QueryException $e) {
             abort(500);
         }
     }
-
-
 
     public function newShowtimes() {
         return view('admin.addShowtimes');
@@ -38,10 +37,10 @@ class ShowtimesController extends Controller {
     public function cinemaOption() {
         $movies = Movies::all();
         $cinemas = Cinema::all();
-        
-        return view('admin.addShowtimes', ['movies' => $movies],['cinemas' => $cinemas]);
+
+        return view('admin.addShowtimes', ['movies' => $movies], ['cinemas' => $cinemas]);
     }
-    
+
     public function store(ShowtimesRequest $request) {
 
         $request->validationData();
@@ -62,8 +61,8 @@ class ShowtimesController extends Controller {
 
     public function destroy($id) {
         try {
-            Movies::find($id)->delete();
-            return redirect()->back()->with('success', 'Movies has been deleted.');
+            Showtimes::find($id)->delete();
+            return redirect()->back()->with('success', 'Showtimes has been deleted.');
         } catch (QueryException $e) {
             abort(500);
         }
@@ -83,8 +82,8 @@ class ShowtimesController extends Controller {
         $moviesID = Movies::find($id);
 
         $movies = DB::table('showtimes')
-                ->join('movies','cinemas','showtimes.moviesID', '=', 'movies.id','showtimes.cinemaID', '=', 'cinemas.id')
-                ->select('movies.*', 'cinemas.*')              
+                ->join('movies', 'cinemas', 'showtimes.moviesID', '=', 'movies.id', 'showtimes.cinemaID', '=', 'cinemas.id')
+                ->select('movies.*', 'cinemas.*')
                 ->get();
 
         $this->validate($request, [
@@ -93,7 +92,7 @@ class ShowtimesController extends Controller {
             'hall' => 'required|integer',
             'cinema' => 'required',
         ]);
-      
+
         $movies->name = $request->get('name');
         $movies->dateTime = $request->get('dateTime');
         $movies->hall = $request->get('hall');
