@@ -28,7 +28,7 @@
     --orange: #EE5C4B;
     --lightRed: rgba(239,93,119,0.2);
     --softRed: #EF5D77;
-    
+
 }
 
 body {
@@ -215,6 +215,9 @@ i{
 }
 .font-dark-grey{
     color: var(--darkGrey);
+}
+.bg-softOrange{
+    background: var(--softOrange);
 }
 .orange-btn {
     margin-left: 22px;

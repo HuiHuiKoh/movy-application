@@ -149,29 +149,29 @@
 @section('content')
 <section id="seats" class="align-items-center">
     <div class="text-center bg-black py-4 font-white">
-        <h5>Beauty and the Beast</h5>
-        <h5>120 minutes</h5>
-        <div class="movie-details text-uppercase mt-4">
-            <h6 class="d-inline mx-2">Movie 1Utama</h6>|
-            <h6 class="d-inline mx-2">Hall 02</h6>&nbsp;|
-            <h6 class="d-inline mx-2">22 Nov 2022</h6>&nbsp;|
-            <h6 class="d-inline mx-2">9:30 pm</h6>
+        <p class="d-inline mr-3">Beauty and the Beast</p>
+        <p class="d-inline mr-3">120 minutes</p>
+        <div class="movie-details text-uppercase mt-4 d-inline">
+            <p class="d-inline mx-2 font-softOrange">Movie 1Utama</p>|
+            <p class="d-inline mx-2 font-softOrange">Hall 02</p>&nbsp;|
+            <p class="d-inline mx-2 font-softOrange">22 Nov 2022</p>&nbsp;|
+            <p class="d-inline mx-2 font-softOrange">9:30 pm</p>
         </div>
     </div>
 
     <section class="selectseats p-5 mt-3">
-        <h1 class="text-center">Number of Seats</h1>
+        <h1 class="text-center">Seats</h1>
         <div class="row justify-content-center">
             <div class="col-auto font-white">
                 <table class="table font-white mt-5">
                     <tr>
-                        <td><label class="quantity m-3 d-inline" for="qtyTwin">Twin</label></td>
-                        <td><p class="d-inline font-softOrange mb-0 mr-2">RM 20.00</p></td>
+                        <td><label class="quantity m-3 d-inline align-middle" for="qtyTwin">Twin</label></td>
+                        <td><p class="d-inline font-softOrange mb-0 mr-2 align-middle">RM 20.00</p></td>
                         <td><input type="number" id="qtyTwin" name="qtyTwin" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
                     </tr>
                     <tr>
-                        <td><label class="quantity m-3 d-inline" for="qtyClassic">Classic</label></td>
-                        <td><p class="d-inline font-softOrange mb-0 mr-2">RM 10.00</p></td>
+                        <td><label class="quantity m-3 d-inline align-middle" for="qtyClassic">Classic</label></td>
+                        <td><p class="d-inline font-softOrange mb-0 mr-2 align-middle">RM 10.00</p></td>
                         <td><input type="number" id="qtyClassic" name="qtyClassic" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
                     </tr>
                 </table>
@@ -222,23 +222,34 @@
             </table>
 
             <div class="col text-center mt-3">
-                <button type="submit" class="btn orange-btn mt-3 ml-0 float-end">Continue</button>
+                <button type="submit" class="continue-btn btn orange-btn mt-3 ml-0 float-end" onclick="checkError()">Continue</button>
             </div>
 
             <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
+                        <div class="modal-body">
+                            <div id="errors"></div><button type="button" class="btn btn-danger float-end" onclick="hideModal()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Warning</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                            <button type="button" class="close" onclick="hideConfirmation()" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p id="modal-inner-content"></p>
+                            <div id="confirm-value"></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" onclick="hideConfirmation()">Cancel</button>
+                            <button onclick="location.href = ''" type="button" class="btn btn-primary">Continue</button>
                         </div>
                     </div>
                 </div>
@@ -255,41 +266,101 @@
 <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/holder.min.js"></script>
 <script>
-                    const formInputTwin = document.querySelector("#qtyTwin");
-                    const formInputClassic = document.querySelector("#qtyClassic");
-                    const formButton = $(".confirm-button");
+                                const formInputTwin = document.querySelector("#qtyTwin");
+                                const formInputClassic = document.querySelector("#qtyClassic");
+                                const formButton = $(".confirm-button");
 
-                    formButton.disabled = true;
-                    formInputTwin.addEventListener('change', (e) => {
-                        if (formInputTwin.value === "") {
-                            formButton.disabled = true;
-                        } else {
-                            formButton.disabled = false;
-                        }
-                    });
-                    formInputClassic.addEventListener('change', (e) => {
-                        if (formInputClassic.value === "") {
-                            formButton.disabled = true;
-                        } else {
-                            formButton.disabled = false;
-                        }
-                    });
+                                formButton.disabled = true;
+                                formInputTwin.addEventListener('change', (e) => {
+                                    if (formInputTwin.value === "") {
+                                        formButton.disabled = true;
+                                    } else {
+                                        formButton.disabled = false;
+                                    }
+                                });
+                                formInputClassic.addEventListener('change', (e) => {
+                                    if (formInputClassic.value === "") {
+                                        formButton.disabled = true;
+                                    } else {
+                                        formButton.disabled = false;
+                                    }
+                                });
 
-                    function showSeats() {
-                        if (!formButton.disabled) {
-                            $("#seatStructure").addClass("d-block");
-                        }
-                    }
+                                function showSeats() {
+                                    if (!formButton.disabled) {
+                                        $("#seatStructure").addClass("d-block");
+                                    }
+                                }
 
-                    function seatS() {
-                        var checkboxes = document.getElementsByClassName('seats');
-                        var checkboxesChecked = [];
-                        for (var i = 0; i < checkboxes.length; i++) {
-                            if (checkboxes[i].checked) {
-                                checkboxesChecked.push(checkboxes[i].value);
-                            }
-                        }
-                        document.getElementById("seatsDisplay").value = checkboxesChecked;
-                    }
+                                function seatS() {
+                                    var checkboxes = document.getElementsByClassName('seats');
+                                    var checkboxesChecked = [];
+                                    for (var i = 0; i < checkboxes.length; i++) {
+                                        if (checkboxes[i].checked) {
+                                            checkboxesChecked.push(checkboxes[i].value);
+                                        }
+                                    }
+                                    document.getElementById("seatsDisplay").value = checkboxesChecked;
+                                }
+                                function showModal() {
+                                    $('#myModal').modal('show');
+                                }
+                                function hideModal() {
+                                    $('#myModal').modal('hide');
+                                }
+                                function showConfirmation() {
+                                    $('#confirmation').modal('show');
+                                }
+                                function hideConfirmation() {
+                                    $('#confirmation').modal('hide');
+                                }
+                                function checkError() {
+                                    var twinSeat = document.querySelector("#qtyTwin").value;
+                                    var classicSeat = document.querySelector("#qtyClassic").value;
+                                    var twinCount = 0;
+                                    var classicCount = 0;
+                                    twinSeat = parseInt(twinSeat);
+                                    classicSeat = parseInt(classicSeat);
+                                    if (twinSeat === 0 && classicSeat === 0) {
+                                        showModal();
+                                        document.getElementById("errors").innerHTML = "You must select at least 1 ticket";
+                                    } else {
+                                        var seats = document.getElementsByClassName('seats');
+                                        var seatChecked = [];
+                                        for (var i = 0; i < seats.length; i++) {
+                                            if (seats[i].checked) {
+                                                seatChecked.push(seats[i].value);
+                                            }
+                                        }
+                                        for (var i = 0; i < seatChecked.length; i++) {
+                                            seatChecked[i] = seatChecked[i].toString();
+                                            if (seatChecked[i].charAt(0) === 'G' || seatChecked[i].charAt(0) === 'H') {
+                                                twinCount++;
+                                            } else {
+                                                classicCount++;
+                                            }
+                                        }
+                                        if (twinCount === 0 && classicCount === 0) {
+                                            showModal();
+                                            document.getElementById("errors").innerHTML = "Please select your seats";
+                                        } else if (twinCount !== 0 && twinSeat !== twinCount) {
+                                            showModal();
+                                            document.getElementById("errors").innerHTML = "You cannot select more than " + twinSeat + " Twin ticket(s)";
+                                        } else if (classicCount !== 0 && classicSeat !== classicCount) {
+                                            showModal();
+                                            document.getElementById("errors").innerHTML = "You cannot select more than " + classicSeat + " Classic ticket(s)";
+                                        } else {
+                                            hideModal();
+                                            showConfirmation();
+                                            if (classicSeat === 0) {
+                                                document.getElementById("confirm-value").innerHTML = "You have selected " + twinSeat + " Twin ticket(s)";
+                                            } else if (twinSeat === 0) {
+                                                document.getElementById("confirm-value").innerHTML = "You have selected " + classicSeat + " Classic ticket(s)";
+                                            } else {
+                                                document.getElementById("confirm-value").innerHTML = "You have selected " + classicSeat + " Classic ticket(s) and " + twinSeat + " Twin ticket(s)";
+                                            }
+                                        }
+                                    }
+                                }
 </script>
 @endpush
