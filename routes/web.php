@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ShowtimesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,5 +90,12 @@ Route::delete('foodList/{id}', [FoodsController::class, 'destroy']);
 //update Foods
 Route::get('updateFoods/{id}', [FoodsController::class, 'edit']);
 Route::post('updateFoods/{id}', [FoodsController::class, 'update']);
+
+//add Showtimes
+Route::get('/addShowtimes', [ShowtimesController::class, 'newShowtimes']);
+Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
+Route::get('/addShowtimes', [ShowtimesController::class,'hallsOption']);
+Route::get('/addShowtimes', [ShowtimesController::class, 'cinemaOption']);
+
 
 // Auth::routes();
