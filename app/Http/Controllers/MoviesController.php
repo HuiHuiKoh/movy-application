@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Movies;
 use App\Models\Category;
 use Carbon\Carbon;
+Use Illuminate\Support\Facades\DB;
 
 class MoviesController extends Controller
 {
@@ -102,18 +103,18 @@ class MoviesController extends Controller
 //        
         $movies = DB::table('movies')
                 ->join('categories', 'movies.categoryID', '=', 'categories.id')
-                ->where('movies.id', $moviesID)
-                ->select('movies.*', 'categories.*', 'categories.id as categoryID')
+//                ->where('movies.categoryID', 'categories.id')
+                ->select('movies.*', 'categories.*', 'categories.id as categoryID','categories.category as categoriesName')
                 ->get();
 
         
 
-        $fileName = $movies->image;
+        $fileName = $moviesID->image;
 
         $this->validate($request, [
             'name' => 'required|string|max:250',
             'synopsis' => 'required|string',
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=200,min_height=200,max_width=1000,max_height=1000',
             'casts' => 'required|string|max:400',
             'language' => 'required|string|max:20|min:3',
             'type' => 'required|string|max:100',
@@ -130,19 +131,19 @@ class MoviesController extends Controller
             $file->move('C:\Users\USER\Documents\GitHub\movy-application\public\assets\img', $fileName);
         }
 
-        $movies->name = $request->get('name');
-        $movies->releasedDate = $request->get('releasedDate');
-        $movies->casts = $request->get('casts');
-        $movies->synopsis = $request->get('synopsis');
-        $movies->language = $request->get('language');
-        $movies->type = $request->get('type');
-        $movies->trailer = $request->get('trailer');
-        $movies->director = $request->get('director');
-        $movies->categoryID = $request->get('category');
-        $movies->updated_at = Carbon::now()->toDateTimeString();
-        $movies->image = $fileName;
+        $moviesID->name = $request->get('name');
+        $moviesID->releasedDate = $request->get('releasedDate');
+        $moviesID->casts = $request->get('casts');
+        $moviesID->synopsis = $request->get('synopsis');
+        $moviesID->language = $request->get('language');
+        $moviesID->type = $request->get('type');
+        $moviesID->trailer = $request->get('trailer');
+        $moviesID->director = $request->get('director');
+        $moviesID->categoryID = $request->get('category');
+        $moviesID->updated_at = Carbon::now()->toDateTimeString();
+        $moviesID->image = $fileName;
 
-        $movies->save();
+        $moviesID->save();
 
         return redirect()->back()->with('success', 'Movies has been updated.');
     }

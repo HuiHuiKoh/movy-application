@@ -15,7 +15,6 @@ class CreateShowtimesTable extends Migration
     {
         Schema::create('showtimes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
             $table->dateTime('dateTime');
             $table->integer('hall');
             $table->foreignId('cinemaID')->references('id')->on('cinemas')->onDelete('cascade');

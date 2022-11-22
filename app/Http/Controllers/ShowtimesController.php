@@ -10,6 +10,7 @@ use App\Models\Showtimes;
 use App\Models\Cinema;
 Use Illuminate\Support\Facades\DB;
 use App\Models\Movies;
+use App\Models\Hall;
 
 class ShowtimesController extends Controller {
 
@@ -28,22 +29,6 @@ class ShowtimesController extends Controller {
         }
     }
 
-//    public function showtimesList() {
-//
-//
-//        try {
-//     
-//            $movies = DB::table('showtimes')
-//                    ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
-//                    ->select('movies.*', 'showtimes.dateTime','showtimes.hall')
-//                    ->get();
-////            return json_decode($books);
-//            return view('admin.showtimesList', compact('movies'));
-//        } catch (QueryException $e) {
-//            abort(500);
-//        }
-//    }
-
 
 
     public function newShowtimes() {
@@ -51,27 +36,22 @@ class ShowtimesController extends Controller {
     }
 
     public function cinemaOption() {
-        $cinemas = Cinema::all();
         $movies = Movies::all();
-        return view('admin.addShowtimes', ['cinemas' => $cinemas],['movies' => $movies]);
+        $cinemas = Cinema::all();
+        
+        return view('admin.addShowtimes', ['movies' => $movies],['cinemas' => $cinemas]);
     }
     
-    public function moviesOption() {
-        $movies = Movies::all();
-        return view('admin.addShowtimes', ['movies' => $movies]);
-    }
-
     public function store(ShowtimesRequest $request) {
-
 
         $request->validationData();
 
         try {
             Showtimes::create([
-                'name' => $request->get('name'),
+                'hall' => $request->get('hall'),
                 'dateTime' => $request->get('dateTime'),
                 'cinemaID' => $request->get('cinema'),
-                'moviesID' => $request->get('name'),
+                'moviesID' => $request->get('movie'),
                 'created_at' => Carbon::now()->toDateTimeString(),
             ]);
             return redirect()->back()->with('success', 'Showtimes has been added.');

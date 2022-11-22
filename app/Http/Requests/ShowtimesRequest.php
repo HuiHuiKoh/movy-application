@@ -12,10 +12,11 @@ class ShowtimesRequest extends FormRequest {
 
     public function rules() {
         return [
-            'name' => 'required|string|max:250',
+            'movie' => 'required',
             'dateTime' => 'required',
             'hall' => 'required|integer',
             'cinema' => 'required',
+            
         ];
     }
 

@@ -78,7 +78,9 @@
                                     <label class="form-control-label px-3">Category<span class="text-danger"> *</span></label> 
                                     <select name="category" id="category">
                                         
-                                        <option value="{{$movies->categoryID}}">{{$movies->category}}</option>          
+<!--                                        <option value="{{$movies->categoryID}}">{{$movies->categoriesName}}</option>     -->
+                                        <option value="1">Now Showing</option>  
+                                        <option value="2">Coming Soon</option> 
                                        
                                     </select>
                                 </div>
