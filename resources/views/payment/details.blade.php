@@ -36,6 +36,5 @@
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/holder.min.js"></script>
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 @endpush
 

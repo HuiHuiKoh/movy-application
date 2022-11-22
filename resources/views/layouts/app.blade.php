@@ -51,10 +51,15 @@
                                 <li><a href="{{asset ('f&b') }}">F & B</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{asset ('membership') }}">Membership</a></li>
+                        <li class="dropdown"><a href="#"><span>Membership</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="{{asset ('membership/1/check') }}">Check member points</a></li>
+                                <li><a href="{{asset ('membership') }}">Promotions</a></li>
+                                <li><a href="{{asset ('membership/voucher') }}">Vouchers</a></li>
+                            </ul>
+                        </li>
                         <li><a href="{{asset ('forum') }}">Forum</a></li>
                     </ul>
-                    <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->
 
                 <a href="" class="orange-btn">Login</a>

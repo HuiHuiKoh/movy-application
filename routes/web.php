@@ -23,19 +23,21 @@ use Illuminate\Support\Facades\Route;
 
 //Koh Hui Hui
 Route::get('/home', [HomeController::class, 'index']);
-Route::get('/membership', [MembershipController::class, 'membership']);
 Route::get('/forum', [ForumController::class, 'forum']);
 Route::prefix('booking')->group(function () {
     Route::get('/', [BookingController::class, 'index']);
 //    Route::get('/{movieId}', [BookingController::class, 'index']);
     Route::get('/seats', [BookingController::class, 'seat']);
-//    Route::get('/{cinemaId}', [BookingController::class, 'seat']);
+//    Route::get('/{cinemaId}/{hallNo}/seats', [BookingController::class, 'seat']);
 });
 Route::prefix('payment')->group(function () {
-    Route::get('/form/{option}', [PaymentController::class, 'form']);
-//    Route::get('/form/{option}', [PaymentController::class, 'form']);
+    Route::get('/form', [PaymentController::class, 'form']);
     Route::get('/details', [PaymentController::class, 'details']);
-//    Route::get('/details', [PaymentController::class, 'details']);
+});
+Route::prefix('membership')->group(function () {
+    Route::get('/', [MembershipController::class, 'index']);
+    Route::get('/{memberId}/check', [MembershipController::class, 'check']);
+    Route::get('/voucher', [MembershipController::class, 'voucher']);
 });
 
 Route::get('/about', function () {
