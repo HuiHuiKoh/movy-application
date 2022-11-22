@@ -94,8 +94,13 @@ Route::post('updateFoods/{id}', [FoodsController::class, 'update']);
 //add Showtimes
 Route::get('/addShowtimes', [ShowtimesController::class, 'newShowtimes']);
 Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
-Route::get('/addShowtimes', [ShowtimesController::class,'hallsOption']);
 Route::get('/addShowtimes', [ShowtimesController::class, 'cinemaOption']);
 
+
+Route::get('/showtimesList', [ShowtimesController::class, 'showtimesList']);
+Route::get('addShowtimes/{id}', [ShowtimesController::class, 'edit']);
+Route::post('addShowtimes/{id}', [ShowtimesController::class, 'update']);
+
+Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
 
 // Auth::routes();

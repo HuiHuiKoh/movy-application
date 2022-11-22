@@ -17,8 +17,9 @@ class CreateShowtimesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->dateTime('dateTime');
-            $table->foreignId('hallID')->references('id')->on('halls')->onDelete('cascade');
+            $table->integer('hall');
             $table->foreignId('cinemaID')->references('id')->on('cinemas')->onDelete('cascade');
+            $table->foreignId('moviesID')->references('id')->on('movies')->onDelete('cascade');
             $table->timestamps();
         });
     }

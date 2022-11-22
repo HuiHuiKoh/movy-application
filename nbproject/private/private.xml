@@ -4,12 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/addMovies.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/foodList.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/MoviesController.php</file>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/routes/web.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/addFood.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/FoodsController.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/updateFood.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Requests/FoodRequest.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/addShowtimes.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/ShowtimesController.php</file>
         </group>
     </open-files>
 </project-private>

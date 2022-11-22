@@ -56,11 +56,7 @@
                                 </div>
                                 <div class="form-group col-sm-6 flex-column d-flex">                                    
                                     <label class="form-control-label px-3">Hall<span class="text-danger"> *</span></label> 
-                                    <select name="hall" id="hall">    
-                                        @foreach($halls as $hall)
-                                        <option value="{{$hall->id}}">{{$hall->name}}</option>
-                                        @endforeach
-                                    </select> 
+                                    <input type="text" id="hall" name="hall" placeholder=""> 
                                 </div>
                             </div>                           
                         </div>

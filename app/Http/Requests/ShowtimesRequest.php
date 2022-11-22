@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MoviesRequest extends FormRequest {
+class ShowtimesRequest extends FormRequest {
 
     public function authorize() {
         return true;
@@ -14,7 +14,7 @@ class MoviesRequest extends FormRequest {
         return [
             'name' => 'required|string|max:250',
             'dateTime' => 'required',
-            'hall' => 'required',
+            'hall' => 'required|integer',
             'cinema' => 'required',
         ];
     }
