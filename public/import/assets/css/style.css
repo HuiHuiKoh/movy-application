@@ -180,10 +180,6 @@ i{
     padding: .4rem .7rem;
     border-radius: .5rem;
 }
-.btn-orange{
-    background-color: var(--orange);
-    color:var(--white);
-}
 .btn-light-blue{
     background-color: var(--lightBlue);
     color:var(--white);
@@ -205,8 +201,14 @@ i{
 .font-dark-blue{
     color: var(--darkBlue)!important;
 }
+.font-red{
+    color: var(--red);
+}
 .font-orange{
     color: var(--orange);
+}
+.font-softOrange{
+    color: var(--softOrange);
 }
 .font-lime-green{
     color: var(--darkLimeGreen);
@@ -253,6 +255,10 @@ i{
     display: inline-block;
     text-decoration: none;
     width: fit-content;
+}
+.orange-btn.disabled{
+    background: rgba(255,255,255,0.9);
+    color: var(--black);
 }
 .orange-outline-btn:hover {
     background: var(--softOrange);

@@ -8,45 +8,22 @@
         align-items: center;
         justify-content: center;
     }
-    .seat-container {
-        perspective: 1000px;
-        margin-bottom: 30px;
-    }
-    .seat {
-        background-color: rgb(102, 102, 102);
-        height: 12px;
-        width: 15px;
-        border-radius: 8px 8px 0 0;
-        margin: 10px 5px;
-    }
-    .seat.selected {
-        background-color: var(--strongLimeGreen);
-    }
-    .seat.occupied {
-        background-color: var(--red);
-    }
-    .seat.single {
-        background-color: var(--lightBlue);
-    }
-    .seat.twin {
-        background-color: var(--yellow);
-    }
-    .seat:not(.occupied):hover {
-        cursor: pointer;
-        transform: scale(1.3);
-    }
-    .showcase .seat:not(.occupied):hover {
-        cursor: default;
-        transform: scale(1);
+    .seats-num{
+        border-radius:8px;
+        background: none;
+        border: 2px solid var(--white);
+        color: var(--white);
+        font-size: medium;
+        width: 80px;
     }
     .showcase {
         background-color: rgba(0, 0, 0, 0.15);
         padding: 5px 10px;
         border-radius: 6px;
-        color: #777;
         list-style-type: none;
         display: flex;
         justify-content: space-between;
+        color: var(--white);
     }
     .showcase li {
         display: flex;
@@ -60,12 +37,111 @@
         display: flex;
     }
     .screen {
-        background-color: #fff;
+        background-color: var(--white);
         height: 70px;
         width: 100%;
         margin: 15px 0;
         transform: rotateX(-45deg);
         box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+    }
+    #seatsBlock{
+        width: 100%;
+        margin: auto;
+    }
+    #seatsBlock th{
+        color: var(--white);
+    }
+    #greenBox::before, #redBox::before, #emptyBox::before, #greyBox::before{
+        content:'';
+        width:20px;
+        height:20px;
+        float:left;
+        margin-left: 15%;
+        margin-right: 5%;
+    }
+    #twinBox::before{
+        content:'';
+        width:40px;
+        height:20px;
+        float:left;
+        margin-left: 15%;
+        margin-right: 5%;
+    }
+    .smallBox{
+        text-align: left;
+    }
+    #emptyBox::before{
+        box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+        background-color:var(--lightBlue);
+    }
+    #twinBox::before{
+        box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+        background-color:var(--purple);
+    }
+    #greyBox::before{
+        background-color: var(--lightGrey);
+    }
+    #greenBox::before{
+        background-color:var(--strongLimeGreen);
+    }
+    #redBox::before{
+        background-color:var(--red);
+    }
+    .seatGap{
+        width:5%;
+    }
+    .seatVGap{
+        height:30px;
+    }
+    .Displaytable td, .Displaytable th {
+        border: 1px solid #ffffff;
+        text-align: center;
+    }
+    .Displaytable textarea{
+        border:none;
+        background:transparent;
+        color: var(--white);
+        width: 100%;
+    }
+    #seatsBlock input[type=checkbox]{
+        width:0px;
+        margin-right:18px;
+    }
+
+    #seatsBlock .single:before {
+        content: "";
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        text-align: center;
+        box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+        background-color:var(--lightBlue);
+    }
+    #seatsBlock .single:checked:before{
+        background-color:var(--strongLimeGreen);
+        font-size: 20px;
+    }
+    #seatsBlock .reserved:before{
+        background-color:var(--red);
+    }
+    .twin-seats{
+        list-style: none;
+    }
+    .twin-seats .twin:before {
+        content: "";
+        width: 40px;
+        height: 20px;
+        display: inline-block;
+        text-align: center;
+        box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+        background-color:var(--purple);
+    }
+    .twin-seats .twin:checked:before{
+        background-color:var(--strongLimeGreen);
+        font-size: 20px;
+    }
+    .twin-seats .reserved:before{
+        background-color:var(--red);
     }
 </style>
 @endpush
@@ -82,238 +158,96 @@
             <h6 class="d-inline mx-2">9:30 pm</h6>
         </div>
     </div>
-    <div id="seating-plan" class="my-5">
-        <div class="showcase">
-            <li class="mx-4">
-                <div class="seat"></div>
-                <small>Unavailable</small>
-            </li>
-            <li class="mx-4">
-                <div class="seat selected"></div>
-                <small>Selected</small>
-            </li>
-            <li class="mx-4">
-                <div class="seat occupied"></div>
-                <small>Occupied</small>
-            </li>
-            <li class="mx-4">
-                <div class="seat twin"></div>
-                <div class="seat twin"></div>
-                <small>Twin</small>
-            </li>
-            <li class="mx-4">
-                <div class="seat single"></div>
-                <small>Single</small>
-            </li>
-        </div>
-        <div class="seat-container">
-            <div class="screen"></div>
-            <div class="row">
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
+
+    <section class="selectseats p-5 mt-3">
+        <form action="{{ asset('booking.datetime') }}">
+            <h1 class="text-center">Number of Seats</h1>
+            <div class="row justify-content-center">
+                <div class="col-auto font-white">
+                    <table class="table font-white mt-5">
+                        <tr>
+                            <td><label class="quantity m-3 d-inline" for="qtyTwin">Twin</label></td>
+                            <td><p class="d-inline font-softOrange mb-0 mr-2">RM 20.00</p></td>
+                            <td><input type="number" id="qtyTwin" name="qtyTwin" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
+                        </tr>
+                        <tr>
+                            <td><label class="quantity m-3 d-inline" for="qtyClassic">Classic</label></td>
+                            <td><p class="d-inline font-softOrange mb-0 mr-2">RM 10.00</p></td>
+                            <td><input type="number" id="qtyClassic" name="qtyClassic" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="row">
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
+            <div class="col text-center">
+                <button onclick="showSeats()" class="btn orange-btn mt-3 ml-0 confirm-btn">Confirm</button>
             </div>
-            <div class="row">
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
+
+            <div id="seatStructure" class="mt-5 d-block p-5">
+                <div class="showcase">
+                    <li><div class="smallBox m-2" id="greenBox"></div><small>Selected</small></li>
+                    <li><div class="smallBox m-2" id="redBox"></div><small>Reserved</small></li>
+                    <li><div class="smallBox m-2" id="emptyBox"></div><small>Single</small></li>
+                    <li><div class="smallBox m-2" id="twinBox"></div><small>Twin</small></li>
+                    <li><div class="smallBox m-2" id="greyBox"></div><small>Unavailable</small></li>
+                </div>
+
+                <table id="seatsBlock" class="text-center">
+                    <tr><div class="screen"></div></tr>
+
+                    <!--Single seat-->
+                    @foreach (range('A', 'F') as $char)
+                    <tr>
+                        <th class="pt-2">{{$char}}</th>
+                        @for($i=0;$i<14;$i++)
+                        <td><input type="checkbox" class="seats single" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
+                        @endfor
+                        <th class="pt-2">{{$char}}</th>
+                    </tr>
+                    @endforeach
+                </table>
+
+                @foreach (range('G', 'H') as $char)
+                <ul class="text-center twin-seats font-white mt-4 pl-0">
+                    <li class="d-inline-block position-relative pt-2">{{$char}}</th>
+                        @for($i=0;$i<5;$i++)
+                    <li class="d-inline-block position-relative mx-5"><input type="checkbox" class="seats twin" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
+                        @endfor
+                    <li class="d-inline-block position-relative pt-2">{{$char}}</th>
+                </ul>
+                @endforeach
+
+
+                <table class="Displaytable mt-5 text-center w-100 font-white">
+                    <tr><th>Seats</th></tr>
+                    <tr><td><textarea id="seatsDisplay" class="text-center"></textarea></td></tr>
+                </table>
+
+                <div class="col text-center mt-3">
+                    <button type="submit" data-toggle="modal" data-target=".bd-example-modal-lg" 
+                            class="btn orange-btn mt-3 ml-0 float-end">Continue</button>
+                </div>
+
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Warning</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Modal body text goes here.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-            </div>
-            <div class="row">
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-            </div>
-            <div class="row">
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-            </div>
-            <div class="row">
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-            </div>
-            <div class="row">
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-            </div>
-            <div class="row mt-4 justify-content-center align-items-center">
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-                <div class="seat twin"></div>
-                <div class="seat twin mr-5"></div>
-                <div class="seat twin"></div>
-                <div class="seat twin mr-5"></div>
-                <div class="seat twin"></div>
-                <div class="seat twin mr-5"></div>
-                <div class="seat twin"></div>
-                <div class="seat twin mr-5"></div>
-                <div class="seat twin"></div>
-                <div class="seat twin"></div>
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-            </div>
-            <div class="row justify-content-center align-items-center">
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-                <div class="seat twin"></div>
-                <div class="seat twin mr-5"></div>
-                <div class="seat twin"></div>
-                <div class="seat twin mr-5"></div>
-                <div class="seat twin"></div>
-                <div class="seat twin mr-5"></div>
-                <div class="seat twin"></div>
-                <div class="seat twin mr-5"></div>
-                <div class="seat twin"></div>
-                <div class="seat twin"></div>
-                <div style="max-width: fit-content" class="seat-num font-white"></div>
-            </div>
-        </div>
-    </div>
+        </form>
+    </section>
 </section>
 @endsection
 
@@ -324,60 +258,46 @@
 <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/holder.min.js"></script>
 <script>
-    var i = 65;
-    var j = 91;
-    var n = 0;
-    for (var k = i; k < ($('.seat-num').length) / 2; k++) {
-        console.log(k);
-        var str = String.fromCharCode(k);
-        console.log(k);
-        $('.seat-num')[n].innerHTML = str;
-        n++;
-    }
-</script>
-<script>
-//    const container = document.querySelectorAll(".seat-container");
-//    const seats = document.querySelectorAll(".row .seat:not(.occupied)");
-//    const count = document.getElementById("count");
-//    const total = document.getElementById("total");
-//    const movieSelect = document.getElementById("movie");
-//
-//    let ticketPrice = +movieSelect.value;
-//    console.log(ticketPrice)
-//
-////save Selected movie index and price
-//    function SelectedMovieData(movieIndex, moviePrice) {
-//        localStorage.setItem("selectedMovieIndex", movieIndex);
-//        localStorage.setItem("selectedMoviePrice", moviePrice);
-//    }
-//
-////function update total and count
-//    function updateSelectedCount() {
-//        const selectedSeats = document.querySelectorAll(".row .seat.selected");
-//
-//        const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
-//        localStorage.setItem("selectesSeats", JSON.stringify(seatsIndex));
-//
-//        const selectedSeatsCount = selectedSeats.length;
-//        count.innerText = selectedSeatsCount;
-//        total.innerText = selectedSeatsCount * ticketPrice;
-//    }
-//
-////movie select event
-//    movieSelect.addEventListener("change", (e) => {
-//        ticketPrice = +e.target.value;
-//        SelectedMovieData(e.target.selectedIndex, e.target.value);
-//        updateSelectedCount();
-//    });
-//
-//    container.addEventListener("click", function (e) {
-//        if (
-//                e.target.classList.contains("seat") &&
-//                !e.target.classList.contains("occupied")
-//                ) {
-//            e.target.classList.toggle("selected");
-//            updateSelectedCount();
-//        }
-//    });
+                        const formInputTwin = document.querySelector("#qtyTwin");
+                        const formInputClassic = document.querySelector("#qtyClassic");
+                        const formButton = $(".confirm-button");
+
+                        formButton.disabled = true;
+                        formInputTwin.addEventListener('change', (e) => {
+                            if (formInputTwin.value === "") {
+                                formButton.disabled = true;
+                            } else {
+                                formButton.disabled = false;
+                            }
+                        });
+                        formInputClassic.addEventListener('change', (e) => {
+                            if (formInputClassic.value === "") {
+                                formButton.disabled = true;
+                            } else {
+                                formButton.disabled = false;
+                            }
+                        });
+
+                        function showSeats() {
+                            if (!formButton.disabled) {
+                                $("#seatStructure").addClass("d-block");
+                            }
+                        }
+
+                        function seatS() {
+                            var checkboxes = document.getElementsByClassName('seats');
+                            var checkboxesChecked = [];
+                            for (var i = 0; i < checkboxes.length; i++) {
+                                if (checkboxes[i].checked) {
+                                    checkboxesChecked.push(checkboxes[i].value);
+                                }
+                            }
+                            document.getElementById("seatsDisplay").value = checkboxesChecked;
+                        }
+                        
+                        var error=false;
+                        if(!error){
+                            $('#myModal').modal('hide');
+                        }
 </script>
 @endpush
