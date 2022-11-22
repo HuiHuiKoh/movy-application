@@ -38,15 +38,25 @@
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
                                     <label class="form-control-label px-3">Name<span class="text-danger"> *</span></label> 
-                                    <input type="text" id="name" name="name" placeholder=""> 
+<!--                                    <input type="text" id="name" name="name" placeholder=""> -->
+                                    @foreach($movies as $show)
+                                    <select name="name" id="name">    
+                                        <option value="{{$show->id}}">{{$show->name}}</option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
                                 <div class="form-group col-sm-6 flex-column d-flex"> 
                                     <label class="form-control-label px-3">Venue<span class="text-danger"> *</span></label> 
                                     <select name="cinema" id="cinema">    
+                                        <!--                                        <option value="1">Movy in Nu Sentral</option>
+                                                                                <option value="2">Movy in 1 Utama</option>-->
                                         @foreach($cinemas as $cinema)
                                         <option value="{{$cinema->id}}">{{$cinema->name}}</option>
                                         @endforeach
+
                                     </select>
+
                                 </div>
                             </div>
                             <div class="row justify-content-between text-left">

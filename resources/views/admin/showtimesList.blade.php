@@ -6,7 +6,7 @@
 
     <div class="container-fluid px-4">
 
-        <h1 class="mt-4">Movies List in MOVY</h1>
+        <h1 class="mt-4">Showtimes List in MOVY</h1>
         <hr>
 
 <!--        @if (\Session::has('success'))
@@ -20,7 +20,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Books
+                Showtimes
             </div>
 
             <div class="card-body">
@@ -63,13 +63,13 @@
                             <td><img src="assets/img/{{$movie['image']}}" width="100" height="130" alt="{{$movie['image']}}"></td>
                             <td>{{$movie['language']}}</td>
                             <td>{{$movie['type']}}</td>
-                            <td>{{$movie['duration']}}</td>
-                            <td>{{$movie['releasedDate']}}</td>
                             <td>{{$movie['casts']}}</td>
                             <td>{{$movie['director']}}</td>
+                            <td>{{$movie['duration']}}</td>
+                            <td>{{$movie['releasedDate']}}</td>
                             <td>
                                 <a href="{{action('\App\Http\Controllers\ShowtimesController@edit',$movie['id'])}}"
-                                   class="btn btn-outline-primary">Edit</a>
+                                   class="btn btn-outline-primary">Add</a>
                             <td>
                                 <form method="POST" action="{{action('\App\Http\Controllers\ShowtimesController@destroy',$movie['id'])}}">
                                     @csrf

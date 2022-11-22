@@ -99,9 +99,11 @@ Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
 Route::get('/addShowtimes', [ShowtimesController::class, 'cinemaOption']);
 
 
-Route::get('/showtimesList', [ShowtimesController::class, 'showtimesList']);
-Route::get('addShowtimes/{id}', [ShowtimesController::class, 'edit']);
-Route::post('addShowtimes/{id}', [ShowtimesController::class, 'update']);
+//Route::get('/showtimesList', [ShowtimesController::class, 'showList']);
+//Route::get('addShowtimes/{id}', [ShowtimesController::class, 'edit']);
+
+//Route::get('addShowtimes/{id}', [ShowtimesController::class, 'add']);
+
 
 Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
 
