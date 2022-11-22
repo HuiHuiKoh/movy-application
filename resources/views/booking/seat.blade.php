@@ -83,7 +83,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <div id="errors"></div><button type="button" class="btn btn-danger float-end" onclick="hideModal()">Close</button>
+                            <div id="errors"></div><button type="button" class="btn btn-secondary float-end" onclick="hideModal()">Close</button>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                            <h5 class="modal-title font-black" id="exampleModalLabel">Confirmation</h5>
                             <button type="button" class="close" onclick="hideConfirmation()" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

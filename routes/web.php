@@ -6,6 +6,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,9 +26,15 @@ Route::get('/membership', [MembershipController::class, 'membership']);
 Route::get('/forum', [ForumController::class, 'forum']);
 Route::prefix('booking')->group(function () {
     Route::get('/', [BookingController::class, 'index']);
-//    Route::get('/{movieId}', [BookingController::class, 'datetime']);
+//    Route::get('/{movieId}', [BookingController::class, 'index']);
     Route::get('/seats', [BookingController::class, 'seat']);
 //    Route::get('/{cinemaId}', [BookingController::class, 'seat']);
+});
+Route::prefix('payment')->group(function () {
+    Route::get('/form/{option}', [PaymentController::class, 'form']);
+//    Route::get('/form/{option}', [PaymentController::class, 'form']);
+    Route::get('/details', [PaymentController::class, 'details']);
+//    Route::get('/details', [PaymentController::class, 'details']);
 });
 
 Route::get('/about', function () {
