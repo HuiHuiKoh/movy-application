@@ -21,35 +21,43 @@ use Illuminate\Support\Facades\Route;
   |
  */
 
-//Koh Hui Hui
 Route::get('/home', [HomeController::class, 'index']);
-Route::get('/forum', [ForumController::class, 'forum']);
+
+//Koh Hui Hui
+//Client-side
+
+//Ticketing
 Route::prefix('booking')->group(function () {
     Route::get('/', [BookingController::class, 'index']);
 //    Route::get('/{movieId}', [BookingController::class, 'index']);
     Route::get('/seats', [BookingController::class, 'seat']);
 //    Route::get('/{cinemaId}/{hallNo}/seats', [BookingController::class, 'seat']);
 });
+
+//Payment
 Route::prefix('payment')->group(function () {
     Route::get('/form', [PaymentController::class, 'form']);
     Route::get('/details', [PaymentController::class, 'details']);
 });
+
+//Membership
 Route::prefix('membership')->group(function () {
     Route::get('/', [MembershipController::class, 'index']);
     Route::get('/{memberId}/check', [MembershipController::class, 'check']);
     Route::get('/voucher', [MembershipController::class, 'voucher']);
 });
 
+//Forum
+Route::get('/forum', [ForumController::class, 'forum']);
+
+//About
 Route::get('/about', function () {
     return view('about');
 });
 
+//Contact
 Route::get('/contact', function () {
     return view('contact');
-});
-
-Route::get('/f&b', function () {
-    return view('f&b');
 });
 
 //Siah Xin Ying
@@ -61,6 +69,9 @@ Route::get('/movies/{id}', [MoviesController::class, 'moviesDetails']);
 //Foods
 Route::get('/foods', [FoodsController::class, 'showFoods']);
 Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
+Route::get('/f&b', function () {
+    return view('f&b');
+});
 
 //Admin-side
 //add Movies
