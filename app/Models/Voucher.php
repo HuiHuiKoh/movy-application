@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Voucher extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+    protected $fillable = [
+        'code',
+        'discount_amount',
+        'expiry_date',
+    ];
 }
