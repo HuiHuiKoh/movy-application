@@ -3,40 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/MoviesController.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/login.blade.php</file>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/routes/web.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2022_11_19_130704_create_foods_table.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2022_11_22_115158_create_showtimes_table.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2022_11_19_074126_create_movies_table.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/updateMovies.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/moviesList.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2022_11_22_113356_create_cinemas_table.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/showtimesList.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/ShowtimesController.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2022_11_22_114005_create_halls_table.php</file>
-=======
->>>>>>> Stashed changes
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/membership/checkPoints.blade.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Http/Controllers/MoviesController.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Http/Controllers/HomeController.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/movies.blade.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/payment/form.blade.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/membership/voucher.blade.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Http/Controllers/MembershipController.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Http/Controllers/PaymentController.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/layouts/app.blade.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/routes/web.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/membership/promotion.blade.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/payment/details.blade.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/booking/seat.blade.php</file>
-            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Http/Controllers/ShowtimesController.php</file>
-<<<<<<< Updated upstream
-=======
->>>>>>> 8bdd54907b28a7996138ae7b5983f7be41e70ec5
->>>>>>> Stashed changes
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2014_10_12_000000_create_users_table.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/UserController.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/registration.blade.php</file>
         </group>
     </open-files>
 </project-private>
