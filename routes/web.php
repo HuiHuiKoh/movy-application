@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', [HomeController::class, 'index']);
 
 //Koh Hui Hui
-//Client-side
+//Client-Side
 
 //Ticketing
 Route::prefix('booking')->group(function () {
@@ -60,6 +60,26 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+//Koh Hui Hui
+//Admin-Side
+
+//Membership Promotion
+Route::prefix('promotion')->group(function () {
+    Route::get('/add', [MembershipController::class, 'addPromotion']);
+    Route::get('/list', [MembershipController::class, 'listPromotion']);
+    Route::get('/delete/{id}', [MembershipController::class, 'deletePromotion']);
+    Route::get('/update/{id}', [MembershipController::class, 'updatePromotion']);
+});
+
+//Membership Voucher
+Route::prefix('voucher')->group(function () {
+    Route::get('/add', [MembershipController::class, 'addVoucher']);
+    Route::get('/list', [MembershipController::class, 'listVoucher']);
+    Route::get('/delete/{id}', [MembershipController::class, 'deleteVoucher']);
+    Route::get('/update/{id}', [MembershipController::class, 'updateVoucher']);
+});
+
 
 //Siah Xin Ying
 //Client-side

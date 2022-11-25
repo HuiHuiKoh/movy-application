@@ -8,6 +8,35 @@
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2014_10_12_000000_create_users_table.php</file>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/UserController.php</file>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/registration.blade.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/membership/checkPoints.blade.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Showtimes.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/payment/form.blade.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Seat.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Foods.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/MembershipVoucher.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Http/Controllers/PaymentController.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/routes/web.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Category.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/payment/details.blade.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Cinema.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/User.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Voucher.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Http/Controllers/MoviesController.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Ticket.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Http/Controllers/HomeController.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/movies.blade.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Movies.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/membership/voucher.blade.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Http/Controllers/MembershipController.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Hall.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/layouts/app.blade.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Payment.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Promotion.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/SeatType.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/membership/promotion.blade.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/booking/seat.blade.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Http/Controllers/ShowtimesController.php</file>
+            <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Membership.php</file>
         </group>
     </open-files>
 </project-private>
