@@ -125,5 +125,7 @@ Route::controller(UserController::class)->group(function(){
     
     Route::get('logout','logout')->name('logout');
     
+    Route::post('validate_registration','validate_registration')->name('user.validate_registration');
+    
 });
 // Auth::routes();
