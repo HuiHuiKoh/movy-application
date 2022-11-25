@@ -109,11 +109,7 @@ Route::post('updateFoods/{id}', [FoodsController::class, 'update']);
 Route::get('/addShowtimes', [ShowtimesController::class, 'newShowtimes']);
 Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
 Route::get('/addShowtimes', [ShowtimesController::class, 'cinemaOption']);
-
-
-
 Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
-
 Route::get('showtimesList', [ShowtimesController::class, 'showList']);
 
 
@@ -127,5 +123,8 @@ Route::controller(UserController::class)->group(function(){
     
     Route::post('validate_registration','validate_registration')->name('user.validate_registration');
     
+    Route::post('validate_login','validate_login')->name('user.validate_login');
+    
+    Route::get('homepage','homepage')->name('homepage');
 });
 // Auth::routes();

@@ -96,18 +96,20 @@
 
 
 /* Button Styles */
-.btn-info{
-    border: 2px solid silver;
-    background-color: transparent;
+.button-info{
+    background-color: #EFDDB8; 
+    border-color: #EFDDB8;
     color: white;
     padding: 20px;
     font-size: 100%;
     cursor: pointer;
+    
 }
 
-.btn-info:hover{
-    border-color: #002366 ;
-    color: #002366;
+.button-info:hover{
+    border-color: black;
+    color: white;
+    background: #BFB193;
 }
 
 /* Media Queries */

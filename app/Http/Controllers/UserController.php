@@ -43,7 +43,37 @@ class UserController extends Controller
         
     }
     
+    public function validate_login(Request $request){
+        
+        $this->validate($request, [
+            
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+        
+        $credentials = $request->only('email','password');
+        
+        if(Auth::attempt($credentials)){
+            return redirect('homepage');
+        }
+        
+        return redirect('login')->with('success','Login details are not valid');
+        
+    }
+    
+    public function homepage(){
+        if(Auth::check()){
+            return view('homepage');
+        }
+        
+        return redirect('login')->with('success','You are not allowed to access');
+    }
+    
     public function logout(){
+        
+        Session::flush();
+        Auth::logout();
+        return redirect('login');
         
     }
     

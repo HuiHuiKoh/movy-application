@@ -49,7 +49,7 @@
                     <p class="movie-type">{{$shows['type']}}</p>
                     <p class="movie-date">{{$shows['releasedDate']}}</p>
                     <p class="movie-info">{{$shows['language']}} ‧ {{$shows['duration']}}</p>
-                    <a href="{{action('\App\Http\Controllers\MoviesController@moviesDetails',$shows['id'])}}"><button class="btn-info">Movie Info</button></a>
+                    <a href="{{action('\App\Http\Controllers\MoviesController@moviesDetails',$shows['id'])}}"><button class="button-info" >Movie Info</button></a>
                 </div>
             </div>    
         </div> 

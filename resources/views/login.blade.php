@@ -25,9 +25,11 @@
             <h1>Welcome Back</h1>
 
             <div class="login-form">
-                <form action="">
+                <form action="{{ route('user.validate_login')}}" method="POST">
+                    @csrf
                     <p>Email <i style="color:red;">*</i></p>
                     <input type="email" id="email" name="email" placeholder="E-mail Address">
+                    
                     <p>Password <i style="color:red;">*</i></p>
                     <input type="password" id="password" name="password" placeholder="Password">
 
