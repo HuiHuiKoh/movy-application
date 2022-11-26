@@ -19,7 +19,8 @@
                         <div class="mt-4">
                             <a class="btn btn-link text-left p-0" href="">
                                 Forgot Your Password?
-                            </a><button type="submit" class="btn orange-btn ml-3">
+                            </a>
+                            <button type="submit" class="btn orange-btn ml-3">
                                 Login
                             </button>
                         </div>
