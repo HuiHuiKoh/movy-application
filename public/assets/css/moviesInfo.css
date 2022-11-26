@@ -1,15 +1,16 @@
 @charset "utf-8";
 .movie-title {
-  margin-top: 13%;
-  text-align: center;
-  color: white;
-  text-shadow: 2px 2px 5px whitesmoke;
-  font-size: 200%;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 5px whitesmoke;
+    font-size: 200%;
 }
 
-/* Column container */
-.movie-info-container {  
-    margin: 0% 5%;
+.movie-title h1{
+    color: white;
+    font-size: 2.5rem;
 }
 
 .movie-trailer {
