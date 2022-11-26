@@ -21,6 +21,14 @@
             <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/admin/promotion/list.blade.php</file>
             <file>file:/F:/xampp/htdocs/Laravel/movy-application/public/assets/css/foodInfo.css</file>
             <file>file:/F:/xampp/htdocs/Laravel/movy-application/public/assets/css/moviesInfo.css</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/CartController.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/routes/web.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/cart.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/showtimes.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/UserController.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/assets/css/cart.css</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Models/Cart.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/ShowtimesController.php</file>
         </group>
     </open-files>
 </project-private>

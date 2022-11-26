@@ -31,16 +31,21 @@
     <div class="movie-info-container">
         <div class=movie-title>
             <h1>{{$foods->name}}</h1>
-        </div>    
+        </div>   
         <div class="movie-trailer">
-            <img src="import/assets/img/{{$foods->image}}" alt="" width="25%" height="25%" >
+            <img src="/assets/img/{{$foods->image}}" alt="">
         </div>
+        
         <div class="movie-details">   
             <p class="col1">Inclusive Of :</p>
             <p class="col2">{{$foods->description}}</p>
             <p class="col1">Price :</p>
             <p class="col2">RM {{$foods->price}}</p>
-            <a href="#"><button class="btn-booking">&#128722;Add To Cart</button></a>
+            <form action="/addCart" method="POST">
+                @csrf
+                <input type="hidden" name="foodID" value="{{$foods->id}}">
+            <a href="#"><button class="btn-cart">&#128722;Add To Cart</button></a>
+            </form>
         </div>
     </div>
 </section>

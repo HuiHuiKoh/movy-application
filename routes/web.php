@@ -9,6 +9,7 @@ use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ShowtimesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -97,6 +98,10 @@ Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 Route::get('/f&b', function () {
     return view('f&b');
 });
+
+//Cart
+Route::get('cart', [CartController::class, 'cartList']);
+Route::post('addCart',[CartController::class, 'store']);
 
 //Admin-side
 //add Movies
