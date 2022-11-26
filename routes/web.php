@@ -49,7 +49,11 @@ Route::prefix('membership')->group(function () {
 });
 
 //Forum
-Route::get('/forum', [ForumController::class, 'forum']);
+Route::prefix('forum')->group(function () {
+    Route::get('/', [ForumController::class, 'forum']);
+    Route::get('/login', [ForumController::class, 'login']);
+    Route::get('/register', [ForumController::class, 'register']);
+});
 
 //About
 Route::get('/about', function () {

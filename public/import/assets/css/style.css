@@ -230,6 +230,7 @@ i{
     font-size: 14px;
     display: inline-block;
     text-decoration: none;
+    border: 1px solid var(--black);
 }
 .orange-btn:hover {
     background: var(--softOrange);
@@ -269,6 +270,9 @@ i{
 }
 .square-btn{
     border-radius: 0;
+}
+.btn-link{
+    color: var(--softOrange);
 }
 
 @media (max-width: 768px) {

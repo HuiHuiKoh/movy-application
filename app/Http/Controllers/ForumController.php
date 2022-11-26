@@ -10,6 +10,16 @@ class ForumController extends Controller
 {
     public function forum()
     {
-        return view('forum');
+        return view('forum.forum');
+    }
+    
+    public function login()
+    {
+        return view('forum.auth.login');
+    }
+    
+    public function register()
+    {
+        return view('forum.auth.register');
     }
 }
