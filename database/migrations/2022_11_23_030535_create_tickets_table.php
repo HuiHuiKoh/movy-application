@@ -14,7 +14,15 @@ class CreateTicketsTable extends Migration
     public function up()
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->double('total_amount');
+            $table->bigInteger('showtimes_id')->default(0);
+            $table->bigInteger('seat_id')->default(0);
+            $table->bigInteger('payment_id')->default(0);
+            $table->bigInteger('food_id')->default(0);
+            $table->bigInteger('membership_voucher_id')->default(0);
+            $table->bigInteger('member_id')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class SeatType extends Model
         'deleted_at'
     ];
     protected $fillable = [
-        'name',
+        'seat_type',
         'price'
     ];
 }

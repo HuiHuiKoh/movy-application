@@ -17,8 +17,10 @@ class MembershipVoucher extends Model
         'deleted_at'
     ];
     protected $fillable = [
+        'title',
         'code',
         'redemption_date',
-        'member_id'
+        'member_id',
+        'voucher_id'
     ];
 }

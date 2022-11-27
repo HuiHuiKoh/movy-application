@@ -17,6 +17,7 @@ class Voucher extends Model
         'deleted_at'
     ];
     protected $fillable = [
+        'title',
         'code',
         'discount_amount',
         'expiry_date',

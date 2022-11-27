@@ -14,7 +14,10 @@ class CreateSeatTypesTable extends Migration
     public function up()
     {
         Schema::create('seat_types', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('seat_type');
+            $table->double('price');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

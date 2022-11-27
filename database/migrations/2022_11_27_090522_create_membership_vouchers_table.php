@@ -14,7 +14,13 @@ class CreateMembershipVouchersTable extends Migration
     public function up()
     {
         Schema::create('membership_vouchers', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('code');
+            $table->date('redemption_date');
+            $table->bigInteger('member_id')->default(0);
+            $table->bigInteger('voucher_id')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

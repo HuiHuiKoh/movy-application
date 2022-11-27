@@ -14,7 +14,10 @@ class CreateMembershipsTable extends Migration
     public function up()
     {
         Schema::create('memberships', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->double('points');
+            $table->bigInteger('user_id')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

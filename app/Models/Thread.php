@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Payment extends Model
+class Thread extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -17,8 +17,9 @@ class Payment extends Model
         'deleted_at'
     ];
     protected $fillable = [
-        'amount',
-        'method',
-        'user_id'
+        'title',
+        'view_count',
+        'forum_id',
+        'forum_user_id'
     ];
 }
