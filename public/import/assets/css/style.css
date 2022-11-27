@@ -57,7 +57,9 @@ h1,h2,h3,h4,h5,h6{
 i{
     font-size: medium;
 }
-
+i:hover{
+    color: var(--softOrange);
+}
 
 /*--------------------------------------------------------------
 # Back to top button

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use function view;
+
 /**
  * @author Koh Hui Hui
  */
@@ -11,6 +13,11 @@ class ForumController extends Controller
     public function forum()
     {
         return view('forum.forum');
+    }
+    
+    public function thread()
+    {
+        return view('forum.thread');
     }
     
     public function login()
