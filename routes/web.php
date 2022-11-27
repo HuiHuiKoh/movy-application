@@ -157,3 +157,6 @@ Route::controller(UserController::class)->group(function(){
     Route::get('homepage','homepage')->name('homepage');
 });
 // Auth::routes();
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
