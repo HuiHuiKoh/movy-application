@@ -1,20 +1,56 @@
 @extends('layouts.app', ['pageTitle'=>'Movy Forum'], ['title'=>'Forum'])
 
 @section('content')
-<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
 <div class="container">
     <div class="row">
         <!-- Main content -->
-        <div class="mb-3 p-5">
-            <div class="float-end">
-                <button type="submit" class="btn square-btn orange-btn ml-3">
-                    Login
-                </button>
-                <button type="submit" class="btn square-btn orange-btn ml-3">
-                    Register
-                </button>
-            </div>
+        <nav class="navbar navbar-expand-lg bg-transparent py-4 border-bottom">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 mx-5">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn my-2 my-sm-0 font-white p-0" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+                <div>
+                    <a href="{{asset('forum/register')}}" class="d-inline btn square-btn btn-secondary p-2 mx-1">
+                        Register
+                    </a>
+                    <a href="{{asset('forum/login')}}" class="d-inline btn square-btn btn-secondary p-2 mx-1">
+                        <i class="bi bi-person-circle"></i>&nbsp;
+                        Login
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="mb-3 p-5">
             <div class="row text-left mb-5">
                 <div class="col-lg-6 mb-3 mb-sm-0">
                     <select class="form-select form-control bg-white" data-toggle="select" tabindex="-98">

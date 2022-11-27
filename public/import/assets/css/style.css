@@ -219,6 +219,9 @@ i{
 .bg-softOrange{
     background: var(--softOrange);
 }
+.bg-transparent{
+    background: transparent;
+}
 .orange-btn {
     margin-left: 22px;
     background: var(--white);
