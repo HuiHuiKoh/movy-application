@@ -27,7 +27,7 @@ class Reply extends Model
      */
     public function thread()
     {
-        return $this->belongsTo(Thread::class);
+        return $this->belongsTo(Thread::class, 'thread_id');
     }
     
     /**
@@ -35,6 +35,6 @@ class Reply extends Model
      */
     public function forumUser()
     {
-        return $this->belongsTo(ForumUser::class);
+        return $this->belongsTo(ForumUser::class, 'forum_user_id');
     }
 }

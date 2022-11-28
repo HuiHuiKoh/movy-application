@@ -34,6 +34,6 @@ class Forum extends Model
      */
     public function forumUser()
     {
-        return $this->belongsTo(ForumUser::class);
+        return $this->belongsTo(ForumUser::class, 'forum_user_id');
     }
 }

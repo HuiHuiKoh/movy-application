@@ -73,4 +73,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ticket::class);
     }
+    
+    /**
+     * Get the payments associated with the user.
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

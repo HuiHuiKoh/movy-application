@@ -29,4 +29,12 @@ class Payment extends Model
     {
         return $this->belongsTo(Ticket::class);
     }
+    
+    /**
+     * Get the associated user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

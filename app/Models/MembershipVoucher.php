@@ -29,7 +29,7 @@ class MembershipVoucher extends Model
      */
     public function membership()
     {
-        return $this->belongsTo(Membership::class);
+        return $this->belongsTo(Membership::class, 'member_id');
     }
     
     /**
@@ -37,7 +37,7 @@ class MembershipVoucher extends Model
      */
     public function voucher()
     {
-        return $this->belongsTo(Voucher::class);
+        return $this->belongsTo(Voucher::class, 'voucher_id');
     }
     
     /**

@@ -28,7 +28,7 @@ class Promotion extends Model {
      */
     public function user()
     {
-        return $this->belongsTo(Promotion::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }

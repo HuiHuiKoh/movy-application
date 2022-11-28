@@ -36,7 +36,7 @@ class Thread extends Model
      */
     public function forum()
     {
-        return $this->belongsTo(Forum::class);
+        return $this->belongsTo(Forum::class, 'forum_id');
     }
     
     /**
@@ -44,6 +44,6 @@ class Thread extends Model
      */
     public function forumUser()
     {
-        return $this->belongsTo(ForumUser::class);
+        return $this->belongsTo(ForumUser::class, 'forum_user_id');
     }
 }

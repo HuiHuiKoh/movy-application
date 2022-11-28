@@ -31,7 +31,7 @@ class Ticket extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     
     /**
@@ -39,7 +39,7 @@ class Ticket extends Model
      */
     public function seats()
     {
-        return $this->hasMany(Seat::class);
+        return $this->hasMany(Seat::class, 'seat_id');
     }
     
     /**
@@ -47,7 +47,7 @@ class Ticket extends Model
      */
     public function payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class, 'payment_id');
     }
     
     /**
@@ -55,7 +55,7 @@ class Ticket extends Model
      */
     public function membershipVouchers()
     {
-        return $this->hasMany(MembershipVoucher::class);
+        return $this->hasMany(MembershipVoucher::class, 'membership_voucher_id');
     }
     
     /**
@@ -63,7 +63,7 @@ class Ticket extends Model
      */
     public function foods()
     {
-        return $this->hasMany(Food::class);
+        return $this->hasMany(Food::class, 'food_id');
     }
     
     /**
@@ -71,6 +71,6 @@ class Ticket extends Model
      */
     public function showtimes()
     {
-        return $this->hasMany(Showtimes::class);
+        return $this->hasMany(Showtimes::class, 'showtimes_id');
     }
 }
