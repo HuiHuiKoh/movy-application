@@ -31,8 +31,8 @@ Route::get('/home', [HomeController::class, 'index']);
 //Ticketing
 Route::prefix('booking')->group(function () {
     Route::get('/{id}', [BookingController::class, 'index']);
-    Route::get('/{id}seats', [BookingController::class, 'seat']);
-//    Route::get('/{cinemaId}/{hallNo}/seats', [BookingController::class, 'seat']);
+//    Route::get('/{id}/seats', [BookingController::class, 'seat']);
+    Route::get('/{cinemaId}/{hallNo}/seats', [BookingController::class, 'seat']);
 });
 
 //Payment

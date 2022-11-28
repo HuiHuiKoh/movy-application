@@ -48,7 +48,7 @@
                         <li class="dropdown"><a href="#"><span>Movies</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <li><a href="{{asset ('showtimes') }}">Showtimes</a></li>
-                                <li><a href="{{asset ('f&b') }}">F & B</a></li>
+                                <li><a href="{{asset ('foods') }}">F & B</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="#"><span>Membership</span> <i class="bi bi-chevron-down"></i></a>
@@ -68,7 +68,6 @@
         </header><!-- End Header -->
 
         <main id="main">
-            @if(!Request::is('home'))
             <!-- ======= Breadcrumbs ======= -->
             <div class="breadcrumbs" data-aos="fade-in">
                 <div class="container">
@@ -76,7 +75,6 @@
                 </div>
             </div>
             <!-- End Breadcrumbs -->
-            @endif
 
             @yield('content')
         </main>

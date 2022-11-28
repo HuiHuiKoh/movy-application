@@ -1,24 +1,31 @@
-@extends('layouts.app', ['pageTitle'=>'Movy Home'])
+@extends('layouts.app', ['pageTitle'=>'MOVY'], ['title'=>'MOVY'])
+
+@push('css')
+<link rel="stylesheet" href="{{asset('assets\css\showtimes.css')}}">
+@endpush
 
 @section('content')
-<!-- ======= Hero Section ======= -->
-<div id="hero" class="d-flex justify-content-center align-items-center">
-    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-        <!--<h1>Get out of the role,<br>but stay in the moment</h1>-->
-    </div>
+<div class="text-right">
+    <a href="" class="orange-btn mt-5 mr-5">Check Booking</a>
 </div>
-<div>
-    <a href="" class="orange-btn ms-5 mt-5">Check Booking</a>
-</div>
-<!-- ======= Content Section ======= -->
 <section id="homepage">
     <div class="container">
-        <div class="row">
-            
-
+        <div class="row row-movie-container p-3">
+            @foreach($movies as $shows)
+            <div class="col-1-4-movie-container">        
+                <img src="assets/img/{{$shows['image']}}" alt="" class="image">
+                <div class="overlay">
+                    <div class="text">
+                        <p class="movie-name">{{$shows['name']}}</p>
+                        <p class="movie-type">{{$shows['type']}}</p>
+                        <p class="movie-date">{{$shows['releasedDate']}}</p>
+                        <p class="movie-info">{{$shows['language']}} ‧ {{$shows['duration']}}</p>
+                        <a href="{{action('\App\Http\Controllers\MoviesController@moviesDetails',$shows['id'])}}"><button class="button-info" >Movie Info</button></a>
+                    </div>
+                </div>    
+            </div>
+            @endforeach
         </div>
-
     </div>
-</section><!-- End Pricing Section -->
+</section>
 @endsection
-
