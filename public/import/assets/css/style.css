@@ -413,7 +413,7 @@ i:hover{
 #hero {
     width: 100%;
     height: 80vh;
-    /*background: url("../img/home-hero-bg.jpg") top center;*/
+    background: url("https://media.istockphoto.com/id/1256986835/vector/online-cinema-banner-elements-of-the-film-industry-popcorn-film-reel-clapper-board-cinema.jpg?s=170667a&w=0&k=20&c=hcvNcXZXj6i7yb63K-ghxeVc4KZmsvySw_dmQYMdGYE=") top center;
     background-size: cover;
     position: relative;
 }

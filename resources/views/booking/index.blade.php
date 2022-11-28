@@ -2,15 +2,20 @@
 
 @section('content')
 <section id="booking">
+@foreach($movies as $movie)
     <div class="text-center bg-black py-4 font-white">
         <img class="rounded" width="200" height="300" 
-             src="https://bst.icons8.com/wp-content/themes/icons8/app/uploads/2019/05/film-poster-graphic-design.jpg" />
+        src="{{asset('assets/img/'.$movie->image)}}" />
         <div>
-            Beauty and the Beast
+        {{ $movie->name }}
         </div>
         <div>
-            120 minutes
+        {{ $movie->duration }}
         </div>
+        <div>
+            {{ $movie->type }}
+        </div>
+        @endforeach
     </div>
     <div class="container">
         <div class="mt-5">

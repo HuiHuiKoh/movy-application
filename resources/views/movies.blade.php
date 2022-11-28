@@ -51,7 +51,7 @@
             <p class="col2">{{$movies->casts}}</p>
             <p class="col1">Distributor</p>
             <p class="col2">{{$movies->distributor}}</p>
-            <a href="#"><button class="btn-booking">&#127915;Booking</button></a>
+            <a href="{{ action('\App\Http\Controllers\BookingController@index',$movies->id) }}"><button class="btn-booking">&#127915;Booking</button></a>
         </div>
     </div>
 
