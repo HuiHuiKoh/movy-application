@@ -58,7 +58,7 @@
                                 <li><a href="{{asset ('membership/voucher') }}">Vouchers</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{asset ('forum') }}">Forum</a></li>
+                        <li><a href="{{asset ('forum/forum') }}">Forum</a></li>
                     </ul>
                 </nav><!-- .navbar -->
 
