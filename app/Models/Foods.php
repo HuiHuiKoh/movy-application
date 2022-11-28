@@ -24,4 +24,12 @@ class Foods extends Model
         'price',
 
     ];
+    
+    /**
+     * Get the associated ticket.
+     */
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
 }

@@ -21,4 +21,45 @@ class ForumUser extends Model
         'password',
         'forum_user_type_id'
     ];
+    
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<string>
+     */
+    protected $hidden = [
+        'password'
+    ];
+    
+    /**
+     * Get the associated forum user type.
+     */
+    public function forumUserType()
+    {
+        return $this->belongsTo(ForumUserType::class);
+    }
+    
+    /**
+     * Get the forums associated with the forum user.
+     */
+    public function forums()
+    {
+        return $this->hasMany(Forum::class);
+    }
+    
+    /**
+     * Get the threads associated with the forum user.
+     */
+    public function threads()
+    {
+        return $this->hasMany(Thread::class);
+    }
+    
+    /**
+     * Get the replies associated with the forum user.
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }

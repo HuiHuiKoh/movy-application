@@ -23,6 +23,54 @@ class Ticket extends Model
         'payment_id',
         'food_id',
         'membership_voucher_id',
-        'member_id'
+        'user_id'
     ];
+    
+    /**
+     * Get the associated user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    /**
+     * Get the seats associated with the ticket.
+     */
+    public function seats()
+    {
+        return $this->hasMany(Seat::class);
+    }
+    
+    /**
+     * Get the payments associated with the ticket.
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+    
+    /**
+     * Get the membership vouchers associated with the ticket.
+     */
+    public function membershipVouchers()
+    {
+        return $this->hasMany(MembershipVoucher::class);
+    }
+    
+    /**
+     * Get the foods associated with the ticket.
+     */
+    public function foods()
+    {
+        return $this->hasMany(Food::class);
+    }
+    
+    /**
+     * Get the showtimes associated with the ticket.
+     */
+    public function showtimes()
+    {
+        return $this->hasMany(Showtimes::class);
+    }
 }

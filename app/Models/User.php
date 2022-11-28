@@ -49,4 +49,28 @@ class User extends Authenticatable
         'updated_at',
         'deleted_at'
     ];
+    
+    /**
+     * Get the memberships associated with the user.
+     */
+    public function memberships()
+    {
+        return $this->hasMany(Membership::class);
+    }
+    
+    /**
+     * Get the promotions associated with the user.
+     */
+    public function promotions()
+    {
+        return $this->hasMany(Promotion::class);
+    }
+    
+    /**
+     * Get the tickets associated with the user.
+     */
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

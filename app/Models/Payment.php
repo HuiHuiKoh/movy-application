@@ -21,4 +21,12 @@ class Payment extends Model
         'method',
         'user_id'
     ];
+    
+    /**
+     * Get the associated ticket.
+     */
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
 }

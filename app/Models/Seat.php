@@ -20,4 +20,20 @@ class Seat extends Model
         'number',
         'seat_type_id',
     ];
+    
+    /**
+     * Get the associated seat type.
+     */
+    public function seatType()
+    {
+        return $this->belongsTo(SeatType::class);
+    }
+    
+    /**
+     * Get the associated ticket.
+     */
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
 }

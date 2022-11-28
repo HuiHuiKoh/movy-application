@@ -24,4 +24,12 @@ class Showtimes extends Model
         'moviesID',
 
     ];
+    
+    /**
+     * Get the associated ticket.
+     */
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
 }

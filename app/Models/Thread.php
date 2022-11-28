@@ -22,4 +22,28 @@ class Thread extends Model
         'forum_id',
         'forum_user_id'
     ];
+    
+    /**
+     * Get the replies associated with the forum user.
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+    
+    /**
+     * Get the associated thread.
+     */
+    public function forum()
+    {
+        return $this->belongsTo(Forum::class);
+    }
+    
+    /**
+     * Get the associated forum user.
+     */
+    public function forumUser()
+    {
+        return $this->belongsTo(ForumUser::class);
+    }
 }

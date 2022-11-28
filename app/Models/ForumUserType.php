@@ -19,4 +19,12 @@ class ForumUserType extends Model
     protected $fillable = [
         'user_type',
     ];
+    
+    /**
+     * Get the forum users associated with the forum user type.
+     */
+    public function forumUsers()
+    {
+        return $this->hasMany(ForumUser::class);
+    }
 }

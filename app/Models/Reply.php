@@ -21,4 +21,20 @@ class Reply extends Model
         'thread_id',
         'forum_user_id'
     ];
+    
+    /**
+     * Get the associated thread.
+     */
+    public function thread()
+    {
+        return $this->belongsTo(Thread::class);
+    }
+    
+    /**
+     * Get the associated forum user.
+     */
+    public function forumUser()
+    {
+        return $this->belongsTo(ForumUser::class);
+    }
 }

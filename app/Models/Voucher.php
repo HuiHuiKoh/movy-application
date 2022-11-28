@@ -22,4 +22,12 @@ class Voucher extends Model
         'discount_amount',
         'expiry_date',
     ];
+    
+    /**
+     * Get the membership voucher associated with the voucher.
+     */
+    public function membershipVouchers()
+    {
+        return $this->hasMany(MembershipVoucher::class);
+    }
 }

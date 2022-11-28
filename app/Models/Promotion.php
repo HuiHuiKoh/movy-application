@@ -22,5 +22,13 @@ class Promotion extends Model {
         'image',
         'user_id'
     ];
+    
+    /**
+     * Get the associated user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(Promotion::class);
+    }
 
 }

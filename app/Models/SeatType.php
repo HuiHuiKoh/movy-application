@@ -20,4 +20,12 @@ class SeatType extends Model
         'seat_type',
         'price'
     ];
+    
+    /**
+     * Get the seats associated with the seat type.
+     */
+    public function seats()
+    {
+        return $this->hasMany(Seat::class);
+    }
 }

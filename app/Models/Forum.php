@@ -20,4 +20,20 @@ class Forum extends Model
         'title',
         'forum_user_id'
     ];
+    
+    /**
+     * Get the threads associated with the forum user.
+     */
+    public function threads()
+    {
+        return $this->hasMany(Thread::class);
+    }
+    
+    /**
+     * Get the associated forum user.
+     */
+    public function forumUser()
+    {
+        return $this->belongsTo(ForumUser::class);
+    }
 }

@@ -20,4 +20,20 @@ class Membership extends Model
         'points',
         'user_id'
     ];
+    
+    /**
+     * Get the membership voucher associated with the membership.
+     */
+    public function membershipVouchers()
+    {
+        return $this->hasMany(MembershipVoucher::class);
+    }
+    
+    /**
+     * Get the associated user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
