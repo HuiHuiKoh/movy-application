@@ -104,6 +104,7 @@ Route::get('/f&b', function () {
 //Cart
 Route::get('cart', [CartController::class, 'cartList']);
 Route::post('addCart',[CartController::class, 'store']);
+Route::get('cart/{id}', [CartController::class, 'destroy']);
 
 //Admin-side
 //add Movies

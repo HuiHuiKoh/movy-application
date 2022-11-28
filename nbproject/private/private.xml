@@ -3,6 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/CartController.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/routes/web.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/food.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/cart.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/assets/css/foodInfo.css</file>
+=======
+>>>>>>> Stashed changes
             <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Reply.php</file>
             <file>file:/F:/xampp/htdocs/Laravel/movy-application/resources/views/forum/forum.blade.php</file>
             <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Showtimes.php</file>
@@ -28,6 +38,10 @@
             <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Forum.php</file>
             <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/Membership.php</file>
             <file>file:/F:/xampp/htdocs/Laravel/movy-application/app/Models/ForumUser.php</file>
+<<<<<<< Updated upstream
+=======
+>>>>>>> d9cd44194533cadcff956fb80ea29b833ee8a36b
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

@@ -102,3 +102,13 @@
         width: 100%;
     }
 }
+
+input {
+    padding: 3px 13px;
+    border-radius: 5px !important;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    font-size: 18px !important;
+    font-weight: 300
+}
