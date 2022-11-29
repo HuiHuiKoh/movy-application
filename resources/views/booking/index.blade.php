@@ -51,25 +51,27 @@
 
 
 
-        <div class="mx-4 mt-5 py-4">@foreach($showtimes as $show)
-            <div class="location mx-3 mt-3 mb-5">
-
-                <h3 class="font-weight-bold">{{ $cinema }}</h3>
-                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>{{Carbon\Carbon::parse($show->dateTime)->format('h:i a')}}</span></button>
-
-            </div>@endforeach
-            <!--            <div class="location mx-3 mt-3 mb-5">
-                            <h3 class="font-weight-bold">Movy 1 Utama</h3>
-                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>8:30 a.m.</span></button>
-                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>10:30 a.m.</span></button>
-                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>12:30 a.m.</span></button>
-                        </div>
+        <div class="mx-4 mt-5 py-4">
+            <!--            @foreach($showtimes as $show)
                         <div class="location mx-3 mt-3 mb-5">
-                            <h3 class="font-weight-bold">Movy Rawang</h3>
-                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>8:30 a.m.</span></button>
-                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>10:30 a.m.</span></button>
-                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>12:30 a.m.</span></button>
-                        </div>-->
+            
+                            <h3 class="font-weight-bold">{{ $cinema }}</h3>
+                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>{{Carbon\Carbon::parse($show->dateTime)->format('h:i a')}}</span></button>
+            
+                        </div>
+                        @endforeach-->
+            <div class="location mx-3 mt-3 mb-5">
+                <h3 class="font-weight-bold">Movy 1 Utama</h3>
+                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>8:30 a.m.</span></button>
+                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>10:30 a.m.</span></button>
+                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>12:30 a.m.</span></button>
+            </div>
+            <div class="location mx-3 mt-3 mb-5">
+                <h3 class="font-weight-bold">Movy Rawang</h3>
+                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>8:30 a.m.</span></button>
+                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>10:30 a.m.</span></button>
+                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>12:30 a.m.</span></button>
+            </div>
         </div>
     </div>
 </section>
