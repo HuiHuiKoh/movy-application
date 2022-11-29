@@ -30,6 +30,7 @@
                         </thead>
                         <tbody>
                             @php $total = 0; @endphp
+                           
                             @foreach($foods as $item)                          
                             <tr>                             
                                 <td></td>

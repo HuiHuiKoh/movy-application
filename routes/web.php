@@ -154,6 +154,9 @@ Route::controller(UserController::class)->group(function () {
 
     Route::get('homepage', 'homepage')->name('homepage');
 });
+
+//Chart
+
 // Auth::routes();
 Auth::routes();
 
