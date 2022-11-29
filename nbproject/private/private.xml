@@ -3,16 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/navBar.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/routes/web.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/foodList.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/restoreShowtimes.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/database/migrations/2022_11_22_115158_create_showtimes_table.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/restoreFoods.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/FoodsController.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Models/Cart.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/admin/showtimesList.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/ShowtimesController.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Models/Showtimes.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/layouts/app.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/contact.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/booking/index.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Http/Controllers/MoviesController.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/seeders/MoviesSeeder.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/home.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/seeders/CinemaSeeder.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/showtimes.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/homepage.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Http/Controllers/BookingController.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Http/Controllers/HomeController.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/seeders/ShowtimesSeeder.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/routes/web.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Providers/AppServiceProvider.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/seeders/FoodsSeeder.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/f&amp;b.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/seeders/DatabaseSeeder.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/food.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/booking/seat.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/seeders/CategoriesSeeder.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/payment/details.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/movies.blade.php</file>
+            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Http/Controllers/FoodsController.php</file>
         </group>
     </open-files>
 </project-private>

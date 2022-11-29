@@ -19,47 +19,57 @@
     @endforeach
     <div class="container">
         <div class="mt-5">
-
-
             <ul class="booking-dates text-left">
-                @foreach($showtimes as $show)
-                <li class="date-item">
-                    <a class="pr-4 text-center text-uppercase active-nav">
-                        <div>{{Carbon\Carbon::parse($show->dateTime)->format('D')}}</div>
-                        <div>{{Carbon\Carbon::parse($show->dateTime)->format('d-M')}}</div>
-                    </a>
-                </li>
-                <!--                <li class="date-item"><a class="pr-4 text-center text-uppercase"><div>Mon</div><div>21-nov</div></a></li>
-                                <li class="date-item"><a class="pr-4 text-center text-uppercase"><div>Tue</div><div>22-nov</div></a></li>
-                                <li class="date-item"><a class="pr-4 text-center text-uppercase"><div>Wed</div><div>23-nov</div></a></li>
-                                <li class="date-item"><a class="pr-4 text-center text-uppercase"><div>Thurs</div><div>24-nov</div></a></li>
-                                <li class="date-item"><a class="pr-4 text-center text-uppercase"><div>Fri</div><div>25-nov</div></a></li>-->
-                @endforeach</ul>
+                <?php
+                $uniqueDay = [];
+                foreach ($showtimes as $show) {
+                    $day = Carbon\Carbon::parse($show->dateTime)->format('D');
+                    if (!in_array($day, $uniqueDay)) {
+                        array_push($uniqueDay, $day);
+                    }
+                }
+                $uniqueDate = [];
+                foreach ($showtimes as $show) {
+                    $date = Carbon\Carbon::parse($show->dateTime)->format('d-M');
+                    if (!in_array($date, $uniqueDate)) {
+                        array_push($uniqueDate, $date);
+                    }
+//                    var_dump($uniqueDate);
+//                    echo "<script>console.log(" . $uniqueDate . ")</script>";
+                }
+                ?>
+                <?php for ($i = 0; $i < count($uniqueDay); $i++) { ?>
+                    <li class="date-item">
+                        <a class="pr-4 text-center text-uppercase showtimes-date">
+                            <div>{{$uniqueDay[$i]}}</div>
+                            <div>{{$uniqueDate[$i]}}</div>
+                        </a>
+                    </li>
+                <?php } ?>
+            </ul>
         </div>
 
 
 
         <div class="mx-4 mt-5 py-4">@foreach($showtimes as $show)
             <div class="location mx-3 mt-3 mb-5">
-                
-                <h3 class="font-weight-bold">{{$show->cinemaID}}</h3>
+
+                <h3 class="font-weight-bold">{{ $cinema }}</h3>
                 <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>{{Carbon\Carbon::parse($show->dateTime)->format('h:i a')}}</span></button>
-<!--                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>10:30 a.m.</span></button>
-                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>12:30 a.m.</span></button>-->
-                
+
             </div>@endforeach
-<!--            <div class="location mx-3 mt-3 mb-5">
-                <h3 class="font-weight-bold">Movy 1 Utama</h3>
-                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>8:30 a.m.</span></button>
-                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>10:30 a.m.</span></button>
-                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>12:30 a.m.</span></button>
-            </div>
-            <div class="location mx-3 mt-3 mb-5">
-                <h3 class="font-weight-bold">Movy Rawang</h3>
-                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>8:30 a.m.</span></button>
-                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>10:30 a.m.</span></button>
-                <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>12:30 a.m.</span></button>
-            </div>-->
+            <!--            <div class="location mx-3 mt-3 mb-5">
+                            <h3 class="font-weight-bold">Movy 1 Utama</h3>
+                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>8:30 a.m.</span></button>
+                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>10:30 a.m.</span></button>
+                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>12:30 a.m.</span></button>
+                        </div>
+                        <div class="location mx-3 mt-3 mb-5">
+                            <h3 class="font-weight-bold">Movy Rawang</h3>
+                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>8:30 a.m.</span></button>
+                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>10:30 a.m.</span></button>
+                            <button class="btn square-btn orange-outline-btn mr-5 mt-4"><span>12:30 a.m.</span></button>
+                        </div>-->
         </div>
     </div>
 </section>
@@ -73,7 +83,8 @@
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/holder.min.js"></script>
 <script>
 //    Add active state to the current clicked date
-var dates = $(".date-item a");
+let dates = $('.showtimes-date');
+dates[0].classList.add('active-nav');
 for (var i = 0; i < dates.length; i++) {
     dates[i].addEventListener("click", function () {
         var current = document.getElementsByClassName("active-nav");

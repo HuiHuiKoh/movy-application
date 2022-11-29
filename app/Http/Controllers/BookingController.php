@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Nette\Utils\DateTime;
 use function view;
 
 /**
@@ -17,13 +15,20 @@ class BookingController extends Controller {
                 ->select('*')
                 ->where('id', '=', $id)
                 ->get();
+        
         $showtimes = DB::table('showtimes')
                 ->select('*')
                 ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
                 ->get();
-//        echo "<script>console.log(" . $dateFormat . ")</script>";
+        
+       $showCinema = DB::table('showtimes')
+                ->select('cinema.name')
+                ->join('cinema', 'showtimes.cinemaID', '=', 'cinema.id')
+                ->get();
+        
         return view('booking.index', [
             'showtimes' => $showtimes,
+            'cinema' => $showCinema,
             'movies' => $movies]);
     }
 
