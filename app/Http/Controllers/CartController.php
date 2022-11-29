@@ -63,7 +63,7 @@ class CartController extends Controller {
     public function show() {
         return view('cart');
     }
-    
+
     public function destroy($id) {
         try {
             Cart::find($id)->delete();

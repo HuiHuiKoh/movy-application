@@ -18,13 +18,13 @@ class CinemaSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => "Movy in Nu Sentral",
-                'address' => "Nu Sentral",
+                'address' => "201, Jalan Tun Sambanthan, Brickfields, 50470 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
                 'created_at' => Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 2,
                 'name' => "Movy in 1 Utama",
-                'address' => "1U",
+                'address' => "City Centre, 1, Lebuh Bandar Utama, Bandar Utama, 47800 Petaling Jaya, Selangor",
                 'created_at' => Carbon::now()->toDateTimeString(),
             ]
         ]);
