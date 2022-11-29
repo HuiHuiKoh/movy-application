@@ -28,7 +28,6 @@ Route::get('/home', [HomeController::class, 'index']);
 
 //Koh Hui Hui
 //Client-Side
-
 //Ticketing
 Route::prefix('booking')->group(function () {
     Route::get('/{id}', [BookingController::class, 'index']);
@@ -69,7 +68,6 @@ Route::get('/contact', function () {
 
 //Koh Hui Hui
 //Admin-Side
-
 //Membership Promotion
 Route::prefix('promotion')->group(function () {
     Route::get('/add', [MembershipController::class, 'addPromotion']);
@@ -86,7 +84,6 @@ Route::prefix('voucher')->group(function () {
     Route::get('/update/{id}', [MembershipController::class, 'updateVoucher']);
 });
 
-
 //Siah Xin Ying
 //Client-side
 //Movies
@@ -96,14 +93,14 @@ Route::get('/movies/{id}', [MoviesController::class, 'moviesDetails']);
 //Foods
 Route::get('/foods', [FoodsController::class, 'showFoods']);
 Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
-Route::get('/f&b', function () {
-    return view('f&b');
-});
 
 //Cart
 Route::get('cart', [CartController::class, 'cartList']);
-Route::post('addCart',[CartController::class, 'store']);
-Route::get('cart/{id}', [CartController::class, 'destroy']);
+Route::post('addCart', [CartController::class, 'store']);
+
+//delete cart
+Route::delete('destroy/{id}', [CartController::class, 'destroy']);
+//Route::get('destroy/{id}',[CartController::class, 'destroy']);
 
 //Admin-side
 //add Movies
@@ -143,20 +140,19 @@ Route::get('/addShowtimes', [ShowtimesController::class, 'cinemaOption']);
 Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
 Route::get('showtimesList', [ShowtimesController::class, 'showList']);
 
-
 //login page
-Route::controller(UserController::class)->group(function(){
-    Route::get('login','show')->name('login');
-    
-    Route::get('registration','registration')->name('registration');
-    
-    Route::get('logout','logout')->name('logout');
-    
-    Route::post('validate_registration','validate_registration')->name('user.validate_registration');
-    
-    Route::post('validate_login','validate_login')->name('user.validate_login');
-    
-    Route::get('homepage','homepage')->name('homepage');
+Route::controller(UserController::class)->group(function () {
+    Route::get('login', 'show')->name('login');
+
+    Route::get('registration', 'registration')->name('registration');
+
+    Route::get('logout', 'logout')->name('logout');
+
+    Route::post('validate_registration', 'validate_registration')->name('user.validate_registration');
+
+    Route::post('validate_login', 'validate_login')->name('user.validate_login');
+
+    Route::get('homepage', 'homepage')->name('homepage');
 });
 // Auth::routes();
 Auth::routes();

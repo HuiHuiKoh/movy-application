@@ -16,7 +16,7 @@
             </div>    
 
             <div class="row border-top border-bottom">
-                @foreach($foods as $item)
+
                 <div class="row main align-items-center">
                     <table>
                         <thead>
@@ -29,7 +29,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            @php $total = 0; @endphp
+                            @foreach($foods as $item)                          
+                            <tr>                             
                                 <td></td>
                                 <td><img class="img-fluid" src="assets/img/{{$item->image}}"></td>
                                 <td><div class="col">
@@ -37,42 +39,42 @@
                                     </div>
                                 </td>
                                 <td><div class="col">&emsp;{{$item->quantity}}</div></td>
-                                <td> <div class="col">RM {{$item->price}}</div></td>
-                                <td><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')" style="margin-top: 0" href="removecart/{{$item->cartID}}">Delete</a></td>
-                            </tr>
-
-
-
+                                <td><div class="col">RM {{$item->price}}</div></td>
+<!--                                <td>
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')" style="margin-top: 0" href="destroy/{{$item->cartID}}">Delete</a>
+                                </td>-->
+                                <td><form method="POST" action="{{action('\App\Http\Controllers\CartController@destroy',$item->cartID)}}">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?') " style="margin-top: 0">Delete</button>
+                                    </form></td>
+                            </tr>          
+                            @php $total += $item->price * $item->quantity; @endphp
+                            @endforeach
                         </tbody>
                     </table>
-
-
-
-
                 </div>
-                @endforeach
             </div>
 
-
-            <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+            <div class="back-to-shop"><a href="#" style="color:#2A2A2A">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
         </div>
         <div class="col-md-4 summary">
             <div><h5><b style="color:#2A2A2A">Summary</b></h5></div>
             <hr>
             <div class="row">
                 <div class="col">TOTAL</div>
-                <div class="col text-right">&euro; 132.00</div>
+                <div class="col text-right">RM {{$total}}</div>
             </div>
             <form>
-                <p>SHIPPING</p>
-                <select><option class="text-muted">Standard-Delivery- &euro;5.00</option></select>
+
                 <p></p>
                 <p>GIVE CODE</p>
                 <input id="code" placeholder="Enter your code">
             </form>
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                 <div class="col">TOTAL PRICE</div>
-                <div class="col text-right">&euro; 137.00</div>
+                <div class="col text-right">RM {{$total}}</div>
             </div>
             <button class="btn">CHECKOUT</button>
         </div>
