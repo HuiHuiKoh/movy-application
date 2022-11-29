@@ -157,6 +157,9 @@ Route::controller(UserController::class)->group(function () {
 
 //Chart
 
+//Route::get('/chart/stock', [ReportController::class,'GetStock'])->middleware(['auth']);
+//Route::get('/chart/user/{year}', [ReportController::class,'GetNewUser'])->middleware(['auth']);
+
 // Auth::routes();
 Auth::routes();
 
