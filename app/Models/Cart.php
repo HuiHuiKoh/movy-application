@@ -22,6 +22,5 @@ class Cart extends Model
         'userID',
         'foodID'
         
-
     ];
 }

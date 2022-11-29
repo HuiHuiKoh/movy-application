@@ -148,5 +148,23 @@ class MoviesController extends Controller
         return redirect()->back()->with('success', 'Movies has been updated.');
     }
     
+    public function showTrashed() {
+        try {
+            $movies = Movies::onlyTrashed()->get();
+            return view('admin.restoreMovies', compact('movies'));
+        } catch (QueryException $e) {
+            abort(500);
+        }
+    }
+    
+    public function restore($id) {
+        try {
+            Movies::onlyTrashed()->find($id)->restore();
+            return redirect()->back()->with('success', 'Movies has been restored.');
+        } catch (QueryException $e) {
+            abort(500);
+        }
+    }
+    
     
 }

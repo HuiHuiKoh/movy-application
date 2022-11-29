@@ -39,7 +39,7 @@ class FoodsController extends Controller {
     public function destroy($id) {
         try {
             Foods::find($id)->delete();
-            return redirect()->back()->with('success', 'Food has been deleted.');
+            return redirect()->back()->with('success', 'Item has been deleted.');
         } catch (QueryException $e) {
             abort(500);
         }
@@ -62,7 +62,7 @@ class FoodsController extends Controller {
                 'price' => $request->get('price'),
                 'created_at' => Carbon::now()->toDateTimeString(),
             ]);
-            return redirect()->back()->with('success', 'New Food has been added.');
+            return redirect()->back()->with('success', 'New Item has been added.');
         } catch (QueryException $e) {
             abort(500);
         }
@@ -105,7 +105,25 @@ class FoodsController extends Controller {
 
         $foods->save();
 
-        return redirect()->back()->with('success', 'Food has been updated.');
+        return redirect()->back()->with('success', 'Item has been updated.');
+    }
+    
+    public function showTrashed() {
+        try {
+            $foods = Foods::onlyTrashed()->get();
+            return view('admin.restoreFoods', compact('foods'));
+        } catch (QueryException $e) {
+            abort(500);
+        }
+    }
+    
+    public function restore($id) {
+        try {
+            Foods::onlyTrashed()->find($id)->restore();
+            return redirect()->back()->with('success', 'Item has been restored.');
+        } catch (QueryException $e) {
+            abort(500);
+        }
     }
 
 }

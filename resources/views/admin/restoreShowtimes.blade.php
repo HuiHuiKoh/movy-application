@@ -6,7 +6,7 @@
 
     <div class="container-fluid px-4">
 
-        <h1 class="mt-4">Showtimes List in MOVY</h1>
+        <h1 class="mt-4">Deleted Showtimes</h1>
         <hr>
 
         @if (\Session::has('success'))
@@ -20,7 +20,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Showtimes
+                Deleted
             </div>
 
             <div class="card-body">
@@ -33,7 +33,8 @@
                             <th>Cinema</th>
                             <th>Date and Time</th>
                             <th>Hall</th>          
-                            <th>Delete</th>
+                            <th>Restore</th>
+
                         </tr>
                     </thead>
                     <tfoot>
@@ -52,18 +53,15 @@
                         <tr>
                             <td>{{$movie->id}}</td>
                             <td>{{$movie->movies_name}}</td>
-                            <td><img src="assets/img/{{$movie->movies_image}}" width="100" height="130" alt="{{$movie->movies_image}}"></td>
-                            <td>{{$movie->dateTime}}</td>
+                            <td><img src="assets/img/{{$movie->movies_image}}" width="100" height="130" alt="{{$movie->movies_image}}"></td>                            
                             <td>{{$movie->cinemas_name}}</td> 
+                            <td>{{$movie->dateTime}}</td>
                             <td>{{$movie->hall}}</td>
-
                             <td>
-                                <form method="POST" action="{{action('\App\Http\Controllers\ShowtimesController@destroy',$movie->id)}}">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</button>
-                                </form>
+                                <a href="{{action('\App\Http\Controllers\ShowtimesController@restore',$movie['id'])}}"
+                                   class="btn btn-outline-warning" onclick="return confirm('Are you sure to restore?')">Restore</a>
                             </td>
+
                         </tr>
                         @endforeach
 
