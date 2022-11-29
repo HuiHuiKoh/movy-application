@@ -14,25 +14,45 @@
                     <div class="col align-self-center text-right text-muted">3 items</div>
                 </div>
             </div>    
-            
+
             <div class="row border-top border-bottom">
                 @foreach($foods as $item)
                 <div class="row main align-items-center">
-                    
-                    <div class="col-2"><img class="img-fluid" src="assets/img/{{$item->image}}"></div>
-                    <div class="col">
-                        <div class="row text-muted">Items</div>
-                        <div class="row">{{$item->name}}</div>
-                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>&nbsp; Item</th>
+                                <th>Quantity</th>
+                                <th>&emsp;Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td><img class="img-fluid" src="assets/img/{{$item->image}}"></td>
+                                <td><div class="col">
+                                        <div class="row">{{$item->name}}</div>
+                                    </div>
+                                </td>
+                                <td><div class="col">&emsp;{{$item->quantity}}</div></td>
+                                <td> <div class="col">RM {{$item->price}}</div></td>
+                                <td><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')" style="margin-top: 0" href="removecart/{{$item->cartID}}">Delete</a></td>
+                            </tr>
 
-                    <div class="col">{{$item->quantity}}</div>
 
-                    <div class="col">RM {{$item->price}} <span class="close">&#10005;</span></div>
-                    
+
+                        </tbody>
+                    </table>
+
+
+
+
                 </div>
                 @endforeach
             </div>
-            
+
 
             <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
         </div>
@@ -56,7 +76,6 @@
             </div>
             <button class="btn">CHECKOUT</button>
         </div>
-
     </div>
 
 

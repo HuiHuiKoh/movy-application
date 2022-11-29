@@ -16,7 +16,7 @@ class CartController extends Controller {
     public function cartList() {
 
 //        $userid = Auth::user()->id;
-        $userid = 3;
+        $userid = 1;
         $foods = DB::table('carts')
                 ->join('foods', 'carts.foodID', '=', 'foods.id')
                 ->where('carts.userID', $userid)
@@ -34,7 +34,7 @@ class CartController extends Controller {
 
             $oldCart = DB::table('carts')
                     ->join('foods', 'foods.id', '=', 'carts.foodID')
-                    ->where('carts.userID', 3)
+                    ->where('carts.userID', 1)
                     ->select('carts.id as cartID', 'foods.id as fID', 'quantity', 'foods.*')
                     ->get();
             foreach ($oldCart as $data) {
@@ -50,7 +50,7 @@ class CartController extends Controller {
             Cart::create([
                 'quantity' => 1,
                 'foodID' => $request->get('foodID'),
-                'userID' => 3,
+                'userID' => 1,
                 'created_at' => Carbon::now()->toDateTimeString(),
             ]);
 

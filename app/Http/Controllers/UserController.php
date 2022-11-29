@@ -20,7 +20,7 @@ class UserController extends Controller
     
     public function registration(){
         
-        return view('registration');
+        return view('auth.registration');
     }
     
     public function validate_registration(UserRequest $request){
