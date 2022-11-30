@@ -6,7 +6,7 @@
 
     <div class="container-fluid px-4">
 
-        <h1 class="mt-4">Movies List in MOVY</h1>
+        <h1 class="mt-4">Deleted Movies</h1>
         <hr>
 
         @if (\Session::has('success'))
@@ -20,7 +20,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Books
+                Deleted 
             </div>
 
             <div class="card-body">
@@ -36,8 +36,7 @@
                             <th>Director</th>
                             <th>Duration</th>
                             <th>Released Date</th>            
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Restore</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -51,12 +50,11 @@
                             <th>Director</th>
                             <th>Duration</th>
                             <th>Released Date</th>            
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Restore</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($movies as $shows)
+                         @foreach ($movies as $shows)
                         <tr>
                             <td>{{$shows['id']}}</td>
                             <td>{{$shows['name']}}</td>
@@ -68,14 +66,8 @@
                             <td>{{$shows['duration']}}</td>
                             <td>{{$shows['releasedDate']}}</td>
                             <td>
-                                <a href="{{action('\App\Http\Controllers\MoviesController@edit',$shows['id'])}}"
-                                   class="btn btn-outline-primary">Edit</a>
-                            <td>
-                                <form method="POST" action="{{action('\App\Http\Controllers\MoviesController@destroy',$shows['id'])}}">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</button>
-                                </form>
+                                <a href="{{action('\App\Http\Controllers\MoviesController@restore',$shows['id'])}}"
+                                   class="btn btn-outline-warning" onclick="return confirm('Are you sure to restore?')">Restore</a>
                             </td>
                         </tr>
                         @endforeach
@@ -85,3 +77,6 @@
         </div>
     </div>
     @include('admin.footer');
+
+
+

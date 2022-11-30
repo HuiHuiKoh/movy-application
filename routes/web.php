@@ -119,6 +119,10 @@ Route::delete('moviesList/{id}', [MoviesController::class, 'destroy']);
 Route::get('updateMovies/{id}', [MoviesController::class, 'edit']);
 Route::post('updateMovies/{id}', [MoviesController::class, 'update']);
 
+//restore Movies
+Route::get('/restoreMovies', [MoviesController::class, 'showTrashed']);
+Route::get('restoreMovies/{id}', [MoviesController::class, 'restore']);
+
 //add Foods
 Route::get('/addFoods', [FoodsController::class, 'newFoods']);
 Route::post('/addFoods/store', [FoodsController::class, 'store']);
@@ -133,12 +137,25 @@ Route::delete('foodList/{id}', [FoodsController::class, 'destroy']);
 Route::get('updateFoods/{id}', [FoodsController::class, 'edit']);
 Route::post('updateFoods/{id}', [FoodsController::class, 'update']);
 
+//restore Foods
+Route::get('/restoreFoods',[FoodsController::class,'showTrashed']);
+Route::get('restoreFoods/{id}', [FoodsController::class, 'restore']);
+
+
 //add Showtimes
 Route::get('/addShowtimes', [ShowtimesController::class, 'newShowtimes']);
 Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
 Route::get('/addShowtimes', [ShowtimesController::class, 'cinemaOption']);
-Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
+
+//show Showtimes List
 Route::get('showtimesList', [ShowtimesController::class, 'showList']);
+
+//delete Showtimes
+Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
+
+//restore Showtimes
+Route::get('/restoreShowtimes', [ShowtimesController::class, 'showTrashed']);
+Route::get('restoreShowtimes/{id}', [ShowtimesController::class, 'restore']);
 
 //login page
 Route::controller(UserController::class)->group(function () {

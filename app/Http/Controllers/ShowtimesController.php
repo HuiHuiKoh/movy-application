@@ -17,11 +17,11 @@ class ShowtimesController extends Controller {
     public function showList() {
 
         try {
-//            $movies = Movies::all();
+
             $movies = DB::table('showtimes')
                     ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
                     ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
-                    ->select('movies.name as movies_name', 'movies.image as movies_image', 'cinemas.name as cinemas_name','showtimes.*')
+                    ->select('movies.name as movies_name', 'movies.image as movies_image', 'cinemas.name as cinemas_name', 'showtimes.*')
                     ->get();
 //            return json_decode($books);
             return view('admin.showtimesList', compact('movies'));
@@ -77,32 +77,27 @@ class ShowtimesController extends Controller {
         }
     }
 
-    public function add(Request $request, $id) {
+    public function showTrashed() {
+        try {           
+            $movies = Showtimes::onlyTrashed()
+                    ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
+                    ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
+                    ->select('movies.name as movies_name', 'movies.image as movies_image', 'cinemas.name as cinemas_name', 'showtimes.*')
+                    ->get();
+            
+            return view('admin.restoreShowtimes', compact('movies'));
+        } catch (QueryException $e) {
+            abort(500);
+        }
+    }
 
-        $moviesID = Movies::find($id);
-
-        $movies = DB::table('showtimes')
-                ->join('movies', 'cinemas', 'showtimes.moviesID', '=', 'movies.id', 'showtimes.cinemaID', '=', 'cinemas.id')
-                ->select('movies.*', 'cinemas.*')
-                ->get();
-
-        $this->validate($request, [
-            'name' => 'required|string|max:250',
-            'dateTime' => 'required',
-            'hall' => 'required|integer',
-            'cinema' => 'required',
-        ]);
-
-        $movies->name = $request->get('name');
-        $movies->dateTime = $request->get('dateTime');
-        $movies->hall = $request->get('hall');
-        $movies->cinemaID = $request->get('cinema');
-        $movies->moviesID = $request->$moviesID;
-        $movies->created_at = Carbon::now()->toDateTimeString();
-
-        $movies->save();
-
-        return redirect()->back()->with('success', 'Showtimes has been added.');
+    public function restore($id) {
+        try {
+            Showtimes::onlyTrashed()->find($id)->restore();
+            return redirect()->back()->with('success', 'Showtimes has been restored.');
+        } catch (QueryException $e) {
+            abort(500);
+        }
     }
 
 }

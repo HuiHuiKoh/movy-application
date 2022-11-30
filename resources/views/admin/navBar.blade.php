@@ -46,7 +46,7 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{ asset('moviesList') }}"><div class="sb-nav-link-icon"><i class="fa fa-list-alt"></i></div>Movies List</a>
                                 <a class="nav-link" href="{{ asset('addMovies') }}"><div class="sb-nav-link-icon"><i class="fa fa-folder"></i></div>Add new Movies</a>
-                                <a class="nav-link" href="{{ url('book_restore')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Movies</a>
+                                <a class="nav-link" href="{{ asset('restoreMovies')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Movies</a>
                             </nav>
                         </div>
                         <?php $collapse++ ?>
@@ -59,7 +59,7 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{ asset('showtimesList') }}"><div class="sb-nav-link-icon"><i class="fa fa-list-alt"></i></div>Showtimes List</a>
                                 <a class="nav-link" href="{{ asset('addShowtimes') }}"><div class="sb-nav-link-icon"><i class="fa fa-folder"></i></div>Add new Showtimes</a>
-                                <a class="nav-link" href="{{ url('book_restore')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Showtimes</a>
+                                <a class="nav-link" href="{{ asset('restoreShowtimes')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Showtimes</a>
                             </nav>
                         </div>
                         <?php $collapse++ ?>
@@ -72,7 +72,7 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{ asset('foodList') }}"><div class="sb-nav-link-icon"><i class="fa fa-list-alt"></i></div>Food List</a>
                                 <a class="nav-link" href="{{ asset('addFood') }}"><div class="sb-nav-link-icon"><i class="fa fa-folder"></i></div>Add new Foods</a>
-                                <a class="nav-link" href="{{ url('book_restore')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Foods</a>
+                                <a class="nav-link" href="{{ asset('restoreFoods')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Foods</a>
                             </nav>
                         </div>
                         <?php $collapse++ ?>

@@ -26,13 +26,15 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 75%;
+    height: 60%;
+    margin-left: 2%;
 }
 
 .movie-details {
     float: right;
     padding: 0%;
     width: 45%;
+    margin-right: 2%;
 }
 
 .movie-info-container::after {
