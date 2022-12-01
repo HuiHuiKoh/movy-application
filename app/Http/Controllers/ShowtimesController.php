@@ -39,7 +39,7 @@ class ShowtimesController extends Controller {
         $movies = Movies::all();
         $cinemas = Cinema::all();
 
-        return view('admin.addShowtimes', ['movies' => $movies], ['cinemas' => $cinemas]);
+        return view('admin.addShowtimes', ['movies' => $movies, 'cinemas' => $cinemas]);
     }
 
     public function store(ShowtimesRequest $request) {
