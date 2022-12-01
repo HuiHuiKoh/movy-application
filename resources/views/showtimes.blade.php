@@ -30,8 +30,9 @@
 @section('content')
 <nav class="movie-nav">
     <ul>
-        <li style="color: lightgoldenrodyellow;"><b><a href="">NOW SHOWING</a></b></li>
-        <li><a href="">COMING SOON</a></li>
+        @foreach($categories as $category)
+        <li style="color: lightgoldenrodyellow;"><b><a href="">{{$category->category}}</a></b></li>
+        @endforeach
     </ul>
 </nav>
 <hr class="border">

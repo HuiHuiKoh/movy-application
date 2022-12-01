@@ -13,7 +13,8 @@ class MoviesController extends Controller
 {
     public function show() {
         $movies = Movies::all();
-        return view('showtimes', ['movies' => $movies]);
+        $categories = Category::all();
+        return view('showtimes', ['movies' => $movies,'categories' => $categories]);
     }
     
     public function moviesDetails($id){
@@ -52,8 +53,7 @@ class MoviesController extends Controller
     }
     
     public function store(MoviesRequest $request) {
-
-        
+      
         $request->validationData();
 
         $file = $request->image;
