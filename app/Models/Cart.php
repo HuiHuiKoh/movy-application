@@ -9,18 +9,18 @@ use \Illuminate\Database\Eloquent\SoftDeletes;
 class Cart extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+//    use SoftDeletes;
+//    
+//    protected $dates = [
+//        'created_at',
+//        'updated_at',
+//        'deleted_at'
+//    ];
     
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at'
-    ];
-    
-    protected $fillable = [
-        'quantity',
-        'userID',
-        'foodID'
-        
-    ];
+//    protected $fillable = [
+//        'quantity',
+//        'userID',
+//        'foodID'
+//        
+//    ];
 }

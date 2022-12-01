@@ -20,7 +20,7 @@ class CartController extends Controller {
         $foods = DB::table('carts')
                 ->join('foods', 'carts.foodID', '=', 'foods.id')
                 ->where('carts.userID', $userid,)
-                ->where('carts.deleted_at','=', NULL)
+//                ->where('carts.deleted_at', '=', NULL)
                 ->select('foods.*', 'carts.quantity', 'carts.id as cartID')
                 ->get();
 
@@ -48,12 +48,18 @@ class CartController extends Controller {
                 }
             }
 
-            Cart::create([
-                'quantity' => 1,
-                'foodID' => $request->get('foodID'),
-                'userID' => $userid,
-                'created_at' => Carbon::now()->toDateTimeString(),
-            ]);
+//            Cart::create([
+//                'quantity' => 1,
+//                'foodID' => $request->get('foodID'),
+//                'userID' => $userid,
+//                'created_at' => Carbon::now()->toDateTimeString(),
+//            ]);
+            $cart = new Cart;
+            $cart->userID = $userid;
+            $cart->foodID = $request->foodID;
+            $cart->quantity = 1;
+            $cart->created_at = Carbon::now()->toDateTimeString();
+            $cart->save();
 
             return redirect()->back()->with('success', 'Item has been added.');
         } catch (QueryException $e) {

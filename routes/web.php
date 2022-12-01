@@ -141,7 +141,6 @@ Route::post('updateFoods/{id}', [FoodsController::class, 'update']);
 Route::get('/restoreFoods',[FoodsController::class,'showTrashed']);
 Route::get('restoreFoods/{id}', [FoodsController::class, 'restore']);
 
-
 //add Showtimes
 Route::get('/addShowtimes', [ShowtimesController::class, 'newShowtimes']);
 Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);

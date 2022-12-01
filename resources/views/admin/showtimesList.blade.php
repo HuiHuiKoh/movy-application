@@ -53,8 +53,8 @@
                             <td>{{$movie->id}}</td>
                             <td>{{$movie->movies_name}}</td>
                             <td><img src="assets/img/{{$movie->movies_image}}" width="100" height="130" alt="{{$movie->movies_image}}"></td>
-                            <td>{{$movie->dateTime}}</td>
-                            <td>{{$movie->cinemas_name}}</td> 
+                            <td>{{$movie->cinemas_name}}</td>
+                            <td>{{$movie->dateTime}}</td>                           
                             <td>{{$movie->hall}}</td>
 
                             <td>
