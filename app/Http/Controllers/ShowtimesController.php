@@ -22,6 +22,7 @@ class ShowtimesController extends Controller {
                     ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
                     ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
                     ->select('movies.name as movies_name', 'movies.image as movies_image', 'cinemas.name as cinemas_name', 'showtimes.*')
+                    ->where('showtimes.deleted_at','=', NULL)
                     ->get();
 //            return json_decode($books);
             return view('admin.showtimesList', compact('movies'));

@@ -19,7 +19,8 @@ class CartController extends Controller {
 //        $userid = 1;
         $foods = DB::table('carts')
                 ->join('foods', 'carts.foodID', '=', 'foods.id')
-                ->where('carts.userID', $userid)
+                ->where('carts.userID', $userid,)
+                ->where('carts.deleted_at','=', NULL)
                 ->select('foods.*', 'carts.quantity', 'carts.id as cartID')
                 ->get();
 
