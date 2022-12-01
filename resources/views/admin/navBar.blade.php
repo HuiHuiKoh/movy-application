@@ -71,7 +71,7 @@
                         <div class="collapse" id="collapseLayouts<?php echo $collapse ?>" aria-labelledby="heading<?php echo $collapse ?>" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{ asset('foodList') }}"><div class="sb-nav-link-icon"><i class="fa fa-list-alt"></i></div>Food List</a>
-                                <a class="nav-link" href="{{ asset('addFood') }}"><div class="sb-nav-link-icon"><i class="fa fa-folder"></i></div>Add new Foods</a>
+                                <a class="nav-link" href="{{ asset('addFoods') }}"><div class="sb-nav-link-icon"><i class="fa fa-folder"></i></div>Add new Foods</a>
                                 <a class="nav-link" href="{{ asset('restoreFoods')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Foods</a>
                             </nav>
                         </div>

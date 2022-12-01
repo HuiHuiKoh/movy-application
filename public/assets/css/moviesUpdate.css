@@ -2,7 +2,8 @@
     color: #000;
     overflow-x: hidden;
     height: 100%;
-    background-image: url("https://cdn.tatlerasia.com/asiatatler/i/ph/2020/04/14145432-valdemaras-d-7vpfyhb-j8y-unsplash_cover_1920x1217.jpg");
+    background-image: none;
+    background-color: #2A2A2A;
     background-repeat: no-repeat;
     background-size: 100% 100%
 }
