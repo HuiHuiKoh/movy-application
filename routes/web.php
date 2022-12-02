@@ -11,7 +11,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ShowtimesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChartController;
-use App\Http\Controllers\UserChartController;
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -174,15 +174,14 @@ Route::controller(UserController::class)->group(function () {
 });
 
 //Chart
-
-//Route::get('/chart/stock', [ReportController::class,'GetStock'])->middleware(['auth']);
-//Route::get('/chart/user/{year}', [ReportController::class,'GetNewUser'])->middleware(['auth']);
-
 Route::get('/userReport', [ChartController::class,'viewUser']);
 Route::POST('/chart', [ChartController::class,'getNewUser']);
-
 Route::POST('/amountChart', [ChartController::class,'getAmount']);
 Route::get('/salesReport', [ChartController::class,'viewSales']);
+
+//Purchase History
+Route::get('purchaseHistory', [HistoryController::class,'view']);
+
 // Auth::routes();
 Auth::routes();
 
