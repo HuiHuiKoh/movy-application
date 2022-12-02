@@ -28,13 +28,7 @@
 
 <!-- Movies Page Navigation -->
 @section('content')
-<nav class="movie-nav">
-    <ul>
-        @foreach($categories as $category)
-        <li style="color: lightgoldenrodyellow;"><b><a href="{{url('category',$category->id)}}" value="{{$category->id}}">{{$category->category}}</a></b></li>
-        @endforeach
-    </ul>
-</nav>
+@include('category');
 <hr class="border">
 
 <!-- Now Showing Movies Page -->
@@ -43,14 +37,14 @@
     <div class="row-movie-container">
         @foreach($movies as $shows)
         <div class="col-1-4-movie-container">        
-            <img src="assets/img/{{$shows['image']}}" alt="" class="image">
+            <img src="assets/img/{{$shows->image}}" alt="" class="image">
             <div class="overlay">
                 <div class="text">
-                    <p class="movie-name">{{$shows['name']}}</p>
-                    <p class="movie-type">{{$shows['type']}}</p>
-                    <p class="movie-date">{{$shows['releasedDate']}}</p>
-                    <p class="movie-info">{{$shows['language']}} ‧ {{$shows['duration']}}</p>
-                    <a href="{{action('\App\Http\Controllers\MoviesController@moviesDetails',$shows['id'])}}"><button class="button-info" >Movie Info</button></a>
+                    <p class="movie-name">{{$shows->name}}</p>
+                    <p class="movie-type">{{$shows->type}}</p>
+                    <p class="movie-date">{{$shows->releasedDate}}</p>
+                    <p class="movie-info">{{$shows->language}} ‧ {{$shows->duration}}</p>
+                    <a href="{{action('\App\Http\Controllers\MoviesController@moviesDetails',$shows->id)}}"><button class="button-info" >Movie Info</button></a>
                 </div>
             </div>    
         </div> 

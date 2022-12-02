@@ -108,7 +108,7 @@ Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 Route::get('purchaseHistory', [HistoryController::class,'view']);
 
 //filter function
-Route::get('category/{category}',MoviesController::class,'viewCategory');
+Route::get('showtimes/{category}',[MoviesController::class,'viewCategory']);
 
 //Admin-side
 //add Movies

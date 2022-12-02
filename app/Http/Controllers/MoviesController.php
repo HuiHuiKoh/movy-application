@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MoviesRequest;
 use Illuminate\Http\Request;
@@ -9,29 +10,58 @@ use App\Models\Category;
 use Carbon\Carbon;
 Use Illuminate\Support\Facades\DB;
 
-class MoviesController extends Controller
-{
+class MoviesController extends Controller {
+
+    public function viewCategory($id) {
+
+////        $cate = Categories::find($id);
+//        $cate = $request->get('category');
+//
+//        $movies = DB::table('movies')
+////                ->join('categories', 'movies.categoryID', '=', 'categories.id')
+//                ->where('movies.categoryID', $cate)
+//                ->select('movies.*')
+//                ->get();
+//
+//        $categories = DB::table('categories')
+//                ->select('categories.*')
+//                ->get();
+//
+//        return view('showtimes', ['movies' => $movies, 'categories' => $categories], compact('movies', 'cate'));
+
+        if(Category::where('id',$id)->exists()){
+            
+             $categories = Category::where('id',$id)->first();
+             $movies = Movies::where('categoryID',$categories)->get();
+             return view('showtimes',compact('categories','movies'));
+                     
+        }else{
+            
+            return redirect('home')->with('status',"Movies does not exist");
+        }
+    }
+
     public function show() {
         $movies = Movies::all();
         $categories = Category::all();
-        return view('showtimes', ['movies' => $movies,'categories' => $categories]);
+        return view('showtimes', ['movies' => $movies, 'categories' => $categories]);
     }
-    
-    public function moviesDetails($id){
-        
-        $movies = Movies::find($id);      
-        return view('movies',compact('movies','id'));            
+
+    public function moviesDetails($id) {
+
+        $movies = Movies::find($id);
+        return view('movies', compact('movies', 'id'));
     }
-    
+
     public function newMovies() {
         return view('admin.addMovies');
     }
-    
-    public function categoryOption(){
+
+    public function categoryOption() {
         $categories = Category::all();
         return view('admin.addMovies', ['categories' => $categories]);
     }
-    
+
     public function showMoviesList() {
 
         try {
@@ -42,7 +72,7 @@ class MoviesController extends Controller
             abort(500);
         }
     }
-    
+
     public function destroy($id) {
         try {
             Movies::find($id)->delete();
@@ -51,16 +81,16 @@ class MoviesController extends Controller
             abort(500);
         }
     }
-    
+
     public function store(MoviesRequest $request) {
-      
+
         $request->validationData();
 
         $file = $request->image;
 
         $fileName = time() . '_' . $file->getClientOriginalName();
         $file->move('C:\Users\USER\Documents\GitHub\movy-application\public\assets\img', $fileName);
-        
+
         try {
             Movies::create([
                 'name' => $request->get('name'),
@@ -81,7 +111,7 @@ class MoviesController extends Controller
             abort(500);
         }
     }
-    
+
     public function edit($id) {
         try {
             $movies = Movies::find($id);
@@ -90,11 +120,11 @@ class MoviesController extends Controller
             abort(500);
         }
     }
-    
+
     public function update(Request $request, $id) {
 
         $moviesID = Movies::find($id);
-        
+
 //        $products = DB::table('carts')
 //                ->join('products', 'carts.product_id', '=', 'products.id')
 //                ->where('carts.user_id', $userid)
@@ -104,10 +134,8 @@ class MoviesController extends Controller
         $movies = DB::table('movies')
                 ->join('categories', 'movies.categoryID', '=', 'categories.id')
 //                ->where('movies.categoryID', 'categories.id')
-                ->select('movies.*', 'categories.*', 'categories.id as categoryID','categories.category as categoriesName')
+                ->select('movies.*', 'categories.*', 'categories.id as categoryID', 'categories.category as categoriesName')
                 ->get();
-
-        
 
         $fileName = $moviesID->image;
 
@@ -147,7 +175,7 @@ class MoviesController extends Controller
 
         return redirect()->back()->with('success', 'Movies has been updated.');
     }
-    
+
     public function showTrashed() {
         try {
             $movies = Movies::onlyTrashed()->get();
@@ -156,7 +184,7 @@ class MoviesController extends Controller
             abort(500);
         }
     }
-    
+
     public function restore($id) {
         try {
             Movies::onlyTrashed()->find($id)->restore();
@@ -165,6 +193,5 @@ class MoviesController extends Controller
             abort(500);
         }
     }
-    
-    
+
 }
