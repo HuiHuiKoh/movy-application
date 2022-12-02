@@ -102,11 +102,7 @@
                             </nav>
                         </div>
 
-                        <div class="sb-sidenav-menu-heading">Control</div>
-                        <a class="nav-link" href="{{ url('stock_in')}}">
-                            <div class="sb-nav-link-icon"><i class="fa fa-sort-numeric-asc"></i></div>
-                            Stock
-                        </a>
+                        
 
                         <!--                        Generate Report-->
                         <div class="sb-sidenav-menu-heading">Report</div>
