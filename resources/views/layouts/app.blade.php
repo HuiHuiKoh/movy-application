@@ -32,6 +32,11 @@
         <!-- Template Main CSS File -->
         <link href="{{asset ('import/assets/css/style.css') }}" rel="stylesheet">
 
+        <!--Search Bar CSS File -->
+        
+        <link href="{{asset ('import/assets/css/search.css') }}" rel="stylesheet">
+        <!------ Include the above in your HEAD tag ---------->
+
         @stack('css')
     </head>
 
@@ -44,6 +49,20 @@
 
                 <nav id="navbar" class="navbar order-last order-lg-0">
                     <ul>
+                        <li>
+                                <div class="row" width="20%">                                   
+                                    <div id="custom-search-input">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="  search-query form-control" placeholder="Search" />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-danger" type="button">
+                                                    <span class=" glyphicon glyphicon-search"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         <li><a href="{{asset ('home') }}">Home</a></li>
                         <li class="dropdown"><a href="#"><span>Movies</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
