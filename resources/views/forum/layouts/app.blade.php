@@ -16,6 +16,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">New Thread</a>
                 </li>
+                
             </ul>
             <!--If user is logged in-->
             <!--            <div class="dropdown mx-5">

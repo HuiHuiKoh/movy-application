@@ -110,12 +110,12 @@
 
                         <!--                        Generate Report-->
                         <div class="sb-sidenav-menu-heading">Report</div>
-                        <a class="nav-link" href="{{ url('chart/stock')}}">
+                        <a class="nav-link" href="{{  asset('salesReport')}}">
                             <div class="sb-nav-link-icon"><i class="fa fa-area-chart"></i></div>
-                            Stock Chart
+                            Sales Chart
                         </a>
 
-                        <a class="nav-link" href="{{ url('chart/user/date("Y")')}} ">
+                        <a class="nav-link" href="{{ asset('userReport')}} ">
                             <div class="sb-nav-link-icon"><i class="fa fa-area-chart"></i></div>
                             User Chart
                         </a>
