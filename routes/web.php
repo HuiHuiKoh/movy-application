@@ -104,6 +104,12 @@ Route::post('addCart', [CartController::class, 'store']);
 Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);
 
+//Purchase History
+Route::get('purchaseHistory', [HistoryController::class,'view']);
+
+//filter function
+Route::get('category/{category}',MoviesController::class,'viewCategory');
+
 //Admin-side
 //add Movies
 Route::get('/addMovies', [MoviesController::class, 'newMovies']);
@@ -179,8 +185,7 @@ Route::POST('/chart', [ChartController::class,'getNewUser']);
 Route::POST('/amountChart', [ChartController::class,'getAmount']);
 Route::get('/salesReport', [ChartController::class,'viewSales']);
 
-//Purchase History
-Route::get('purchaseHistory', [HistoryController::class,'view']);
+
 
 // Auth::routes();
 Auth::routes();
