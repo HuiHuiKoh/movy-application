@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Payment extends Model
+class OrderedFood extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -17,20 +16,9 @@ class Payment extends Model
         'deleted_at'
     ];
     protected $fillable = [
-        'amount',
-        'method',
-        'ticket_id',
-        'food_order_id',
-        'user_id'
+        'food_id',
+        'food_order_id'
     ];
-    
-    /**
-     * Get the associated ticket.
-     */
-    public function ticket()
-    {
-        return $this->belongsTo(Ticket::class, 'ticket_id');
-    }
     
     /**
      * Get the associated food order.
@@ -41,10 +29,10 @@ class Payment extends Model
     }
     
     /**
-     * Get the associated user.
+     * Get the associated food.
      */
-    public function user()
+    public function food()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Foods::class, 'food_id');
     }
 }

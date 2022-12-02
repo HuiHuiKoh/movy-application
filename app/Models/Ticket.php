@@ -20,8 +20,6 @@ class Ticket extends Model
         'total_amount',
         'showtimes_id',
         'seat_id',
-        'payment_id',
-        'food_id',
         'membership_voucher_id',
         'user_id'
     ];
@@ -47,7 +45,7 @@ class Ticket extends Model
      */
     public function payments()
     {
-        return $this->hasMany(Payment::class, 'payment_id');
+        return $this->hasMany(Payment::class);
     }
     
     /**
@@ -56,14 +54,6 @@ class Ticket extends Model
     public function membershipVouchers()
     {
         return $this->hasMany(MembershipVoucher::class, 'membership_voucher_id');
-    }
-    
-    /**
-     * Get the foods associated with the ticket.
-     */
-    public function foods()
-    {
-        return $this->hasMany(Food::class, 'food_id');
     }
     
     /**

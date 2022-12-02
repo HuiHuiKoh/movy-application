@@ -18,8 +18,6 @@ class CreateTicketsTable extends Migration
             $table->double('total_amount');
             $table->bigInteger('showtimes_id')->default(0);
             $table->bigInteger('seat_id')->default(0);
-            $table->bigInteger('payment_id')->default(0);
-            $table->bigInteger('food_id')->default(0);
             $table->bigInteger('membership_voucher_id')->default(0);
             $table->bigInteger('user_id')->default(0);
             $table->softDeletes();

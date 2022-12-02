@@ -32,4 +32,12 @@ class Foods extends Model
     {
         return $this->belongsTo(Ticket::class);
     }
+    
+    /**
+     * Get the ordered foods associated with the food.
+     */
+    public function orderedFoods()
+    {
+        return $this->hasMany(OrderedFood::class);
+    }
 }

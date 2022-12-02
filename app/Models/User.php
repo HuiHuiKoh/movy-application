@@ -75,6 +75,14 @@ class User extends Authenticatable
     }
     
     /**
+     * Get the food orders associated with the user.
+     */
+    public function foodOrders()
+    {
+        return $this->hasMany(FoodOrder::class);
+    }
+    
+    /**
      * Get the payments associated with the user.
      */
     public function payments()
