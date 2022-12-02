@@ -22,8 +22,8 @@ class BookingController extends Controller {
                 ->get();
         
        $showCinema = DB::table('showtimes')
-                ->select('cinema.name')
-                ->join('cinema', 'showtimes.cinemaID', '=', 'cinema.id')
+                ->select('cinemas.name')
+                ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
                 ->get();
         
         return view('booking.index', [
@@ -34,6 +34,10 @@ class BookingController extends Controller {
 
     public function seat() {
         return view('booking.seat');
+    }
+
+    public function check() {
+        return view('booking.check');
     }
 
 }

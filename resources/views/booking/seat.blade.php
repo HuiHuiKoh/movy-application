@@ -35,7 +35,7 @@
             <button onclick="showSeats();" class="btn orange-btn mt-3 ml-0 confirm-btn">Confirm</button>
         </div>
 
-        <div id="seatStructure" class="mt-5 d-block p-5">
+        <div id="seatStructure" class="mt-5 d-none p-5">
             <div class="showcase">
                 <li><div class="smallBox m-2" id="greenBox"></div><small>Selected</small></li>
                 <li><div class="smallBox m-2" id="redBox"></div><small>Reserved</small></li>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" onclick="hideConfirmation()">Cancel</button>
-                            <button onclick="location.href = ''" type="button" class="btn btn-primary">Continue</button>
+                            <button onclick="location.href = '{{ asset('foods') }}'" type="button" class="btn btn-primary">Continue</button>
                         </div>
                     </div>
                 </div>
@@ -143,6 +143,7 @@
                                 function showSeats() {
                                     if (!formButton.disabled) {
                                         $("#seatStructure").addClass("d-block");
+                                        window.location.href="#seatStructure";
                                     }
                                 }
 
