@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForumUsersTable extends Migration
+class CreateSeatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateForumUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('forum_users', function (Blueprint $table) {
+        Schema::create('seats', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username');
-            $table->string('password');
-            $table->bigInteger('forum_user_type_id')->default(0);
+            $table->string('row');
+            $table->unsignedInteger('number');
+            $table->foreignId('seat_type_id')->references('id')->on('seat_types')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateForumUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forum_users');
+        Schema::dropIfExists('seats');
     }
 }

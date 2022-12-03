@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForumsTable extends Migration
+class CreateOrderedFoodTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateForumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('forums', function (Blueprint $table) {
+        Schema::create('ordered_food', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->bigInteger('forum_user_id')->default(0);
+            $table->foreignId('food_id')->references('id')->on('foods')->onDelete('cascade');
+            $table->foreignId('food_order_id')->references('id')->on('food_orders')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateForumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forums');
+        Schema::dropIfExists('ordered_food');
     }
 }

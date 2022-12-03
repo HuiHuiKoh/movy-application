@@ -16,10 +16,10 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->double('total_amount');
-            $table->bigInteger('showtimes_id')->default(0);
-            $table->bigInteger('seat_id')->default(0);
-            $table->bigInteger('membership_voucher_id')->default(0);
-            $table->bigInteger('user_id')->default(0);
+            $table->foreignId('showtimes_id')->references('id')->on('showtimes')->onDelete('cascade');
+            $table->foreignId('seat_id')->references('id')->on('seats')->onDelete('cascade');
+            $table->foreignId('membership_voucher_id')->references('id')->on('membership_vouchers')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
