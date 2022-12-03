@@ -14,31 +14,9 @@ class MoviesController extends Controller {
 
     public function viewCategory($id) {
 
-////        $cate = Categories::find($id);
-//        $cate = $request->get('category');
-//
-//        $movies = DB::table('movies')
-////                ->join('categories', 'movies.categoryID', '=', 'categories.id')
-//                ->where('movies.categoryID', $cate)
-//                ->select('movies.*')
-//                ->get();
-//
-//        $categories = DB::table('categories')
-//                ->select('categories.*')
-//                ->get();
-//
-//        return view('showtimes', ['movies' => $movies, 'categories' => $categories], compact('movies', 'cate'));
-
-        if(Category::where('id',$id)->exists()){
-            
-             $categories = Category::where('id',$id)->first();
-             $movies = Movies::where('categoryID',$categories)->get();
-             return view('showtimes',compact('categories','movies'));
-                     
-        }else{
-            
-            return redirect('home')->with('status',"Movies does not exist");
-        }
+        $movies = Movies::where('categoryID', $id)->get();
+        $categories = Category::all();
+        return view('showtimes', ['movies' => $movies, 'categories' => $categories]);
     }
 
     public function show() {

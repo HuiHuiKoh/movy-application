@@ -37,7 +37,7 @@
     <div class="row-movie-container">
         @foreach($movies as $shows)
         <div class="col-1-4-movie-container">        
-            <img src="assets/img/{{$shows->image}}" alt="" class="image">
+            <img src="/assets/img/{{$shows->image}}" alt="" class="image">
             <div class="overlay">
                 <div class="text">
                     <p class="movie-name">{{$shows->name}}</p>
