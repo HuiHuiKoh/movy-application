@@ -171,5 +171,11 @@ class MoviesController extends Controller {
             abort(500);
         }
     }
+    
+    public function search(Request $request){
+        
+        return $request->input();
+        
+    }
 
 }

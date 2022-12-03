@@ -86,6 +86,11 @@ Route::prefix('voucher')->group(function () {
     Route::get('/update/{id}', [MembershipController::class, 'updateVoucher']);
 });
 
+
+
+
+
+
 //Siah Xin Ying
 //Client-side
 //Movies
@@ -107,9 +112,11 @@ Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 //Purchase History
 Route::get('purchaseHistory', [HistoryController::class,'view']);
 
-//filter function
-//Route::get('/category',[MoviesController::class,'show']);
+//Categories function
 Route::get('category/{slug}',[MoviesController::class,'viewCategory']);
+
+//Search Function
+Route::get('search',[MoviesController::class,'search']);
 
 //Admin-side
 //add Movies
