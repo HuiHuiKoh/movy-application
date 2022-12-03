@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/import/assets/css/search.css</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/forum/layouts/app.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/routes/web.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/MoviesController.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/CartController.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/ChartController.php</file>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/layouts/app.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/cart.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/showtimes.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/category.blade.php</file>
         </group>
     </open-files>
 </project-private>
