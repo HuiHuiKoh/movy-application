@@ -18,15 +18,11 @@ class CategoriesSeeder extends Seeder
             [
                 'id' => 1,
                 'category' => "Now Showing",
-                'slug' => "nowshowing",
-                'status' => 1,
                 'created_at' => Carbon::now()->toDateTimeString(),
             ],
             [
                 'id' => 2,
                 'category' => "Coming Soon",
-                'slug' => "comingsoon",
-                'status' => 1,
                 'created_at' => Carbon::now()->toDateTimeString(),
             ]
         ]);

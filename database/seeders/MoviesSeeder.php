@@ -26,7 +26,7 @@ class MoviesSeeder extends Seeder
                 'duration' => "2 Hours 42 Minutes",
                 'trailer' => "https://www.youtube.com/embed/RlOB3UALvrQ",
                 'director' => "Ryan Coogler",
-                'categoryID' => 2,
+                'categoryID' => 1,
                 'created_at' => Carbon::now()->toDateTimeString(),
             ],
             [

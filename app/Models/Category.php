@@ -9,15 +9,4 @@ class Category extends Model
 {
     use HasFactory;
     
-    protected $fillable = [
-        'category',
-        'slug',
-        'status'
-        
-    ];
-    
-    public function movies()
-    {
-        return $this->belongsTo(Movies::class);
-    }
 }
