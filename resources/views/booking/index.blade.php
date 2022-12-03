@@ -39,12 +39,12 @@
                 }
                 ?>
                 <?php for ($i = 0; $i < count($uniqueDay); $i++) { ?>
-                    <li class="date-item">
+                    <button class="date-item bg-transparent border-0">
                         <a class="pr-4 text-center text-uppercase showtimes-date">
                             <div>{{$uniqueDay[$i]}}</div>
                             <div>{{$uniqueDate[$i]}}</div>
                         </a>
-                    </li>
+                    </button>
                 <?php } ?>
             </ul>
         </div>
@@ -102,6 +102,11 @@ for (var i = 0; i < dates.length; i++) {
         if (i !== ($('.location').length - 1)) {
             $('.location')[i].after(hr);
         }
+    }
+</script>
+<script>
+    function passVar(var date){
+        window.location.href="{{action('\App\Http\Controllers\BookingController@index','1', 'hi')}}";
     }
 </script>
 @endpush

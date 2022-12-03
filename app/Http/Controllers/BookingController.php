@@ -25,7 +25,7 @@ class BookingController extends Controller {
                 ->select('cinemas.name')
                 ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
                 ->get();
-        
+
         return view('booking.index', [
             'showtimes' => $showtimes,
             'cinema' => $showCinema,
