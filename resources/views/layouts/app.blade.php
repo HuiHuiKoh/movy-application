@@ -72,6 +72,11 @@
                                 <li><a href="{{asset ('foods') }}">F & B</a></li>
                             </ul>
                         </li>
+                        @guest
+                        
+                        <a href="{{route('login')}}" class="orange-btn" style="color:black; width: 25%;">Login</a>
+
+                        @else
                         <li class="dropdown"><a href="#"><span>Membership</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <li><a href="{{asset ('membership/1/check') }}">Check member points</a></li>
@@ -80,10 +85,22 @@
                             </ul>
                         </li>
                         <li><a href="{{asset ('forum/forum') }}">Forum</a></li>
+                        <li><a href="{{asset ('cart') }}">Cart</a></li>
+                        <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="{{asset ('purchaseHistory') }}">Purchase History</a></li>
+                                <li><a href="{{route('logout')}}" >Logout</a></li>
+                            </ul>
+                        </li>
                     </ul>
+
                 </nav><!-- .navbar -->
 
-                <a href="" class="orange-btn">Login</a>
+
+                @endguest
+
+
+
 
             </div>
         </header><!-- End Header -->

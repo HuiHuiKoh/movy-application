@@ -11,6 +11,7 @@ use function view;
 class BookingController extends Controller {
 
     public function index($id) {
+        
         $movies = DB::table('movies')
                 ->select('*')
                 ->where('id', '=', $id)

@@ -26,17 +26,24 @@ use Illuminate\Support\Facades\Route;
   |
  */
 
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/dashboard', [UserController::class, 'viewDash']);
+
+    Route::prefix('booking')->group(function () {
+        Route::get('/{id}', [BookingController::class, 'index']);
+        Route::get('/{cinemaId}/{hallNo}/seats', [BookingController::class, 'seat']);
+        Route::get('/check', [BookingController::class, 'check']);
+    });
+
+    Route::post('addCart', [CartController::class, 'store']);
+});
+
 Route::get('/home', [HomeController::class, 'index']);
 
 //Koh Hui Hui
 //Client-Side
 //Ticketing
-Route::prefix('booking')->group(function () {
-    Route::get('/{id}', [BookingController::class, 'index']);
-    Route::get('/{cinemaId}/{hallNo}/seats', [BookingController::class, 'seat']);
-    Route::get('/check', [BookingController::class, 'check']);
-});
-
 //Payment
 Route::prefix('payment')->group(function () {
     Route::get('/form', [PaymentController::class, 'form']);
@@ -86,11 +93,6 @@ Route::prefix('voucher')->group(function () {
     Route::get('/update/{id}', [MembershipController::class, 'updateVoucher']);
 });
 
-
-
-
-
-
 //Siah Xin Ying
 //Client-side
 //Movies
@@ -103,20 +105,18 @@ Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 
 //Cart
 Route::get('cart', [CartController::class, 'cartList']);
-Route::post('addCart', [CartController::class, 'store']);
 
 //delete cart
 Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);
-
 //Purchase History
-Route::get('purchaseHistory', [HistoryController::class,'view']);
+Route::get('purchaseHistory', [HistoryController::class, 'view']);
 
 //Categories function
-Route::get('category/{slug}',[MoviesController::class,'viewCategory']);
+Route::get('category/{slug}', [MoviesController::class, 'viewCategory']);
 
 //Search Function
-Route::get('search',[MoviesController::class,'search']);
+Route::get('search', [MoviesController::class, 'search']);
 
 //Admin-side
 //add Movies
@@ -154,7 +154,7 @@ Route::get('updateFoods/{id}', [FoodsController::class, 'edit']);
 Route::post('updateFoods/{id}', [FoodsController::class, 'update']);
 
 //restore Foods
-Route::get('/restoreFoods',[FoodsController::class,'showTrashed']);
+Route::get('/restoreFoods', [FoodsController::class, 'showTrashed']);
 Route::get('restoreFoods/{id}', [FoodsController::class, 'restore']);
 
 //add Showtimes
@@ -188,15 +188,12 @@ Route::controller(UserController::class)->group(function () {
 });
 
 //Chart
-Route::get('/userReport', [ChartController::class,'viewUser']);
-Route::POST('/chart', [ChartController::class,'getNewUser']);
-Route::POST('/amountChart', [ChartController::class,'getAmount']);
-Route::get('/salesReport', [ChartController::class,'viewSales']);
+Route::get('/userReport', [ChartController::class, 'viewUser']);
+Route::POST('/chart', [ChartController::class, 'getNewUser']);
+Route::POST('/amountChart', [ChartController::class, 'getAmount']);
+Route::get('/salesReport', [ChartController::class, 'viewSales']);
 
 //Dashboard
-Route::get('/dashboard', [UserController::class,'viewDash']);
-
-
 // Auth::routes();
 Auth::routes();
 
