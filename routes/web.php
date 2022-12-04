@@ -193,6 +193,8 @@ Route::POST('/chart', [ChartController::class,'getNewUser']);
 Route::POST('/amountChart', [ChartController::class,'getAmount']);
 Route::get('/salesReport', [ChartController::class,'viewSales']);
 
+//Dashboard
+Route::get('/dashboard', [UserController::class,'viewDash']);
 
 
 // Auth::routes();

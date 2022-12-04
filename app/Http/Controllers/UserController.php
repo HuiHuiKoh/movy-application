@@ -18,6 +18,11 @@ class UserController extends Controller
         return view('login');
     }
     
+    public function viewDash(){
+        
+        return view('admin.adminDashboard');
+    }
+    
     public function registration(){
         
         return view('auth.registration');
