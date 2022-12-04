@@ -17,6 +17,8 @@ class HistoryController extends Controller {
                 ->where('payments.user_id', $userid)
                 ->select('payments.*', 'payments.id as paymentID')
                 ->get();
+        
+        
         return view('purchaseHistory', ['payments' => $payments]);
     }
 

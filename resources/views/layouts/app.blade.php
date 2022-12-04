@@ -54,10 +54,10 @@
                                 <div class="row" width="20%">                                   
                                     <div id="custom-search-input">
                                         <div class="input-group col-md-12">
-                                            <input type="text" class="  search-query form-control" name="moviesname" style="background: black; margin-top: 5%" placeholder="Search Movies" />
+                                            <input type="text" class="  search-query form-control" name="moviesname" style="background: black;" placeholder=" Search Movies..." />
                                             <span class="input-group-btn">
                                                 <button class="btn btn-danger" type="button">
-                                                    <span class="glyphicon glyphicon-search">&#x1F50E;&#xFE0E;</span>
+                                                    <span class="glyphicon glyphicon-search"></span>
                                                 </button>
                                             </span>
                                         </div>
