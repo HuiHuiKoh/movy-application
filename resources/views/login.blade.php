@@ -34,7 +34,7 @@
                     <input type="password" id="password" name="password" placeholder="Password">
 
                     <div class="forget-pass">
-                        <span style="color:white;">Don't have an account?</span><a href="#">Sign Up</a>
+                        <span style="color:white;">Don't have an account?</span><a href="{{asset('registration')}}">Sign Up</a>
                     </div>
 
                     <button type="submit">LOG-IN</button>
