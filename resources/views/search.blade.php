@@ -27,15 +27,14 @@
 </script>
 
 <!-- Movies Page Navigation -->
-@section('content')
-@include('category');
-<hr class="border">
 
+
+<hr class="border">
+@section('content')
 <!-- Now Showing Movies Page -->
 <section class="movies">
-    
+<h4 style="color:white; margin-left: 2%">Result for Movies</h4>
     <div class="row-movie-container">
-
         @foreach($movies as $shows)
         <div class="col-1-4-movie-container">        
             <img src="/assets/img/{{$shows->image}}" alt="" class="image">

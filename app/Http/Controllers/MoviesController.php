@@ -171,11 +171,11 @@ class MoviesController extends Controller {
             abort(500);
         }
     }
-    
-    public function search(Request $request){
-        
-        return $request->input();
-        
+
+    public function search(Request $request) {
+
+        $movies = Movies::where('name', 'like', '%' . $request->input('moviesname') . '%')->get();
+        return view('search',['movies' => $movies]);
     }
 
 }

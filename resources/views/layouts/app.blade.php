@@ -32,7 +32,9 @@
         <!-- Template Main CSS File -->
         <link href="{{asset ('import/assets/css/style.css') }}" rel="stylesheet">
 
-        
+        <!--Search Bar CSS File -->
+
+        <link href="{{asset ('import/assets/css/search.css') }}" rel="stylesheet">
         <!------ Include the above in your HEAD tag ---------->
 
         @stack('css')
@@ -48,7 +50,20 @@
                 <nav id="navbar" class="navbar order-last order-lg-0">
                     <ul>
                         <li>
-                           @include('layouts.search'); 
+                            <form action="/search">
+                                <div class="row" width="20%">                                   
+                                    <div id="custom-search-input">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="  search-query form-control" name="moviesname" style="background: black; margin-top: 5%" placeholder="Search Movies" />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-danger" type="button">
+                                                    <span class="glyphicon glyphicon-search">&#x1F50E;&#xFE0E;</span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </li>
                         <li><a href="{{asset ('home') }}">Home</a></li>
                         <li class="dropdown"><a href="#"><span>Movies</span> <i class="bi bi-chevron-down"></i></a>
