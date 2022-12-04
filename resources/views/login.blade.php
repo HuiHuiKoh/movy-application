@@ -35,7 +35,10 @@
                     <input type="password" id="password" name="password" placeholder="Password">
 
                     <div class="forget-pass">
+                        <p><a href="{{route('password.request')}}">Forgot Password?</a></p>
+                        <br>
                         <span style="color:white;">Don't have an account?</span><a href="{{asset('registration')}}">Sign Up</a>
+                        
                     </div>
 
                     <button type="submit">LOG-IN</button>
