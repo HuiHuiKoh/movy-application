@@ -11,27 +11,27 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
 use Carbon\Carbon;
 
-class UserController extends Controller
-{
-    public function show(){
-        
+class UserController extends Controller {
+
+    public function show() {
+
         return view('login');
     }
-    
-    public function viewDash(){
-        
+
+    public function viewDash() {
+
         return view('admin.adminDashboard');
     }
-    
-    public function registration(){
-        
+
+    public function registration() {
+
         return view('auth.registration');
     }
-    
-    public function validate_registration(UserRequest $request){
-        
+
+    public function validate_registration(UserRequest $request) {
+
         $request->validationData();
-        
+
         try {
             User::create([
                 'name' => $request->get('name'),
@@ -45,41 +45,48 @@ class UserController extends Controller
         } catch (QueryException $e) {
             abort(500);
         }
-        
     }
-    
-    public function validate_login(Request $request){
-        
+
+    public function validate_login(Request $request) {
+
         $this->validate($request, [
-            
             'email' => 'required',
             'password' => 'required'
         ]);
-        
-        $credentials = $request->only('email','password');
-        
-        if(Auth::attempt($credentials)){
-            return redirect('home');
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->role == 1) {
+
+                return redirect('/dashboard')->with('success', 'Welcome to Admin Dashboard');
+                
+            } else if (Auth::user()->role == 0) {
+
+                return redirect('home')->with('success', 'Logged In Successful');
+            }
+        }else{
+            return redirect('login')->with('success', 'Email or password are invalid');
         }
-        
-        return redirect('login')->with('success','Login details are not valid');
+
+
+
         
     }
-    
-    public function homepage(){
-        if(Auth::check()){
+
+    public function homepage() {
+        if (Auth::check()) {
             return view('homepage');
         }
-        
-        return redirect('login')->with('success','You are not allowed to access');
+
+        return redirect('login')->with('success', 'You are not allowed to access');
     }
-    
-    public function logout(){
-        
+
+    public function logout() {
+
         Session::flush();
         Auth::logout();
         return redirect('login');
-        
     }
-    
+
 }

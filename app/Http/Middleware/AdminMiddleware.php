@@ -25,12 +25,12 @@ class AdminMiddleware
                 
             }else{
                 
-                return redirect('home')->with('message','Access Denied! You are not able to visit the page');
+                return redirect('home')->with('status','Access Denied! You are not able to visit the page');
                 
             }
         }else{
             
-            return redirect('login')->with('message','Please Login First');
+            return redirect('login')->with('success','Please Login First');
             
         }
         

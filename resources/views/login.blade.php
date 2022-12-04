@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{asset('assets\css\login.css')}}">
+<link rel="stylesheet" href="{{asset('assets\css\error.css')}}">
 <title>MOVY</title>
 
 <div class="parent clearfix">
@@ -15,7 +16,7 @@
 
     <div class="login">
         @if (\Session::has('success'))
-        <div class="alert alert-success">
+        <div class="invalid invalid-danger">
             <ul>
                 <li>{!! \Session::get('success') !!}</li>
             </ul>

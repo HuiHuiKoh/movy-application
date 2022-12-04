@@ -115,7 +115,16 @@
                             <div class="sb-nav-link-icon"><i class="fa fa-area-chart"></i></div>
                             User Chart
                         </a>
+                         <!--                        Logout-->
+                         <div class="sb-sidenav-menu-heading">Logout</div>
+                        <a class="nav-link" href="{{ route('logout')}}">
+                            <div class="sb-nav-link-icon"><i class="fa fa-sign-out"></i></div>
+                            Logout
+                        </a>
                     </div>
+                    
+
+                    
 
             </nav>
         </div>
