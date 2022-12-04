@@ -26,10 +26,9 @@ use Illuminate\Support\Facades\Route;
   |
  */
 
+//must login
 Route::group(['middleware' => ['auth']], function () {
-
-    Route::get('/dashboard', [UserController::class, 'viewDash']);
-
+   
     Route::prefix('booking')->group(function () {
         Route::get('/{id}', [BookingController::class, 'index']);
         Route::get('/{cinemaId}/{hallNo}/seats', [BookingController::class, 'seat']);
@@ -37,6 +36,12 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::post('addCart', [CartController::class, 'store']);
+});
+
+//only admin can see it
+Route::group(['middleware' => ['auth','isAdmin']], function (){
+    
+    Route::get('/dashboard', [UserController::class, 'viewDash']);
 });
 
 Route::get('/home', [HomeController::class, 'index']);
@@ -193,7 +198,6 @@ Route::POST('/chart', [ChartController::class, 'getNewUser']);
 Route::POST('/amountChart', [ChartController::class, 'getAmount']);
 Route::get('/salesReport', [ChartController::class, 'viewSales']);
 
-//Dashboard
 // Auth::routes();
 Auth::routes();
 
