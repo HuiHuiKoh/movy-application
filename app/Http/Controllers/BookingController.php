@@ -36,6 +36,9 @@ class BookingController extends Controller {
     }
 
     public function seat() {
+        echo 'console.log('.session()->get('movieId').')';
+        echo 'console.log('.$date.')';
+        echo 'console.log('.$time.')';
         return view('booking.seat');
     }
 

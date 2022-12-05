@@ -31,7 +31,8 @@ Route::group(['middleware' => ['auth']], function () {
    
     Route::prefix('booking')->group(function () {
         Route::get('/{id}', [BookingController::class, 'index']);
-        Route::get('/{cinemaId}/{hallNo}/seats', [BookingController::class, 'seat']);
+//        Route::get('/{id}/seats/{cin}/{date}/{time}', [BookingController::class, 'seat']);
+        Route::get('/seats', [BookingController::class, 'seat']);
         Route::get('/check', [BookingController::class, 'check']);
     });
 
