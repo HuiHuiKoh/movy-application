@@ -7,7 +7,26 @@
     }
 </style>
 @endpush
+<button onclick="scrollToTopFunction()" id="topButton" title="Go to top">Top</button>
 
+<script>
+    var topbutton = document.getElementById("topButton");
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            topbutton.style.display = "block";
+        } else {
+            topbutton.style.display = "none";
+        }
+    }
+    function scrollToTopFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
 @section('content')
 <!-- ======= Pricing Section ======= -->
 <section id="pricing" class="pricing">
