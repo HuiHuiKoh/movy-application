@@ -110,8 +110,8 @@ Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);
 //Purchase History
 Route::get('purchaseHistory', [HistoryController::class, 'view']);
+Route::post('purchaseHistoryDetails/{id}', [HistoryController::class, 'paymentDetails']);
 Route::get('purchaseHistoryDetails/{id}', [HistoryController::class, 'details']);
-Route::get('purchaseHistoryDetails', [HistoryController::class, 'paymentsDetails']);
 
 //Categories function
 Route::get('category/{slug}', [MoviesController::class, 'viewCategory']);
