@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 //must login
 Route::group(['middleware' => ['auth']], function () {
-   
+
     Route::prefix('booking')->group(function () {
         Route::get('/{id}', [BookingController::class, 'index']);
         Route::get('/{cinemaId}/{hallNo}/seats', [BookingController::class, 'seat']);
@@ -36,12 +36,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::post('addCart', [CartController::class, 'store']);
-});
-
-//only admin can see it
-Route::group(['middleware' => ['auth','isAdmin']], function (){
-    
-    Route::get('/dashboard', [UserController::class, 'viewDash']);
 });
 
 Route::get('/home', [HomeController::class, 'index']);
@@ -117,7 +111,7 @@ Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 //Purchase History
 Route::get('purchaseHistory', [HistoryController::class, 'view']);
 Route::get('purchaseHistoryDetails/{id}', [HistoryController::class, 'details']);
-Route::get('purchaseHistoryDetails', [HistoryController::class, 'details']);
+Route::get('purchaseHistoryDetails', [HistoryController::class, 'paymentsDetails']);
 
 //Categories function
 Route::get('category/{slug}', [MoviesController::class, 'viewCategory']);
@@ -194,13 +188,21 @@ Route::controller(UserController::class)->group(function () {
     Route::get('homepage', 'homepage')->name('homepage');
 });
 
-//Chart
-Route::get('/userReport', [ChartController::class, 'viewUser']);
-Route::POST('/chart', [ChartController::class, 'getNewUser']);
-Route::POST('/amountChart', [ChartController::class, 'getAmount']);
-Route::get('/salesReport', [ChartController::class, 'viewSales']);
-
 // Auth::routes();
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+//only admin can see it
+Route::group(['middleware' => ['auth', 'isAdmin']], function () {
+
+    //Dashbroad
+    Route::get('/dashboard', [UserController::class, 'viewDash']);
+
+    //Chart
+    Route::get('/userReport', [ChartController::class, 'viewUser']);
+    Route::POST('/chart', [ChartController::class, 'getNewUser']);
+    Route::POST('/amountChart', [ChartController::class, 'getAmount']);
+    Route::get('/salesReport', [ChartController::class, 'viewSales']);
+});

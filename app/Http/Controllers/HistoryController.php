@@ -24,26 +24,29 @@ class HistoryController extends Controller {
     public function paymentDetails($id) {
 
         $payments = Payment::find($id);
+        
         return view('purchaseHistoryDetails', compact('payments', 'id'));
     }
 
-    public function details($id) {
+    public function details() {
 
         $userid = Auth::user()->id;
+
 
         $details = DB::table('movies')
                 ->join('showtimes', 'showtimes.moviesID', '=', 'movies.id')
                 ->join('tickets', 'tickets.showtimes_id', '=', 'showtimes.id')
-                ->join('payments', 'payments.ticket_id', '=', 'tickets.id')
+                ->join('payments', 'payments.id', '=', 'tickets.payment_id')
                 ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
                 ->where('payments.user_id', $userid)
+
                 ->select('movies.*', 'showtimes.dateTime', 'cinemas.name as cinemaName','tickets.total_amount as ticketsAmount')
                 ->get();
         
         $foods = DB::table('foods')
                 ->join('ordered_food','ordered_food.food_id','=','foods.id')
                 ->join('food_orders','food_orders.id','=','ordered_food.food_order_id')
-                ->join('payments','payments.food_order_id','=','food_orders.id')
+                ->join('payments','payments.id','=','food_orders.payment_id')
                 ->where('payments.user_id',$userid)
                 ->select('foods.*','food_orders.total_amount as foodsAmount')
                 ->get();
