@@ -24,7 +24,7 @@
                 @foreach($payments as $purchase)
                 <tbody>                   
                     <tr>                   
-                        <td width="5%"><u><a href="{{action('\App\Http\Controllers\HistoryController@details',$purchase->paymentID)}}" name="orderID" id="orderID">#{{$purchase->paymentID}}</a></u></td>                    
+                        <td width="5%"><u><a href="{{action('\App\Http\Controllers\HistoryController@details',$purchase->paymentID)}}" value="{{$purchase->paymentID}}" name="orderID" id="orderID">#{{$purchase->paymentID}}</a></u></td>                    
                         <td width="20%">{{$purchase->created_at}}</td>                       
                         <td width="15%">RM {{$purchase->amount}}</td>                      
                         <td width="15%">{{$purchase->method}}</td>                       

@@ -28,18 +28,17 @@ class HistoryController extends Controller {
         return view('purchaseHistoryDetails', compact('payments', 'id'));
     }
 
-    public function details() {
+    public function details($id) {
 
         $userid = Auth::user()->id;
-
-
+     
         $details = DB::table('movies')
                 ->join('showtimes', 'showtimes.moviesID', '=', 'movies.id')
                 ->join('tickets', 'tickets.showtimes_id', '=', 'showtimes.id')
                 ->join('payments', 'payments.id', '=', 'tickets.payment_id')
                 ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
                 ->where('payments.user_id', $userid)
-
+                ->where('payments.id',$id)
                 ->select('movies.*', 'showtimes.dateTime', 'cinemas.name as cinemaName','tickets.total_amount as ticketsAmount')
                 ->get();
         
@@ -48,6 +47,7 @@ class HistoryController extends Controller {
                 ->join('food_orders','food_orders.id','=','ordered_food.food_order_id')
                 ->join('payments','payments.id','=','food_orders.payment_id')
                 ->where('payments.user_id',$userid)
+                ->where('payments.id',$id)
                 ->select('foods.*','food_orders.total_amount as foodsAmount')
                 ->get();
 
