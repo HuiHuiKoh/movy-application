@@ -7,7 +7,6 @@
 <!------ Include the above in your HEAD tag ---------->
 
 @section('content')
-<h4 style="text-align: center; color: white; margin-top: 2%">Purchase History of Movies</h4>
 <div class="container" style="margin-top: 3%;">
     
     <div style="margin-top: 3%;">
@@ -24,7 +23,7 @@
                 @foreach($payments as $purchase)
                 <tbody>                   
                     <tr>                   
-                        <td width="5%"><u><a href="{{action('\App\Http\Controllers\HistoryController@paymentDetails',$purchase->paymentID)}}" name="orderID" id="orderID">#{{$purchase->paymentID}}</a></u></td>                    
+                        <td width="5%"><u><a href="{{action('\App\Http\Controllers\HistoryController@details',$purchase->paymentID)}}" value="{{$purchase->paymentID}}" name="orderID" id="orderID">#{{$purchase->paymentID}}</a></u></td>                    
                         <td width="20%">{{$purchase->created_at}}</td>                       
                         <td width="15%">RM {{$purchase->amount}}</td>                      
                         <td width="15%">{{$purchase->method}}</td>                       
