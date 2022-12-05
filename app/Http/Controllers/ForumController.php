@@ -22,11 +22,11 @@ class ForumController extends Controller
     
     public function login()
     {
-        return view('forum.auth.login');
+        return view('forum.auth.forum_login');
     }
     
     public function register()
     {
-        return view('forum.auth.register');
+        return view('forum.auth.forum_register');
     }
 }

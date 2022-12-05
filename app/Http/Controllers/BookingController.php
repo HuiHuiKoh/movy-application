@@ -11,19 +11,21 @@ use function view;
 class BookingController extends Controller {
 
     public function index($id) {
-        
+
         $movies = DB::table('movies')
                 ->select('*')
                 ->where('id', '=', $id)
                 ->get();
-        
+
         $showtimes = DB::table('showtimes')
                 ->select('*')
                 ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
+                ->where('showtimes.moviesID', '=', $id)
                 ->get();
-        
-       $showCinema = DB::table('showtimes')
-                ->select('cinemas.name')
+
+        $showCinema = DB::table('showtimes')
+                ->select('cinemas.id', 'cinemas.name')
+                ->distinct()
                 ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
                 ->get();
 
