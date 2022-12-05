@@ -7,7 +7,6 @@
 <!------ Include the above in your HEAD tag ---------->
 
 @section('content')
-<h4 style="text-align: center; color: white; margin-top: 2%">Purchase History of Movies</h4>
 <div class="container" style="margin-top: 3%;">
     
     <div style="margin-top: 3%;">

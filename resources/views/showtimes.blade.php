@@ -1,8 +1,9 @@
 @extends('layouts.app', ['pageTitle'=>'Showtimes'], ['title'=>'Showtimes'])
 @push('css')
-@endpush
 
 <link rel="stylesheet" href="{{asset('assets\css\showtimes.css')}}">
+@endpush
+
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <!-- Scroll to Top Function -->
 <button onclick="scrollToTopFunction()" id="topButton" title="Go to top">Top</button>
@@ -33,8 +34,8 @@
 
 <!-- Now Showing Movies Page -->
 <section class="movies">
-    
-    <div class="row-movie-container">
+    <div class="container">
+        <div class="row row-movie-container p-3">
 
         @foreach($movies as $shows)
         <div class="col-1-4-movie-container">        
@@ -50,6 +51,7 @@
             </div>    
         </div> 
         @endforeach
+    </div>
     </div>
 
 </section>
