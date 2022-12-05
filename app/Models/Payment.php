@@ -19,8 +19,6 @@ class Payment extends Model
     protected $fillable = [
         'amount',
         'method',
-        'ticket_id',
-        'food_order_id',
         'user_id'
     ];
     
@@ -29,7 +27,7 @@ class Payment extends Model
      */
     public function ticket()
     {
-        return $this->belongsTo(Ticket::class, 'ticket_id');
+        return $this->belongsTo(Ticket::class);
     }
     
     /**
@@ -37,7 +35,7 @@ class Payment extends Model
      */
     public function foodOrder()
     {
-        return $this->belongsTo(FoodOrder::class, 'food_order_id');
+        return $this->belongsTo(FoodOrder::class);
     }
     
     /**

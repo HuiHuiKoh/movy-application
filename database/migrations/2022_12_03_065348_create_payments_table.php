@@ -17,8 +17,6 @@ class CreatePaymentsTable extends Migration
             $table->bigIncrements('id');
             $table->double('amount');
             $table->string('method');
-            $table->foreignId('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
-            $table->foreignId('food_order_id')->references('id')->on('food_orders')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

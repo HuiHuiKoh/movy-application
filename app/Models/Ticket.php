@@ -21,6 +21,7 @@ class Ticket extends Model
         'showtimes_id',
         'seat_id',
         'membership_voucher_id',
+        'payment_id',
         'user_id'
     ];
     
@@ -45,7 +46,7 @@ class Ticket extends Model
      */
     public function payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class, 'payment_id');
     }
     
     /**

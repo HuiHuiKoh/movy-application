@@ -17,6 +17,7 @@ class FoodOrder extends Model
     ];
     protected $fillable = [
         'total_amount',
+        'payment_id',
         'user_id'
     ];
     
@@ -34,5 +35,13 @@ class FoodOrder extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    
+    /**
+     * Get the payments associated with the food order.
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'payment_id');
     }
 }
