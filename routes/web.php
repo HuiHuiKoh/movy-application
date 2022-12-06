@@ -121,18 +121,7 @@ Route::get('/movies/{id}', [MoviesController::class, 'moviesDetails']);
 Route::get('/foods', [FoodsController::class, 'showFoods']);
 Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 
-//delete cart
-Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);
-//Chart
-Route::POST('/chart', [ChartController::class, 'getNewUser']);
-Route::POST('/amountChart', [ChartController::class, 'getAmount']);
-
-//Admin-side
-//add Movies
-//update Movies
-//add Foods
-//add Showtimes
 //login page
 Route::controller(UserController::class)->group(function () {
     Route::get('login', 'show')->name('login');
@@ -151,12 +140,18 @@ Route::controller(UserController::class)->group(function () {
 //only admin can see it
 Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
+    //Siah Xin Ying
     //Dashbroad
     Route::get('/dashboard', [UserController::class, 'viewDash']);
 
     //Chart
     Route::get('/userReport', [ChartController::class, 'viewUser']);
     Route::get('/salesReport', [ChartController::class, 'viewSales']);
+    Route::POST('/chart', [ChartController::class, 'getNewUser']);
+    Route::POST('/amountChart', [ChartController::class, 'getAmount']);
+
+    //delete cart
+    Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 
     //add Movies
     Route::get('/addMovies', [MoviesController::class, 'newMovies']);
