@@ -124,33 +124,15 @@ Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 //delete cart
 Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);
-
 //Chart
 Route::POST('/chart', [ChartController::class, 'getNewUser']);
 Route::POST('/amountChart', [ChartController::class, 'getAmount']);
 
 //Admin-side
 //add Movies
-Route::post('/addMovies/store', [MoviesController::class, 'store']);
-
-//delete Movies
-Route::delete('moviesList/{id}', [MoviesController::class, 'destroy']);
-
 //update Movies
-Route::post('updateMovies/{id}', [MoviesController::class, 'update']);
-
 //add Foods
-Route::post('/addFoods/store', [FoodsController::class, 'store']);
-
-//delete Food
-Route::delete('foodList/{id}', [FoodsController::class, 'destroy']);
-
 //add Showtimes
-Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
-
-//delete Showtimes
-Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
-
 //login page
 Route::controller(UserController::class)->group(function () {
     Route::get('login', 'show')->name('login');
@@ -179,6 +161,10 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     //add Movies
     Route::get('/addMovies', [MoviesController::class, 'newMovies']);
     Route::get('/addMovies', [MoviesController::class, 'categoryOption']);
+    Route::post('/addMovies/store', [MoviesController::class, 'store']);
+
+    //delete Movies
+    Route::delete('moviesList/{id}', [MoviesController::class, 'destroy']);
 
     //show Movies List
     Route::get('/moviesList', [MoviesController::class, 'showMoviesList']);
@@ -186,6 +172,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     //update Movies
     //Route::get('updateMovies/{id}', [MoviesController::class, 'category']);
     Route::get('updateMovies/{id}', [MoviesController::class, 'edit']);
+    Route::post('updateMovies/{id}', [MoviesController::class, 'update']);
 
     //restore Movies
     Route::get('/restoreMovies', [MoviesController::class, 'showTrashed']);
@@ -193,6 +180,10 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
     //add Foods
     Route::get('/addFoods', [FoodsController::class, 'newFoods']);
+    Route::post('/addFoods/store', [FoodsController::class, 'store']);
+
+    //delete Food
+    Route::delete('foodList/{id}', [FoodsController::class, 'destroy']);
 
     //show Food List
     Route::get('/foodList', [FoodsController::class, 'showFoodsList']);
@@ -208,6 +199,10 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     //add Showtimes
     Route::get('/addShowtimes', [ShowtimesController::class, 'newShowtimes']);
     Route::get('/addShowtimes', [ShowtimesController::class, 'cinemaOption']);
+    Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
+
+    //delete Showtimes
+    Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
 
     //show Showtimes List
     Route::get('showtimesList', [ShowtimesController::class, 'showList']);
@@ -215,5 +210,4 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     //restore Showtimes
     Route::get('/restoreShowtimes', [ShowtimesController::class, 'showTrashed']);
     Route::get('restoreShowtimes/{id}', [ShowtimesController::class, 'restore']);
-
 });
