@@ -137,6 +137,7 @@ img {
     border: none;
     padding: 0 30px;
     border-radius: 10px;
+    color: white;
 }
 .login .container .login-form form button[type=submit] {
     background: -webkit-linear-gradient(110deg, #EFDDB8 0%, #EFDDB8 100%);

@@ -51,8 +51,13 @@ function myFunction() {
                     <input type="tel" id="phone" name="phone" placeholder="Phone No">
                     <p>Email <i style="color:red;">*</i></p>
                     <input type="email" id="email" name="email" placeholder="E-mail Address">
+                    
                     <p>Password <i style="color:red;">*</i></p>
                     <input type="password" id="password" name="password" placeholder="Password">
+                    <div>
+                        <input type="checkbox" onclick="myFunction()" style="height: 75%;margin:0;margin-left: 2%" ><label style="font-size: 0.9em"> Show Password</label>
+                    </div>
+                    <br>
                     <p>Date of Birth <i style="color:red;">*</i></p>
                     <input type="date" id="birth" name="birth" placeholder="">
                     <button type="submit">SIGN-UP</button>

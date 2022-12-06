@@ -1,6 +1,18 @@
 <link rel="stylesheet" href="{{  asset('assets\css\bootstrap.css') }}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets\css\email.css')}}">
 <title>MOVY</title>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
 <body class="my-login-page">
     <section class="h-100">
         <div class="container h-100">
@@ -23,11 +35,17 @@
                                     <label for="password">New Password</label>
                                     <input id="password" type="password" class="form-control" name="password" placeholder="Enter new password">
                                     <span class="text-danger">@error('password'){{$message}}@enderror</span>
+                                    <div>
+                                        <input type="checkbox" onclick="myFunction()" style="margin:2%;margin-left: 2%" ><span style="font-size: 0.9em;color: white"> Show Password</span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password-confirm">Confirm Password</label>
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Enter confirm password">
                                     <span class="text-danger">@error('password_confirmation'){{$message}} @enderror</span>
+                                    <div>
+                                        <input type="checkbox" onclick="myFunction()" style="margin:2%;margin-left: 2%" ><span style="font-size: 0.9em;color: white"> Show Password</span>
+                                    </div>
                                 </div>
 
                                 <div class="form-group m-0">

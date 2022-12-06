@@ -2,6 +2,17 @@
 <link rel="stylesheet" href="{{asset('assets\css\error.css')}}">
 <title>MOVY</title>
 
+<script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
 <div class="parent clearfix">
     <div class="bg-illustration">
         <img src="import/assets/img/login.jpg" alt="logo">
@@ -53,6 +64,9 @@
 
                     <p>Password <i style="color:red;">*</i></p>
                     <input type="password" id="password" name="password" placeholder="Password">
+                    <div>
+                        <input type="checkbox" onclick="myFunction()" style="height: 75%;margin:0;margin-left: 2%" ><label style="font-size: 0.9em;color: white"> Show Password</label>
+                    </div>
 
                     <div class="forget-pass">
                         <p><a href="{{route('password.request')}}">Forgot Password?</a></p>
