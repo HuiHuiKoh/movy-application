@@ -2,16 +2,16 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\FoodsController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ShowtimesController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ChartController;
-use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +32,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('booking')->group(function () {
         Route::get('/{id}', [BookingController::class, 'index']);
 //        Route::get('/{id}/seats/{cin}/{date}/{time}', [BookingController::class, 'seat']);
-        Route::get('/seats', [BookingController::class, 'seat']);
+//        Route::get('/seats', [BookingController::class, 'seat']);
+        Route::post('/seats/store', [BookingController::class, 'store']);
         Route::get('/check', [BookingController::class, 'check']);
     });
 

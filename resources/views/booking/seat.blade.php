@@ -3,14 +3,20 @@
 @section('content')
 <section id="seats" class="align-items-center">
     <div class="text-center bg-black py-4 font-white">
-        <p class="d-inline mr-3">Beauty and the Beast</p>
-        <p class="d-inline mr-3">120 minutes</p>
+        @foreach($movieSel as $movie)
+        @foreach($cinemaSel as $cinema)
+        @foreach($showtimes as $show)
+        <p class="d-inline mr-3">{{$movie->name}}</p>
+        <p class="d-inline mr-3">{{$movie->duration}}</p>
         <div class="movie-details text-uppercase mt-4 d-inline">
-            <p class="d-inline mx-2 font-softOrange">Movie 1Utama</p>|
-            <p class="d-inline mx-2 font-softOrange">Hall 02</p>&nbsp;|
-            <p class="d-inline mx-2 font-softOrange">22 Nov 2022</p>&nbsp;|
-            <p class="d-inline mx-2 font-softOrange">9:30 pm</p>
+            <p class="d-inline mx-2 font-softOrange">{{$cinema->name}}</p>|
+            <p class="d-inline mx-2 font-softOrange">Hall {{$show->hall}}</p>&nbsp;|
+            <p class="d-inline mx-2 font-softOrange">{{$dateSel}}</p>&nbsp;|
+            <p class="d-inline mx-2 font-softOrange">{{$timeSel}}</p>
         </div>
+        @endforeach
+        @endforeach
+        @endforeach
     </div>
 
     <section class="selectseats p-5 mt-3">
@@ -18,16 +24,13 @@
         <div class="row justify-content-center">
             <div class="col-auto font-white">
                 <table class="table font-white mt-5">
+                    @foreach($seatTypes as $seatType)
                     <tr>
-                        <td><label class="quantity m-3 d-inline align-middle" for="qtyTwin">Twin</label></td>
-                        <td><p class="d-inline font-softOrange mb-0 mr-2 align-middle">RM 20.00</p></td>
-                        <td><input type="number" id="qtyTwin" name="qtyTwin" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
+                        <td><label class="quantity m-3 d-inline align-middle" for="qtyTwin">{{ $seatType->seat_type }}</label></td>
+                        <td><p class="d-inline font-softOrange mb-0 mr-2 align-middle">RM {{ $seatType->price }}</p></td>
+                        <td><input type="number" id="qty{{ $seatType->seat_type }}" name="qty{{ $seatType->seat_type }}" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
                     </tr>
-                    <tr>
-                        <td><label class="quantity m-3 d-inline align-middle" for="qtyClassic">Classic</label></td>
-                        <td><p class="d-inline font-softOrange mb-0 mr-2 align-middle">RM 10.00</p></td>
-                        <td><input type="number" id="qtyClassic" name="qtyClassic" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
-                    </tr>
+                    @endforeach
                 </table>
             </div>
         </div>
@@ -76,7 +79,7 @@
             </table>
 
             <div class="col text-center mt-3">
-                <button type="submit" class="continue-btn btn orange-btn mt-3 ml-0 float-end" onclick="checkError()">Continue</button>
+                <button type="submit" class="continue-btn btn orange-btn mt-3 ml-0 float-end" onclick="checkError(48, 15)">Continue</button>
             </div>
 
             <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -169,7 +172,7 @@
                                 function hideConfirmation() {
                                     $('#confirmation').modal('hide');
                                 }
-                                function checkError() {
+                                function checkError(priceTwin, priceClassic) {
                                     var twinSeat = document.querySelector("#qtyTwin").value;
                                     var classicSeat = document.querySelector("#qtyClassic").value;
                                     var twinCount = 0;
@@ -208,19 +211,19 @@
                                             hideModal();
                                             showConfirmation();
                                             if (classicSeat === 0) {
-                                                var total = twinSeat * 20;
+                                                var total = twinSeat * priceTwin;
                                                 var totalPrice = "RM" + total;
                                                 document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + twinSeat + " Twin ticket(s)</p>" + "\n\n"
                                                         + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
 
                                             } else if (twinSeat === 0) {
-                                                var total = classicSeat * 10;
+                                                var total = classicSeat * priceClassic;
                                                 var totalPrice = "RM" + total;
                                                 document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s)</p>" + "\n\n"
                                                         + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
                                             } else {
-                                                var totalTwin = twinSeat * 20;
-                                                var totalClassic = classicSeat * 10;
+                                                var totalTwin = twinSeat * priceTwin;
+                                                var totalClassic = classicSeat * priceClassic;
                                                 var totalPrice = "RM" + (totalTwin + totalClassic);
                                                 document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s) and " + twinSeat + " Twin ticket(s)</p>" + "\n\n"
                                                         + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";

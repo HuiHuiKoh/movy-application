@@ -16,7 +16,7 @@ class MoviesSeeder extends Seeder
     {
         DB::table('movies')->insert([
             [
-                'name' => "Black Panther: Wakanda Foreve",
+                'name' => "Black Panther: Wakanda Forever",
                 'releasedDate' => "2022-11-11",
                 'image' => "movies1.jpg",
                 'casts' => "Chadwick Boseman, Tenoch Huerta, Letitia Wright, Michael B.Jordan, Dominique Thorme",

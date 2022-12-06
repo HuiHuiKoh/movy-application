@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SeatType;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Request;
 use function view;
 
 /**
@@ -35,11 +38,35 @@ class BookingController extends Controller {
             'movies' => $movies]);
     }
 
-    public function seat() {
-        echo 'console.log('.session()->get('movieId').')';
-        echo 'console.log('.$date.')';
-        echo 'console.log('.$time.')';
-        return view('booking.seat');
+    public function store(Request $request) {
+
+        $movies = DB::table('movies')
+                ->select('*')
+                ->where('id', '=', $request->movie)
+                ->get();
+
+        $showtimes = DB::table('showtimes')
+                ->select('*')
+                ->where('moviesID', '=', $request->movie)
+                ->where('cinemaID', '=', $request->cinema)
+                ->where('datetime', '=', $request->time)
+                ->get();
+        
+        $cinema = DB::table('cinemas')
+                ->select('*')
+                ->where('id', '=', $request->cinema)
+                ->get();
+        
+        $seatType = SeatType::all();
+
+        return view('booking.seat', [
+            'seatTypes' => $seatType,
+            'movieSel' => $movies,
+            'cinemaSel' => $cinema,
+            'showtimes' => $showtimes,
+            'dateSel' => Carbon::parse($request->time)->format('d-M-Y'),
+            'timeSel' => Carbon::parse($request->time)->format('h:i a')
+        ]);
     }
 
     public function check() {

@@ -23,22 +23,19 @@ if (!isset($_GET['btn-date'])) {
 ?>
 <section id="booking">
     @foreach($movies as $movie)
-    {{$movieId= $movie->id;}}
-    <div class="text-center bg-black py-4 font-white">
-        <img class="rounded" width="200" height="300" 
-             src="{{asset('assets/img/'.$movie->image)}}" />
-        <div>
-            {{ $movie->name }}
-        </div>
-        <div>
-            {{ $movie->duration }}
-        </div>
-        <div>
-            {{ $movie->type }}
+    <div class="text-left bg-black py-4 font-white">
+        <div class="row">
+            <img class="rounded d-inline mx-4 col col-lg-2" width="150" height="230" 
+                 src="{{asset('assets/img/'.$movie->image)}}" />
+            <div class="position-relative col-sm">
+                <h3 class="font-weight-bold">{{ $movie->name }}</h3>
+                <div class="mt-2">{{ $movie->duration }}</div>
+                <div class="mt-2">{{ $movie->type }}</div>
+            </div>
         </div>
     </div>
     @endforeach
-    <div class="container">
+    <div class="container mb-5">
         <div class="mt-5">
             <ul class="booking-dates text-left">
                 <form method="get">
@@ -55,33 +52,33 @@ if (!isset($_GET['btn-date'])) {
         </div>
 
         <div class="mx-4 mt-3 py-4">
-            @foreach($cinema as $cin)
-            <div class="location mx-3 mt-3 mb-5">
-                <h3 class="font-weight-bold">{{ $cin->name }}</h3>
-                <form action="/booking/seats">
+            <form action="/booking/seats/store" method="post">
+                @csrf
+                <select id="selectCinema" name="cinema" class="form-select w-25 mx-4 my-4" aria-label="Default select example">
+                    <option disabled selected>Select Cinema</option>
+                    @foreach($cinema as $cin)
+                    <option value="{{ $cin->id }}">{{ $cin->name }}</option>
+                    @endforeach
+                </select>
+                @foreach($cinema as $cin)
+                <select name="time" class="selectTime form-select w-25 mx-4 my-4 d-none" aria-label="Default select example">
+                    <option disabled selected>Select Time</option>
                     @for ($i = 0; $i < count($showtimes); $i++)
                     @if($showtimes[$i]->cinemaID == $cin->id && Carbon\Carbon::parse($showtimes[$i]->dateTime)->format('d-M') == $_GET['btn-date'])
-                    <?php
-                    $dateSel = Carbon\Carbon::parse($showtimes[$i]->dateTime)->format('d-M');
-                    $timeSel = Carbon\Carbon::parse($showtimes[$i]->dateTime)->format('h:i a');
-                    ?>
-
-                    <button class="btn square-btn orange-outline-btn mr-5 mt-4">
-                        <span>{{Carbon\Carbon::parse($showtimes[$i]->dateTime)->format('h:i a')}}</span>
-                    </button>
-                    <?php
-//                    session()->put('movieId', $movieId);
-//                    session()->put('cin', $cin->id);
-//                    session()->put('cin', $dateSel);
-//                    session()->put('cin', $timeSel);
-                    ?>
+                    <option value="{{$showtimes[$i]->dateTime}}">
+                        {{Carbon\Carbon::parse($showtimes[$i]->dateTime)->format('h:i a')}}</option>
                     @endif
                     @endfor
-                </form>
-            </div>
-            @endforeach
+                </select>
+                @foreach($movies as $movie)
+                <input type="hidden" name="movie" value="{{$movie->id}}">
+                @endforeach
+                @endforeach
+                <button type="submit" name="submit" class="btn square-btn orange-outline-btn m-4">
+                    <span>Continue</span>
+                </button>
+            </form>
         </div>
-
     </div>
 </section>
 @endsection
@@ -102,6 +99,7 @@ for (i = 0; i < $('.location').length; i++) {
 }
 </script>
 <script>
+//    Add active state to the active date button
     $('.date-item')[0].classList.remove('bg-transparent');
     $('.date-item')[0].classList.add('bg-softOrange');
     const queryString = window.location.search;
@@ -115,5 +113,34 @@ for (i = 0; i < $('.location').length; i++) {
             $('.date-item')[i].classList.add('bg-softOrange');
         }
     }
+</script>
+<script>
+//    function returnCinema() {
+    let times = $(".selectTime");
+    $(document).ready(function () {
+        $("#selectCinema").change(function () {
+            for (var i = 1; i <= $("#selectCinema option").length - 1; i++) {
+                times[i - 1].classList.add('d-none');
+                if ($('#selectCinema option:selected').val() === i.toString()) {
+                    times[i - 1].classList.remove('d-none');
+                }
+            }
+
+        });
+    });
+//    }
+//    $(document).ready(function () {
+//        $('#selectCinema').change(function () {
+//            //Selected value
+//            var inputValue = $(this).val();
+//            alert("value in js " + inputValue);
+
+    //Ajax for calling php function
+//            $.post('submit.php', {dropdownValue: inputValue}, function (data) {
+//                alert('ajax completed. Response:  ' + data);
+//                //do after submission operation in DOM
+//            });
+//        });
+//    });
 </script>
 @endpush
