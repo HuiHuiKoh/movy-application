@@ -28,10 +28,18 @@
 <!--  Movies Info Page -->
 <section id="mvpage">
 
+
     <div class="movie-info-container">
+
+
         <div class=movie-title>
+            <div class="text-left">
+                <a href="{{ asset('foods') }}" class="back-button" >Back</a>
+            </div> 
             <h1>{{$foods->name}}</h1>
+
         </div>   
+
         <div class="movie-trailer">
             <img src="/assets/img/{{$foods->image}}" alt="">
         </div>

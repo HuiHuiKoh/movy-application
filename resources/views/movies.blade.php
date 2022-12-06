@@ -33,6 +33,9 @@
 
     <div class="movie-info-container">
         <div class=movie-title>
+            <div class="text-left">
+                <a href="{{ asset('showtimes') }}" class="back-button" >Back</a>
+            </div> 
             <h1>{{$movies->name}}</h1>
         </div>
         <div class="movie-trailer">
@@ -41,7 +44,7 @@
         </div>
         <div class="movie-details">
             <span class="genre-lang-time">{{$movies->type}} - {{$movies->language}} - {{$movies->duration}}</span>          
-        
+
             <p style="color:white">{{$movies->synopsis}}</p>
             <p class="col1">Release Date</p>
             <p class="col2">{{$movies->releasedDate}}</p>

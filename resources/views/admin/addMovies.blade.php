@@ -20,13 +20,13 @@
     </div>
     @endif
 
-    <!--    @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <ul>
-                <li>{!! \Session::get('success') !!}</li>
-            </ul>
-        </div>
-        @endif-->
+    @if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+    @endif
 
     <div class="card-body">
         <div class="container-fluid px-1 py-5 mx-auto">
@@ -87,7 +87,7 @@
                             </div>
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-12 flex-column d-flex"> 
-                                    <label class="form-control-label px-3">Synopsis</label> 
+                                    <label class="form-control-label px-3">Synopsis<span class="text-danger"> *</span></label> 
                                     <textarea id="synopsis" name="synopsis" placeholder=""></textarea>
                                 </div>
                             </div>

@@ -66,7 +66,7 @@ class UserController extends Controller {
                 return redirect('home')->with('success', 'Logged In Successful');
             }
         }else{
-            return redirect('login')->with('success', 'Email or password are invalid');
+            return redirect('login')->with('error', 'Email or password are invalid.');
         }
 
 

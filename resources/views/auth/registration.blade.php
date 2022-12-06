@@ -1,7 +1,18 @@
 <link rel="stylesheet" href="{{asset('assets\css\register.css')}}">
 <link rel="stylesheet" href="{{asset('assets\css\error.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <title>MOVY</title>
 
+<script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 
 <div class="parent clearfix">
     <div class="bg-illustration" style="background:#2A2A2A;">
@@ -18,7 +29,7 @@
 
     <div class="register">
         <div class="container" >
-            
+
             <h1>Sign Up</h1>
 
             @if ($errors->any())
@@ -44,7 +55,6 @@
                     <input type="password" id="password" name="password" placeholder="Password">
                     <p>Date of Birth <i style="color:red;">*</i></p>
                     <input type="date" id="birth" name="birth" placeholder="">
-
                     <button type="submit">SIGN-UP</button>
 
                 </form>

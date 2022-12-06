@@ -112,3 +112,19 @@ input {
     font-size: 18px !important;
     font-weight: 300
 }
+
+.back-button{
+
+    margin-left: 22px;
+    background: var(--white);
+    color: var(--black);
+    border-radius: 50px;
+    padding: 8px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid var(--black);
+
+}

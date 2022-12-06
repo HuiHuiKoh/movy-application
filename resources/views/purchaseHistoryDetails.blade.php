@@ -55,7 +55,7 @@
                         <td width="20%">{{$food->name}}</td>                       
                         <td width="15%"></td>      
                         <td width="15%"></td>    
-                        <td width="15%">RM {{$food->foodsAmount}}</td>                       
+                        <td width="10%">RM {{$food->foodsAmount}}</td>                       
                     </tr>                   
                 </tbody>
                 @endforeach

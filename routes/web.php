@@ -54,6 +54,10 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Auth::routes();
+Auth::routes();
 
 //Koh Hui Hui
 //Client-Side
@@ -120,6 +124,33 @@ Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 //delete cart
 Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);
+
+//Chart
+Route::POST('/chart', [ChartController::class, 'getNewUser']);
+Route::POST('/amountChart', [ChartController::class, 'getAmount']);
+
+//Admin-side
+//add Movies
+Route::post('/addMovies/store', [MoviesController::class, 'store']);
+
+//delete Movies
+Route::delete('moviesList/{id}', [MoviesController::class, 'destroy']);
+
+//update Movies
+Route::post('updateMovies/{id}', [MoviesController::class, 'update']);
+
+//add Foods
+Route::post('/addFoods/store', [FoodsController::class, 'store']);
+
+//delete Food
+Route::delete('foodList/{id}', [FoodsController::class, 'destroy']);
+
+//add Showtimes
+Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
+
+//delete Showtimes
+Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
+
 //login page
 Route::controller(UserController::class)->group(function () {
     Route::get('login', 'show')->name('login');
@@ -135,11 +166,6 @@ Route::controller(UserController::class)->group(function () {
     Route::get('homepage', 'homepage')->name('homepage');
 });
 
-// Auth::routes();
-Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 //only admin can see it
 Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
@@ -148,26 +174,18 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
     //Chart
     Route::get('/userReport', [ChartController::class, 'viewUser']);
-    Route::POST('/chart', [ChartController::class, 'getNewUser']);
-    Route::POST('/amountChart', [ChartController::class, 'getAmount']);
     Route::get('/salesReport', [ChartController::class, 'viewSales']);
 
-    //Admin-side
     //add Movies
     Route::get('/addMovies', [MoviesController::class, 'newMovies']);
-    Route::post('/addMovies/store', [MoviesController::class, 'store']);
     Route::get('/addMovies', [MoviesController::class, 'categoryOption']);
 
     //show Movies List
     Route::get('/moviesList', [MoviesController::class, 'showMoviesList']);
 
-    //delete Movies
-    Route::delete('moviesList/{id}', [MoviesController::class, 'destroy']);
-
     //update Movies
     //Route::get('updateMovies/{id}', [MoviesController::class, 'category']);
     Route::get('updateMovies/{id}', [MoviesController::class, 'edit']);
-    Route::post('updateMovies/{id}', [MoviesController::class, 'update']);
 
     //restore Movies
     Route::get('/restoreMovies', [MoviesController::class, 'showTrashed']);
@@ -175,13 +193,9 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
     //add Foods
     Route::get('/addFoods', [FoodsController::class, 'newFoods']);
-    Route::post('/addFoods/store', [FoodsController::class, 'store']);
 
     //show Food List
     Route::get('/foodList', [FoodsController::class, 'showFoodsList']);
-
-    //delete Food
-    Route::delete('foodList/{id}', [FoodsController::class, 'destroy']);
 
     //update Foods
     Route::get('updateFoods/{id}', [FoodsController::class, 'edit']);
@@ -193,16 +207,13 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
     //add Showtimes
     Route::get('/addShowtimes', [ShowtimesController::class, 'newShowtimes']);
-    Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
     Route::get('/addShowtimes', [ShowtimesController::class, 'cinemaOption']);
 
     //show Showtimes List
     Route::get('showtimesList', [ShowtimesController::class, 'showList']);
 
-    //delete Showtimes
-    Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
-
     //restore Showtimes
     Route::get('/restoreShowtimes', [ShowtimesController::class, 'showTrashed']);
     Route::get('restoreShowtimes/{id}', [ShowtimesController::class, 'restore']);
+
 });

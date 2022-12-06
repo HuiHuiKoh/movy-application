@@ -15,22 +15,42 @@
     </div>
 
     <div class="login">
-        @if (\Session::has('success'))
-        <div class="invalid invalid-danger">
-            <ul>
-                <li>{!! \Session::get('success') !!}</li>
-            </ul>
-        </div>
-        @endif
+
         <div class="container">
             <h1>Welcome Back</h1>
+
+            @if (\Session::has('error'))
+            <div class="invalid invalid-danger">
+                <ul>
+                    <li>{!! \Session::get('error') !!}</li>
+                </ul>
+            </div>
+            @endif
+
+            @if ($errors->any())
+            <div class="invalid invalid-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            @if (\Session::has('success'))
+            <div class="invalid invalid-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+            @endif
 
             <div class="login-form">
                 <form action="{{ route('user.validate_login')}}" method="POST">
                     @csrf
                     <p>Email <i style="color:red;">*</i></p>
                     <input type="email" id="email" name="email" placeholder="E-mail Address">
-                    
+
                     <p>Password <i style="color:red;">*</i></p>
                     <input type="password" id="password" name="password" placeholder="Password">
 
@@ -38,7 +58,7 @@
                         <p><a href="{{route('password.request')}}">Forgot Password?</a></p>
                         <br>
                         <span style="color:white;">Don't have an account?</span><a href="{{asset('registration')}}">Sign Up</a>
-                        
+
                     </div>
 
                     <button type="submit">LOG-IN</button>
