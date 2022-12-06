@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 class PaymentController extends Controller {
 
     public function form() {
+//        echo '<script>console.log('.$_COOKIE['twinCount'].')</script>';
         return view('payment.form');
     }
 

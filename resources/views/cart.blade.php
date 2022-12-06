@@ -30,7 +30,7 @@
                         </thead>
                         <tbody>
                             @php $total = 0; @endphp
-                           
+
                             @foreach($foods as $item)                          
                             <tr>                             
                                 <td></td>
@@ -48,7 +48,7 @@
                                 <td><form method="POST" action="{{action('\App\Http\Controllers\CartController@destroy',$item->cartID)}}">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?') " style="margin-top: 0">Delete</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')" style="margin-top: 0">Delete</button>
                                     </form></td>
                             </tr>          
                             @php $total += $item->price * $item->quantity; @endphp
@@ -77,7 +77,9 @@
                 <div class="col">TOTAL PRICE</div>
                 <div class="col text-right">RM {{$total}}</div>
             </div>
-            <button class="btn">CHECKOUT</button>
+            <form action="{{ action('\App\Http\Controllers\PaymentController@form') }}">
+                <button type="submit" class="btn">CHECKOUT</button>
+            </form>
         </div>
     </div>
 

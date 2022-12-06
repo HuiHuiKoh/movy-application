@@ -58,6 +58,8 @@ class BookingController extends Controller {
                 ->get();
         
         $seatType = SeatType::all();
+        
+        
 
         return view('booking.seat', [
             'seatTypes' => $seatType,

@@ -104,10 +104,12 @@
                         <div class="modal-body">
                             <div id="confirm-value"></div>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" onclick="hideConfirmation()">Cancel</button>
-                            <button onclick="location.href = '{{ asset('foods') }}'" type="button" class="btn btn-primary">Continue</button>
+                            <button onclick="window.location.href ='{{asset('foods')}}'" type="submit" class="btn btn-primary">Continue</button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -123,10 +125,10 @@
 <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/holder.min.js"></script>
 <script>
+                                //Disable button when no value input
                                 const formInputTwin = document.querySelector("#qtyTwin");
                                 const formInputClassic = document.querySelector("#qtyClassic");
                                 const formButton = $(".confirm-button");
-
                                 formButton.disabled = true;
                                 formInputTwin.addEventListener('change', (e) => {
                                     if (formInputTwin.value === "") {
@@ -142,94 +144,162 @@
                                         formButton.disabled = false;
                                     }
                                 });
+</script>
+<script>
+// Seats
+    function showSeats() {
+        if (!formButton.disabled) {
+            $("#seatStructure").addClass("d-block");
+            window.location.href = "#seatStructure";
+        }
+    }
 
-                                function showSeats() {
-                                    if (!formButton.disabled) {
-                                        $("#seatStructure").addClass("d-block");
-                                        window.location.href="#seatStructure";
-                                    }
-                                }
+    function seatS() {
+        var checkboxes = document.getElementsByClassName('seats');
+        var checkboxesChecked = [];
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkboxesChecked.push(checkboxes[i].value);
+            }
+        }
+        document.getElementById("seatsDisplay").value = checkboxesChecked;
+    }
+</script>
+<script>
+// Model setting
+    function showModal() {
+        $('#myModal').modal('show');
+    }
+    function hideModal() {
+        $('#myModal').modal('hide');
+    }
+    function showConfirmation() {
+        $('#confirmation').modal('show');
+    }
+    function hideConfirmation() {
+        $('#confirmation').modal('hide');
+    }
+</script>
+<script>
+// Validation
+    function checkError(priceTwin, priceClassic) {
+        var twinSeat = document.querySelector("#qtyTwin").value;
+        var classicSeat = document.querySelector("#qtyClassic").value;
+        var twinCount = 0;
+        var classicCount = 0;
+        twinSeat = parseInt(twinSeat);
+        classicSeat = parseInt(classicSeat);
+        if (twinSeat === 0 && classicSeat === 0) {
+            showModal();
+            document.getElementById("errors").innerHTML = "You must select at least 1 ticket";
+        } else {
+            var seats = document.getElementsByClassName('seats');
+            var seatChecked = [];
+            for (var i = 0; i < seats.length; i++) {
+                if (seats[i].checked) {
+                    seatChecked.push(seats[i].value);
+                }
+            }
+            for (var i = 0; i < seatChecked.length; i++) {
+                seatChecked[i] = seatChecked[i].toString();
+                if (seatChecked[i].charAt(0) === 'G' || seatChecked[i].charAt(0) === 'H') {
+                    twinCount++;
+                } else {
+                    classicCount++;
+                }
+            }
+            if (twinCount === 0 && classicCount === 0) {
+                showModal();
+                document.getElementById("errors").innerHTML = "Please select your seats";
+            } else if (twinCount !== 0 && twinSeat !== twinCount) {
+                showModal();
+                document.getElementById("errors").innerHTML = "You cannot select more than " + twinSeat + " Twin ticket(s)";
+            } else if (classicCount !== 0 && classicSeat !== classicCount) {
+                showModal();
+                document.getElementById("errors").innerHTML = "You cannot select more than " + classicSeat + " Classic ticket(s)";
+            } else {
+                hideModal();
+                showConfirmation();
+                if (classicSeat === 0) {
+                    var total = twinSeat * priceTwin;
+                    var totalPrice = "RM" + total;
+                    document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + twinSeat + " Twin ticket(s)</p>" + "\n\n"
+                            + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
+                } else if (twinSeat === 0) {
+                    var total = classicSeat * priceClassic;
+                    var totalPrice = "RM" + total;
+                    document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s)</p>" + "\n\n"
+                            + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
+                } else {
+                    var totalTwin = twinSeat * priceTwin;
+                    var totalClassic = classicSeat * priceClassic;
+                    var totalPrice = "RM" + (totalTwin + totalClassic);
+                    document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s) and " + twinSeat + " Twin ticket(s)</p>" + "\n\n"
+                            + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
+                }
+            }
+        }
+    }
 
-                                function seatS() {
-                                    var checkboxes = document.getElementsByClassName('seats');
-                                    var checkboxesChecked = [];
-                                    for (var i = 0; i < checkboxes.length; i++) {
-                                        if (checkboxes[i].checked) {
-                                            checkboxesChecked.push(checkboxes[i].value);
-                                        }
-                                    }
-                                    document.getElementById("seatsDisplay").value = checkboxesChecked;
-                                }
-                                function showModal() {
-                                    $('#myModal').modal('show');
-                                }
-                                function hideModal() {
-                                    $('#myModal').modal('hide');
-                                }
-                                function showConfirmation() {
-                                    $('#confirmation').modal('show');
-                                }
-                                function hideConfirmation() {
-                                    $('#confirmation').modal('hide');
-                                }
-                                function checkError(priceTwin, priceClassic) {
-                                    var twinSeat = document.querySelector("#qtyTwin").value;
-                                    var classicSeat = document.querySelector("#qtyClassic").value;
-                                    var twinCount = 0;
-                                    var classicCount = 0;
-                                    twinSeat = parseInt(twinSeat);
-                                    classicSeat = parseInt(classicSeat);
-                                    if (twinSeat === 0 && classicSeat === 0) {
-                                        showModal();
-                                        document.getElementById("errors").innerHTML = "You must select at least 1 ticket";
-                                    } else {
-                                        var seats = document.getElementsByClassName('seats');
-                                        var seatChecked = [];
-                                        for (var i = 0; i < seats.length; i++) {
-                                            if (seats[i].checked) {
-                                                seatChecked.push(seats[i].value);
-                                            }
-                                        }
-                                        for (var i = 0; i < seatChecked.length; i++) {
-                                            seatChecked[i] = seatChecked[i].toString();
-                                            if (seatChecked[i].charAt(0) === 'G' || seatChecked[i].charAt(0) === 'H') {
-                                                twinCount++;
-                                            } else {
-                                                classicCount++;
-                                            }
-                                        }
-                                        if (twinCount === 0 && classicCount === 0) {
-                                            showModal();
-                                            document.getElementById("errors").innerHTML = "Please select your seats";
-                                        } else if (twinCount !== 0 && twinSeat !== twinCount) {
-                                            showModal();
-                                            document.getElementById("errors").innerHTML = "You cannot select more than " + twinSeat + " Twin ticket(s)";
-                                        } else if (classicCount !== 0 && classicSeat !== classicCount) {
-                                            showModal();
-                                            document.getElementById("errors").innerHTML = "You cannot select more than " + classicSeat + " Classic ticket(s)";
-                                        } else {
-                                            hideModal();
-                                            showConfirmation();
-                                            if (classicSeat === 0) {
-                                                var total = twinSeat * priceTwin;
-                                                var totalPrice = "RM" + total;
-                                                document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + twinSeat + " Twin ticket(s)</p>" + "\n\n"
-                                                        + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
+</script>
+<script>
+// Set cookie
+    function createCookie(name, value, days) {
+        var expires;
 
-                                            } else if (twinSeat === 0) {
-                                                var total = classicSeat * priceClassic;
-                                                var totalPrice = "RM" + total;
-                                                document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s)</p>" + "\n\n"
-                                                        + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
-                                            } else {
-                                                var totalTwin = twinSeat * priceTwin;
-                                                var totalClassic = classicSeat * priceClassic;
-                                                var totalPrice = "RM" + (totalTwin + totalClassic);
-                                                document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s) and " + twinSeat + " Twin ticket(s)</p>" + "\n\n"
-                                                        + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
-                                            }
-                                        }
-                                    }
-                                }
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+        } else {
+            expires = "";
+        }
+
+        document.cookie = escape(name) + "=" +
+                escape(value) + expires + "; path=/";
+    }
+
+    function store() {
+        var twinSeat = document.querySelector("#qtyTwin").value;
+        var classicSeat = document.querySelector("#qtyClassic").value;
+
+        if (classicSeat === 0) {
+            var totalPrice = twinSeat * priceTwin;
+            $(document).ready(function () {
+                createCookie("totalAmt", totalPrice);
+                createCookie("twinCount", twinSeat);
+                createCookie("classicCount", classicSeat);
+            });
+        } else if (twinSeat === 0) {
+            var totalPrice = classicSeat * priceClassic;
+            $(document).ready(function () {
+                createCookie("totalAmt", totalPrice);
+                createCookie("twinCount", twinSeat);
+                createCookie("classicCount", classicSeat);
+            });
+        } else {
+            var totalTwin = twinSeat * priceTwin;
+            var totalClassic = classicSeat * priceClassic;
+            var totalPrice = totalTwin + totalClassic;
+            $(document).ready(function () {
+                createCookie("totalAmt", totalPrice);
+                createCookie("twinCount", twinSeat);
+                createCookie("classicCount", classicSeat);
+            });
+        }
+
+        var checkboxes = document.getElementsByClassName('seats');
+        var checkboxesChecked = [];
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkboxesChecked.push(checkboxes[i].value);
+            }
+        }
+        $(document).ready(function () {
+            createCookie("seatOrder", checkboxesChecked);
+        });
+
+        window.location.href = '<?php action("\App\Http\Controllers\PaymentController@form") ?>';
+    }
 </script>
 @endpush

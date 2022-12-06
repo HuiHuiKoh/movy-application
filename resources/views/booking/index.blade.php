@@ -20,6 +20,12 @@ foreach ($showtimes as $show) {
 if (!isset($_GET['btn-date'])) {
     $_GET['btn-date'] = $uniqueDate[0] ?? null;
 }
+
+if (isset($_POST['submit'])) {
+    if (!isset($_POST['cinema']) && !isset($_POST['cinema'])) {
+        echo '<script>alert("Please select cinema and time")</script>';
+    }
+}
 ?>
 <section id="booking">
     @foreach($movies as $movie)
@@ -74,7 +80,7 @@ if (!isset($_GET['btn-date'])) {
                 <input type="hidden" name="movie" value="{{$movie->id}}">
                 @endforeach
                 @endforeach
-                <button type="submit" name="submit" class="btn square-btn orange-outline-btn m-4">
+                <button type="submit" name="submit" class="continue-btn btn square-btn orange-outline-btn m-4">
                     <span>Continue</span>
                 </button>
             </form>
@@ -115,7 +121,7 @@ for (i = 0; i < $('.location').length; i++) {
     }
 </script>
 <script>
-//    function returnCinema() {
+//    Dropdown list onchange
     let times = $(".selectTime");
     $(document).ready(function () {
         $("#selectCinema").change(function () {
@@ -128,19 +134,5 @@ for (i = 0; i < $('.location').length; i++) {
 
         });
     });
-//    }
-//    $(document).ready(function () {
-//        $('#selectCinema').change(function () {
-//            //Selected value
-//            var inputValue = $(this).val();
-//            alert("value in js " + inputValue);
-
-    //Ajax for calling php function
-//            $.post('submit.php', {dropdownValue: inputValue}, function (data) {
-//                alert('ajax completed. Response:  ' + data);
-//                //do after submission operation in DOM
-//            });
-//        });
-//    });
 </script>
 @endpush
