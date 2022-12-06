@@ -57,19 +57,35 @@
 }
 
 .movie-details p{
+    color: white;
 
-    font-size: 100%;
 }
 
 .col1{
+
     text-align: left;
-    color: #EFDDB8;
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-bottom: 0%;
+    border:1px solid white;
+    line-height: 65px;
+    text-align: center;
+    width: 60%;
+    background: rgba(234,211,163,0.7);
+    border-bottom: none;
+
 }
 
 .col2{
     color: white;
-    line-height: 8px;
-    padding-left: 10%;
+    font-weight: 500;
+    font-size: 1.0em;
+    margin-bottom: 4%;
+    border:1px solid white;
+    line-height: 60px;
+    text-align: center;
+    width: 60%;
+    border-top: none;
 }
 
 /*    .col2:hover {
@@ -84,16 +100,16 @@
     color: #FFFFFF;
     text-align: center;
     padding: 3%;
-    width: 40%;
+    width: 30%;
     cursor: pointer;
-    margin: 3% 20%;
+    margin: 3% 15%;
     font-size: 90%;
     transition: all 0.2s;
 }
 
 .btn-cart:hover{
     transform: translate(0,10%);
-    border-color: #2A2A2A;
+    border-color: #EAD3A3;
 }
 
 /* Responsive layout */

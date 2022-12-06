@@ -44,16 +44,15 @@
         </div>
         <div class="movie-details">
             <span class="genre-lang-time">{{$movies->type}} - {{$movies->language}} - {{$movies->duration}}</span>          
-
-            <p style="color:white">{{$movies->synopsis}}</p>
-            <p class="col1">Release Date</p>
+            <p></p>
+            <p class="col1">Release Date </p>
             <p class="col2">{{$movies->releasedDate}}</p>
-            <p class="col1">Director</p>
+            <p class="col1">Director </p>
             <p class="col2">{{$movies->director}}</p>
-            <p class="col1">Cast</p>
+            <p class="col1">Cast </p>
             <p class="col2">{{$movies->casts}}</p>
-            <p class="col1">Distributor</p>
-            <p class="col2">{{$movies->distributor}}</p>
+            <p class="col1">Synopsis </p>
+            <p class="col2">{{$movies->synopsis}}</p>
             <a href="{{ action('\App\Http\Controllers\BookingController@index',$movies->id) }}"><button class="btn-booking">&#127915;Booking</button></a>
         </div>
     </div>

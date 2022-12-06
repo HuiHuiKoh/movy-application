@@ -45,12 +45,10 @@
         </div>
 
         <div class="movie-details">   
-            <p class="col1">Inclusive Of :</p>
+            <p class="col1">Inclusive Of </p>
             <p class="col2">{{$foods->description}}</p>
-            <p class="col1">Price :</p>
+            <p class="col1">Price </p>
             <p class="col2">RM {{$foods->price}}</p>
-            <label class="col1">Quantity</label> 
-<!--            <input type="number" id="qty" name="qty" min="0" max="10">-->
             <form action="/addCart" method="POST">
                 @csrf
                 <input type="hidden" name="foodID" value="{{$foods->id}}">
