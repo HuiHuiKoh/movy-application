@@ -14,6 +14,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use function abort;
 use function redirect;
 use function session;
@@ -36,7 +37,7 @@ class PaymentController extends Controller {
             'cart' => $cart
         ]);
     }
-    
+
     public function cancel(Request $request) {
         $request->session()->forget('movie');
         $request->session()->forget('cinema');
@@ -45,7 +46,7 @@ class PaymentController extends Controller {
         $request->session()->forget('classicSeat');
         $request->session()->forget('twinQty');
         $request->session()->forget('classicQty');
-        
+
         return redirect('/home');
     }
 
@@ -63,68 +64,73 @@ class PaymentController extends Controller {
 
             $paymentid = Payment::latest()->first()->id;
 
-            FoodOrder::create([
-                'total_amount' => $request->session()->get('amount'),
-                'payment_id' => $paymentid,
-                'user_id' => $userid,
-                'created_at' => Carbon::now()->toDateTimeString(),
-            ]);
-
-            $orderid = FoodOrder::latest()->first()->id;
-
             $cart = DB::table('carts')
                     ->select('*')
                     ->get();
 
-            foreach ($cart as $item) {
-                OrderedFood::create([
-                    'food_id' => $item->foodID,
-                    'food_order_id' => $orderid,
+            if ($cart != null) {
+                FoodOrder::create([
+                    'total_amount' => $request->session()->get('amount'),
+                    'payment_id' => $paymentid,
+                    'user_id' => $userid,
                     'created_at' => Carbon::now()->toDateTimeString(),
                 ]);
+
+                $orderid = FoodOrder::latest()->first()->id;
+
+                foreach ($cart as $item) {
+                    OrderedFood::create([
+                        'food_id' => $item->foodID,
+                        'food_order_id' => $orderid,
+                        'created_at' => Carbon::now()->toDateTimeString(),
+                    ]);
+                }
+
+                Cart::truncate();
             }
 
-            Cart::truncate();
+            if (Session::has('movie')) {
 
-            $showtimes = DB::table('showtimes')
-                    ->select('*')
-                    ->where('moviesID', '=', $request->session()->get('movie'))
-                    ->where('cinemaID', '=', $request->session()->get('cinema'))
-                    ->where('datetime', '=', $request->session()->get('datetime'))
-                    ->get();
+                $showtimes = DB::table('showtimes')
+                        ->select('*')
+                        ->where('moviesID', '=', $request->session()->get('movie'))
+                        ->where('cinemaID', '=', $request->session()->get('cinema'))
+                        ->where('datetime', '=', $request->session()->get('datetime'))
+                        ->get();
 
-            Ticket::create([
-                'total_amount' => $request->session()->get('amount'),
-                'showtimes_id' => $showtimes->first()->id,
-                'payment_id' => $paymentid,
-                'user_id' => $userid,
-                'created_at' => Carbon::now()->toDateTimeString(),
-            ]);
-
-            $ticketid = Ticket::latest()->first()->id;
-
-            foreach (session()->get('twinSeat') as $twin) {
-                $row = substr($twin, 0, 1);
-                $num = substr($twin, 1);
-                Seat::create([
-                    'row' => $row,
-                    'number' => $num,
-                    'seat_type_id' => 1,
-                    'ticket_id' => $ticketid,
+                Ticket::create([
+                    'total_amount' => $request->session()->get('amount'),
+                    'showtimes_id' => $showtimes->first()->id,
+                    'payment_id' => $paymentid,
+                    'user_id' => $userid,
                     'created_at' => Carbon::now()->toDateTimeString(),
                 ]);
-            }
 
-            foreach (session()->get('classicSeat') as $classic) {
-                $row = substr($classic, 0, 1);
-                $num = substr($classic, 1);
-                Seat::create([
-                    'row' => $row,
-                    'number' => $num,
-                    'seat_type_id' => 2,
-                    'ticket_id' => $ticketid,
-                    'created_at' => Carbon::now()->toDateTimeString(),
-                ]);
+                $ticketid = Ticket::latest()->first()->id;
+
+                foreach (session()->get('twinSeat') as $twin) {
+                    $row = substr($twin, 0, 1);
+                    $num = substr($twin, 1);
+                    Seat::create([
+                        'row' => $row,
+                        'number' => $num,
+                        'seat_type_id' => 1,
+                        'ticket_id' => $ticketid,
+                        'created_at' => Carbon::now()->toDateTimeString(),
+                    ]);
+                }
+
+                foreach (session()->get('classicSeat') as $classic) {
+                    $row = substr($classic, 0, 1);
+                    $num = substr($classic, 1);
+                    Seat::create([
+                        'row' => $row,
+                        'number' => $num,
+                        'seat_type_id' => 2,
+                        'ticket_id' => $ticketid,
+                        'created_at' => Carbon::now()->toDateTimeString(),
+                    ]);
+                }
             }
 
             return redirect('/payment/details');
