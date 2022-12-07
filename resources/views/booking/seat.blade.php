@@ -1,6 +1,7 @@
 @extends('layouts.app', ['pageTitle'=>'Booking'], ['title'=>'Booking'])
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <section id="seats" class="align-items-center">
     <div class="text-center bg-black py-4 font-white">
         @foreach($movieSel as $movie)
@@ -103,11 +104,13 @@
                         </div>
                         <div class="modal-body">
                             <div id="confirm-value"></div>
+                            <div id="confirm-price"></div>
+                            <div id="result"></div>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" onclick="hideConfirmation()">Cancel</button>
-                            <button onclick="window.location.href ='{{asset('foods')}}'" type="submit" class="btn btn-primary">Continue</button>
+                            <button type="submit" class="btn btn-primary btn-proceed">Continue</button>
                         </div>
 
                     </div>
@@ -223,19 +226,19 @@
                 if (classicSeat === 0) {
                     var total = twinSeat * priceTwin;
                     var totalPrice = "RM" + total;
-                    document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + twinSeat + " Twin ticket(s)</p>" + "\n\n"
-                            + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
+                    document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + twinSeat + " Twin ticket(s)</p>";
+                    document.getElementById("confirm-price").innerHTML = "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
                 } else if (twinSeat === 0) {
                     var total = classicSeat * priceClassic;
                     var totalPrice = "RM" + total;
-                    document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s)</p>" + "\n\n"
-                            + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
+                    document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s)</p>";
+                    document.getElementById("confirm-price").innerHTML = "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
                 } else {
                     var totalTwin = twinSeat * priceTwin;
                     var totalClassic = classicSeat * priceClassic;
                     var totalPrice = "RM" + (totalTwin + totalClassic);
-                    document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s) and " + twinSeat + " Twin ticket(s)</p>" + "\n\n"
-                            + "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
+                    document.getElementById("confirm-value").innerHTML = "<p class='text-center'>You have selected " + classicSeat + " Classic ticket(s) and " + twinSeat + " Twin ticket(s)</p>";
+                    document.getElementById("confirm-price").innerHTML = "<p class='text-center font-weight-bold'>TOTAL: " + totalPrice + "</p>";
                 }
             }
         }
@@ -243,63 +246,36 @@
 
 </script>
 <script>
-// Set cookie
-    function createCookie(name, value, days) {
-        var expires;
+    $(document).ready(function () {
+        $('#confirmation').on('click', '.btn-proceed', function (e) {
+            var twinSeat = document.querySelector("#qtyTwin").value;
+            var classicSeat = document.querySelector("#qtyClassic").value;
+            var totalTwin = twinSeat * 48;
+            var totalClassic = classicSeat * 15;
 
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toGMTString();
-        } else {
-            expires = "";
-        }
-
-        document.cookie = escape(name) + "=" +
-                escape(value) + expires + "; path=/";
-    }
-
-    function store() {
-        var twinSeat = document.querySelector("#qtyTwin").value;
-        var classicSeat = document.querySelector("#qtyClassic").value;
-
-        if (classicSeat === 0) {
-            var totalPrice = twinSeat * priceTwin;
-            $(document).ready(function () {
-                createCookie("totalAmt", totalPrice);
-                createCookie("twinCount", twinSeat);
-                createCookie("classicCount", classicSeat);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
-        } else if (twinSeat === 0) {
-            var totalPrice = classicSeat * priceClassic;
-            $(document).ready(function () {
-                createCookie("totalAmt", totalPrice);
-                createCookie("twinCount", twinSeat);
-                createCookie("classicCount", classicSeat);
-            });
-        } else {
-            var totalTwin = twinSeat * priceTwin;
-            var totalClassic = classicSeat * priceClassic;
-            var totalPrice = totalTwin + totalClassic;
-            $(document).ready(function () {
-                createCookie("totalAmt", totalPrice);
-                createCookie("twinCount", twinSeat);
-                createCookie("classicCount", classicSeat);
-            });
-        }
 
-        var checkboxes = document.getElementsByClassName('seats');
-        var checkboxesChecked = [];
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                checkboxesChecked.push(checkboxes[i].value);
-            }
-        }
-        $(document).ready(function () {
-            createCookie("seatOrder", checkboxesChecked);
+            $.ajax({
+                type: "POST",
+                url: "/payment/form/store",
+                data: {_method: 'PUT', twin: totalTwin, classic: totalClassic},
+                datatype: 'JSON',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                    alert('Sorry, Something error :(');
+                }
+            });
+            hideConfirmation();
+            window.location.href = "/payment/form/store";
         });
-
-        window.location.href = '<?php action("\App\Http\Controllers\PaymentController@form") ?>';
-    }
+    });
 </script>
 @endpush

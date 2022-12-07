@@ -59,8 +59,6 @@ class BookingController extends Controller {
         
         $seatType = SeatType::all();
         
-        
-
         return view('booking.seat', [
             'seatTypes' => $seatType,
             'movieSel' => $movies,
