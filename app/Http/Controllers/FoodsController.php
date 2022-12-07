@@ -17,11 +17,11 @@ class FoodsController extends Controller {
     public function showFoods(Request $req) {
         $foods = Foods::all();
 //        store session quantity
-        $request->session()->put('twinQty', $req->qtyTwin);
-        $request->session()->put('classicQty', $req->qtyClassic);
+        $req->session()->put('twinQty', $req->qtyTwin);
+        $req->session()->put('classicQty', $req->qtyClassic);
 //        store session seat order
-        $request->session()->put('twinSeat', $req->twinSeat);
-        $request->session()->put('classicSeat', $req->classicSeat);
+        $req->session()->put('twinSeat', $req->twinSeat);
+        $req->session()->put('classicSeat', $req->classicSeat);
 
         return view('f&b', ['foods' => $foods]);
     }
