@@ -11,7 +11,8 @@ use function view;
 class PaymentController extends Controller {
 
     public function store(Request $req) {
-        echo '<script>console.log(' . $req->twin . ')</script>';
+//        $req->foodTotal;
+        $data = $request->session()->all();
         return view('payment.form');
     }
 

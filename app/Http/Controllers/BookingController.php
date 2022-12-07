@@ -49,7 +49,7 @@ class BookingController extends Controller {
                 ->select('*')
                 ->where('moviesID', '=', $request->movie)
                 ->where('cinemaID', '=', $request->cinema)
-                ->where('datetime', '=', $request->time)
+                ->where('datetime', '=', $request->datetime)
                 ->get();
         
         $cinema = DB::table('cinemas')
@@ -59,13 +59,17 @@ class BookingController extends Controller {
         
         $seatType = SeatType::all();
         
+        $request->session()->put('movie', $request->movie);
+        $request->session()->put('cinema', $request->cinema);
+        $request->session()->put('datetime', $request->datetime);
+        
         return view('booking.seat', [
             'seatTypes' => $seatType,
             'movieSel' => $movies,
             'cinemaSel' => $cinema,
             'showtimes' => $showtimes,
-            'dateSel' => Carbon::parse($request->time)->format('d-M-Y'),
-            'timeSel' => Carbon::parse($request->time)->format('h:i a')
+            'dateSel' => Carbon::parse($request->datetime)->format('d-M-Y'),
+            'timeSel' => Carbon::parse($request->datetime)->format('h:i a')
         ]);
     }
 

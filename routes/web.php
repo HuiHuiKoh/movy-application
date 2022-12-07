@@ -116,7 +116,7 @@ Route::get('/showtimes', [MoviesController::class, 'show']);
 Route::get('/movies/{id}', [MoviesController::class, 'moviesDetails']);
 
 //Foods
-Route::get('/foods', [FoodsController::class, 'showFoods']);
+Route::post('/foods', [FoodsController::class, 'showFoods']);
 Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);

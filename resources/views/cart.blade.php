@@ -77,7 +77,9 @@
                 <div class="col">TOTAL PRICE</div>
                 <div class="col text-right">RM {{$total}}</div>
             </div>
-            <form action="{{ action('\App\Http\Controllers\PaymentController@form') }}">
+            <form action="{{ action('\App\Http\Controllers\PaymentController@store') }}" method="post">
+                @csrf
+                <input type="hidden" name="foodTotal" value="{{$total}}">
                 <button type="submit" class="btn">CHECKOUT</button>
             </form>
         </div>

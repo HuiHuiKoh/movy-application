@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FoodRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\FoodRequest;
 use App\Models\Foods;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use function abort;
+use function redirect;
+use function view;
 
 class FoodsController extends Controller {
 
-    public function showFoods() {
+    public function showFoods(Request $req) {
         $foods = Foods::all();
+//        store session quantity
+        $request->session()->put('twinQty', $req->qtyTwin);
+        $request->session()->put('classicQty', $req->qtyClassic);
+//        store session seat order
+        $request->session()->put('twinSeat', $req->twinSeat);
+        $request->session()->put('classicSeat', $req->classicSeat);
+
         return view('f&b', ['foods' => $foods]);
     }
 
@@ -84,7 +95,6 @@ class FoodsController extends Controller {
         $fileName = $foods->image;
 
         $this->validate($request, [
-            
             'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
             'name' => 'required|string|max:250',
             'description' => 'required',
@@ -107,7 +117,7 @@ class FoodsController extends Controller {
 
         return redirect()->back()->with('success', 'Item has been updated.');
     }
-    
+
     public function showTrashed() {
         try {
             $foods = Foods::onlyTrashed()->get();
@@ -116,7 +126,7 @@ class FoodsController extends Controller {
             abort(500);
         }
     }
-    
+
     public function restore($id) {
         try {
             Foods::onlyTrashed()->find($id)->restore();

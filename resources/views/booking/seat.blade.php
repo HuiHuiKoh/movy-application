@@ -21,102 +21,104 @@
     </div>
 
     <section class="selectseats p-5 mt-3">
-        <h1 class="text-center">Seats</h1>
-        <div class="row justify-content-center">
-            <div class="col-auto font-white">
-                <table class="table font-white mt-5">
-                    @foreach($seatTypes as $seatType)
+        <form action="/foods" method="post">
+            @csrf
+            <h1 class="text-center">Seats</h1>
+            <div class="row justify-content-center">
+                <div class="col-auto font-white">
+                    <table class="table font-white">
+                        <div id="qty-required" class="font-red text-center my-2"></div>
+                        @foreach($seatTypes as $seatType)
+                        <tr>
+                            <td><label class="quantity m-3 d-inline align-middle" for="qtyTwin">{{ $seatType->seat_type }}</label></td>
+                            <td><p class="d-inline font-softOrange mb-0 mr-2 align-middle">RM {{ $seatType->price }}</p></td>
+                            <td><input type="number" id="qty{{ $seatType->seat_type }}" name="qty{{ $seatType->seat_type }}" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+            <div id="seatStructure" class="mt-5 d-none p-5">
+                <div class="showcase">
+                    <li><div class="smallBox m-2" id="greenBox"></div><small>Selected</small></li>
+                    <li><div class="smallBox m-2" id="redBox"></div><small>Reserved</small></li>
+                    <li><div class="smallBox m-2" id="emptyBox"></div><small>Single</small></li>
+                    <li><div class="smallBox m-2" id="twinBox"></div><small>Twin</small></li>
+                    <li><div class="smallBox m-2" id="greyBox"></div><small>Unavailable</small></li>
+                </div>
+
+                <table id="seatsBlock" class="text-center">
+                    <tr><div class="screen"></div></tr>
+
+                    <!--Single seat-->
+                    @foreach (range('A', 'F') as $char)
                     <tr>
-                        <td><label class="quantity m-3 d-inline align-middle" for="qtyTwin">{{ $seatType->seat_type }}</label></td>
-                        <td><p class="d-inline font-softOrange mb-0 mr-2 align-middle">RM {{ $seatType->price }}</p></td>
-                        <td><input type="number" id="qty{{ $seatType->seat_type }}" name="qty{{ $seatType->seat_type }}" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
+                        <th class="pt-2">{{$char}}</th>
+                        @for($i=0;$i<14;$i++)
+                        <td><input type="checkbox" name="classicSeat[]" class="seats single" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
+                        @endfor
+                        <th class="pt-2">{{$char}}</th>
                     </tr>
                     @endforeach
                 </table>
-            </div>
-        </div>
-        <div class="col text-center">
-            <button onclick="showSeats();" class="btn orange-btn mt-3 ml-0 confirm-btn">Confirm</button>
-        </div>
 
-        <div id="seatStructure" class="mt-5 d-none p-5">
-            <div class="showcase">
-                <li><div class="smallBox m-2" id="greenBox"></div><small>Selected</small></li>
-                <li><div class="smallBox m-2" id="redBox"></div><small>Reserved</small></li>
-                <li><div class="smallBox m-2" id="emptyBox"></div><small>Single</small></li>
-                <li><div class="smallBox m-2" id="twinBox"></div><small>Twin</small></li>
-                <li><div class="smallBox m-2" id="greyBox"></div><small>Unavailable</small></li>
-            </div>
-
-            <table id="seatsBlock" class="text-center">
-                <tr><div class="screen"></div></tr>
-
-                <!--Single seat-->
-                @foreach (range('A', 'F') as $char)
-                <tr>
-                    <th class="pt-2">{{$char}}</th>
-                    @for($i=0;$i<14;$i++)
-                    <td><input type="checkbox" class="seats single" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
-                    @endfor
-                    <th class="pt-2">{{$char}}</th>
-                </tr>
-                @endforeach
-            </table>
-
-            @foreach (range('G', 'H') as $char)
-            <ul class="text-center twin-seats font-white mt-4 pl-0">
-                <li class="d-inline-block position-relative pt-2">{{$char}}</th>
+                @foreach (range('G', 'H') as $char)
+                <ul class="text-center twin-seats font-white mt-4 pl-0">
+                    <li class="d-inline-block position-relative pt-2">{{$char}}</li>
                     @for($i=0;$i<5;$i++)
-                <li class="d-inline-block position-relative mx-5"><input type="checkbox" class="seats twin" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
+                    <li class="d-inline-block position-relative mx-5">
+                        <input type="checkbox" class="seats twin" name="twinSeat[]" onclick="seatS()" value="{{$char}}{{$i+1}}">
+                    </li>
                     @endfor
-                <li class="d-inline-block position-relative pt-2">{{$char}}</th>
-            </ul>
-            @endforeach
+                    <li class="d-inline-block position-relative pt-2">{{$char}}</li>
+                </ul>
+                @endforeach
 
 
-            <table class="Displaytable mt-5 text-center w-100 font-white">
-                <tr><th>Seats</th></tr>
-                <tr><td><textarea id="seatsDisplay" class="text-center"></textarea></td></tr>
-            </table>
+                <table class="Displaytable mt-5 text-center w-100 font-white">
+                    <tr><th>Seats</th></tr>
+                    <tr><td><textarea id="seatsDisplay" class="text-center"></textarea></td></tr>
+                </table>
 
-            <div class="col text-center mt-3">
-                <button type="submit" class="continue-btn btn orange-btn mt-3 ml-0 float-end" onclick="checkError(48, 15)">Continue</button>
-            </div>
+                <div class="col text-center mt-3">
+                    <div class="continue-btn btn orange-btn mt-3 ml-0 float-end" onclick="checkError(48, 15)">Continue</div>
+                </div>
 
-            <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div id="errors"></div><button type="button" class="btn btn-secondary float-end" onclick="hideModal()">Close</button>
+                <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div id="errors"></div><button type="button" class="btn btn-secondary float-end" onclick="hideModal()">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title font-black" id="exampleModalLabel">Confirmation</h5>
+                                <button type="button" class="close" onclick="hideConfirmation()" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="confirm-value"></div>
+                                <div id="confirm-price"></div>
+                                <div id="result"></div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" onclick="hideConfirmation()">Cancel</button>
+                                <button type="submit" name="continue-food" class="btn btn-primary btn-proceed">Continue</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title font-black" id="exampleModalLabel">Confirmation</h5>
-                            <button type="button" class="close" onclick="hideConfirmation()" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="confirm-value"></div>
-                            <div id="confirm-price"></div>
-                            <div id="result"></div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" onclick="hideConfirmation()">Cancel</button>
-                            <button type="submit" class="btn btn-primary btn-proceed">Continue</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        </form>
     </section>
 </section>
 @endsection
@@ -128,35 +130,48 @@
 <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
 <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/holder.min.js"></script>
 <script>
-                                //Disable button when no value input
-                                const formInputTwin = document.querySelector("#qtyTwin");
-                                const formInputClassic = document.querySelector("#qtyClassic");
-                                const formButton = $(".confirm-button");
-                                formButton.disabled = true;
-                                formInputTwin.addEventListener('change', (e) => {
-                                    if (formInputTwin.value === "") {
-                                        formButton.disabled = true;
-                                    } else {
-                                        formButton.disabled = false;
-                                    }
-                                });
-                                formInputClassic.addEventListener('change', (e) => {
-                                    if (formInputClassic.value === "") {
-                                        formButton.disabled = true;
-                                    } else {
-                                        formButton.disabled = false;
-                                    }
-                                });
+                                    //Disable button when no value input
+                                    const inputTwin = $("#qtyTwin");
+                                    const inputClassic = $("#qtyClassic");
+                                    const formButton = $(".confirm-button");
+
+                                    formButton.disabled = true;
+                                    document.getElementById("qty-required").innerHTML =
+                                            "Please insert ticket quantity";
+
+                                    inputTwin.on('change', function () {
+                                        if (inputTwin.value === 0) {
+                                            formButton.disabled = true;
+                                            document.getElementById("qty-required").innerHTML =
+                                                    "Please insert ticket quantity";
+                                        } else if (inputTwin.value !== 0) {
+                                            formButton.disabled = false;
+                                            document.getElementById("qty-required").innerHTML = "";
+                                            showSeats();
+                                        }
+                                    });
+
+                                    inputClassic.on('change', function () {
+                                        if (inputClassic.value === 0) {
+                                            formButton.disabled = true;
+                                            document.getElementById("qty-required").innerHTML =
+                                                    "Please insert ticket quantity";
+                                        } else if (inputClassic.value !== 0) {
+                                            formButton.disabled = false;
+                                            document.getElementById("qty-required").innerHTML = "";
+                                            showSeats();
+                                        }
+                                    });
 </script>
 <script>
 // Seats
     function showSeats() {
         if (!formButton.disabled) {
             $("#seatStructure").addClass("d-block");
-            window.location.href = "#seatStructure";
         }
     }
 
+//Display seat order
     function seatS() {
         var checkboxes = document.getElementsByClassName('seats');
         var checkboxesChecked = [];
@@ -244,38 +259,5 @@
         }
     }
 
-</script>
-<script>
-    $(document).ready(function () {
-        $('#confirmation').on('click', '.btn-proceed', function (e) {
-            var twinSeat = document.querySelector("#qtyTwin").value;
-            var classicSeat = document.querySelector("#qtyClassic").value;
-            var totalTwin = twinSeat * 48;
-            var totalClassic = classicSeat * 15;
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                type: "POST",
-                url: "/payment/form/store",
-                data: {_method: 'PUT', twin: totalTwin, classic: totalClassic},
-                datatype: 'JSON',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                success: function (data) {
-                    alert(data);
-                },
-                error: function (data) {
-                    console.log('Error:', data);
-                    alert('Sorry, Something error :(');
-                }
-            });
-            hideConfirmation();
-            window.location.href = "/payment/form/store";
-        });
-    });
 </script>
 @endpush

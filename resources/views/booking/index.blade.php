@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
                     @endforeach
                 </select>
                 @foreach($cinema as $cin)
-                <select name="time" class="selectTime form-select w-25 mx-4 my-4 d-none" aria-label="Default select example">
+                <select name="datetime" class="selectTime form-select w-25 mx-4 my-4 d-none" aria-label="Default select example">
                     <option disabled selected>Select Time</option>
                     @for ($i = 0; $i < count($showtimes); $i++)
                     @if($showtimes[$i]->cinemaID == $cin->id && Carbon\Carbon::parse($showtimes[$i]->dateTime)->format('d-M') == $_GET['btn-date'])

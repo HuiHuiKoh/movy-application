@@ -36,8 +36,8 @@
             @foreach($foods as $food)
             <div class="col-lg-3 col-md-6">
                 <div class="box" style="margin-top:10%">
-<!--                    <h3>Free</h3>
-                    <h4><sup>$</sup>0<span> / month</span></h4>-->
+                    <!--                    <h3>Free</h3>
+                                        <h4><sup>$</sup>0<span> / month</span></h4>-->
                     <ul>
                         <li><img src="assets/img/{{$food['image']}}" alt="" width="200px" height="200px"></li>
                         <li>{{$food['name']}}</li>                     
@@ -49,7 +49,6 @@
             </div>  
             @endforeach
         </div>
-
     </div>
 </section><!-- End Pricing Section -->
 @endsection
