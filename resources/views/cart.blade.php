@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="back-to-shop"><a href="#" style="color:#2A2A2A">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+            <div class="back-to-shop"><a href="{{asset('foods')}}" style="color:#2A2A2A">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
         </div>
         <div class="col-md-4 summary">
             <div><h5><b style="color:#2A2A2A">Summary</b></h5></div>
