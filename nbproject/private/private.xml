@@ -1,52 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>resources/views/auth/passwords/email.blade.php</url>
-            <bookmark id="1">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Http/Controllers/MoviesController.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/admin/addShowtimes.blade.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/migrations/2022_12_05_153133_create_ordered_food_table.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/routes/web.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/storage/framework/views/0dc2acc78f6e2099127d9efa27abb1adb0002685.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/storage/framework/views/77c9805fb8893a873c48af73c009fcb086af5688.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Models/FoodOrder.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/booking/seat.blade.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/food.blade.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/public/import/assets/css/style.css</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/storage/framework/views/3cd235d8b820fa67baafe643dd119119829aa230.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/storage/framework/views/4de9f9989aa193a4fd6c0e09b432205f957ce323.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/migrations/2022_12_05_152619_create_tickets_table.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/booking/index.blade.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/storage/framework/views/51a68cf305e57e7ecd1127cae8267039a5a50646.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/search.blade.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/admin/addMovies.blade.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/showtimes.blade.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Http/Controllers/BookingController.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/migrations/2022_12_03_065438_create_threads_table.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/storage/framework/views/5a462470de2bf5bd4d1d784cb47a94584e1f550a.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/migrations/2022_12_05_152509_create_food_orders_table.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Models/Payment.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/database/migrations/2022_12_03_065348_create_payments_table.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/app/Models/Ticket.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/movy_app/resources/views/movies.blade.php</file>
-=======
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/purchaseHistoryDetails.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/assets/css/moviesInfo.css</file>
             <file>file:/C:/Users/USER/Documents/GitHub/movy-application/routes/web.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/home.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/purchaseHistory.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/showtimes.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/app/Http/Controllers/HistoryController.php</file>
->>>>>>> Stashed changes
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/food.blade.php</file>
+            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/assets/css/foodInfo.css</file>
         </group>
     </open-files>
 </project-private>
