@@ -75,20 +75,53 @@
                         <h1>Purchase Details</h1>
                     </div>
                     <div class="my-5">
-                        <div class="float-end">
-                            <p>RM 20.00</p>
+                        @if(session()->get('classicQty')>0)
+                        <div class="row">
+                            <div class="col">
+                                <span>Classic Ticket</span>
+                            </div>
+                            <div class="col">
+                                <span class="mr-5">x {{session()->get('classicQty')}}</span>
+                            </div>
+                            <div class="col text-right">
+                                <?php $totalClassic = 0; ?>
+                                <?php $totalClassic += ($seatType->where('seat_type', 'Classic')->first()->price) * (session()->get('classicQty')); ?>
+                                <span>RM {{$totalClassic}}.00</span>
+                            </div>
                         </div>
-                        <div>
-                            <p>Tickets - Twin</p>
+                        @endif
+                        <hr>
+                        @if(session()->get('twinQty')>0)
+                        <div class="row">
+                            <div class="col">
+                                <span>Twin Ticket</span>
+                            </div>
+                            <div class="col">
+                                <span class="mr-5">x {{session()->get('twinQty')}}</span>
+                            </div>
+                            <div class="col text-right">
+                                <?php $totalTwin = 0; ?>
+                                <?php $totalTwin += ($seatType->where('seat_type', 'Twin')->first()->price) * (session()->get('twinQty')); ?>
+                                <span>RM {{$totalTwin}}.00</span>
+                            </div>
+                        </div>
+                        @endif
+                        <hr>
+                        @foreach($cart as $item)
+                        <div class="row">
+                            <div class="col">
+                                <span>{{$item->name}}</span>
+                            </div>
+                            <div class="col">
+                                <span class="mr-5">x {{$item->quantity}}</span>
+                            </div>
+                            <div class="col text-right">
+                                <span>RM {{$item->quantity*$item->price}}.00</span>
+                            </div>
                         </div>
                         <hr>
-                        <div class="float-end">
-                            <p>RM 0.00</p>
-                        </div>
-                        <div>
-                            <p>Food & Beverages</p>
-                        </div>
-                        <hr>
+                        @endforeach
+
                         <div>
                             <button class="btn orange-outline-btn square-btn font-weight-normal float-end">ADD</button>
                         </div>
@@ -96,12 +129,15 @@
                             <button class="btn orange-outline-btn square-btn disabled font-weight-normal">Voucher Code</button>
                         </div>
                     </div>
-                    <div class="float-end">
-                        <p>RM 20.00</p>
+                    <div class="row">
+                        <div class="col">
+                            <span>TOTAL</span>
+                        </div>
+                        <div class="col text-right">
+                            <?php $totalPrice = $foodTotal + $totalClassic + $totalTwin; ?>
+                            <span>RM {{$totalPrice}}.00</span>
+                        </div>
                     </div>
-                    <div>
-                        TOTAL
-                    </div>              
                 </div>
             </div>
         </div>

@@ -34,6 +34,14 @@ class Foods extends Model
     }
     
     /**
+     * Get the associated ticket.
+     */
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
+    }
+    
+    /**
      * Get the ordered foods associated with the food.
      */
     public function orderedFoods()
