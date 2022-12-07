@@ -122,6 +122,7 @@ Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 //delete cart
 Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 
+
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);
 //login page
 Route::controller(UserController::class)->group(function () {

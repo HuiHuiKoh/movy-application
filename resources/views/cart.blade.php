@@ -11,7 +11,7 @@
             <div class="title">
                 <div class="row">
                     <div class="col"><h4><b>MOVY Cart</b></h4></div>
-                    <div class="col align-self-center text-right text-muted">3 items</div>
+
                 </div>
             </div>    
 
