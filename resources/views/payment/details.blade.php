@@ -3,20 +3,55 @@
 @section('content')
 <section id="payment">
     <div class="text-center mt-5"><h1>Payment Successful</h1></div>
-    <div class="container px-5 mb-3 w-75 bg-black text-left">
+    <div class="container px-5 my-3 w-75 bg-black text-left">
         <div class="row">
             <div class="card border-0 rounded-0 bg-black">
                 <div class="card-body p-4 font-white">
                     <div class="mt-3">
-                        <p>Movie: Beauty and the Beast</p>
-                        <p>Cinema: MOVY 1Utama</p>
-                        <p>Hall: 02</p>
-                        <p>Date: 22 NOV 2022</p>
-                        <p>Time: 9:30 PM</p>
-                        <p>Seats: H1</p>
-                        <p>F&B: -</p>
-                        <p>Total: RM 20.00</p>
-                        <p>Transaction Date & Time: </p>
+                        <div class="row"><div class="col">Movie: </div><div class="col col-sm-10 font-weight-bold">
+                                @foreach($movies as $movie)
+                                <p>{{$movie->name}}</p>
+                                @endforeach</div></div>
+                        <div class="row"><div class="col">Cinema: </div><div class="col col-sm-10 font-weight-bold">
+                                @foreach($cinemas as $cinema)
+                                <p>{{$cinema->name}}</p>
+                                @endforeach</div></div>
+                        <div class="row"><div class="col">Hall: </div><div class="col col-sm-10 font-weight-bold">
+                                @foreach($movies as $movie)
+                                <p>{{$movie->hall}}</p>
+                                @endforeach</div></div>
+                        <div class="row"><div class="col">Date: </div><div class="col col-sm-10 font-weight-bold">
+                                @foreach($movies as $movie)
+                                <p>{{Carbon\Carbon::parse($movie->dateTime)->format('d M Y')}}</p>
+                                @endforeach</div></div>
+                        <div class="row"><div class="col">Time: </div><div class="col col-sm-10 font-weight-bold">
+                                @foreach($movies as $movie)
+                                <p>{{Carbon\Carbon::parse($movie->dateTime)->format('h:i a')}}</p>
+                                @endforeach</div></div>
+                        <div class="row"><div class="col">Seat: </div>
+                            <div class="col col-sm-10 font-weight-bold">
+                                <p>@foreach($seats as $seat)
+                                    {{$seat->row}}{{$seat->number}}
+                                    @endforeach
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row"><div class="col">F&B: </div>
+                            <div class="col col-sm-10 font-weight-bold">
+                                <p>@foreach($foods as $food)
+                                    {{$food->name}}
+                                    @endforeach
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row"><div class="col">Total: </div><div class="col col-sm-10 font-weight-bold">
+                                @foreach($payments as $payment)
+                                <p>RM {{$payment->amount}}.00</p>
+                                @endforeach</div></div>
+                        <div class="row"><div class="col">Transaction: </div><div class="col col-sm-10 font-weight-bold">
+                                @foreach($payments as $payment)
+                                <p>{{$payment->created_at}}</p>
+                                @endforeach</div></div>
                     </div>
                 </div>
             </div>

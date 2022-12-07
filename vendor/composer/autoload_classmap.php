@@ -186,6 +186,7 @@ return array(
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\FoodsSeeder' => $baseDir . '/database/seeders/FoodsSeeder.php',
     'Database\\Seeders\\MoviesSeeder' => $baseDir . '/database/seeders/MoviesSeeder.php',
+    'Database\\Seeders\\SeatTypeSeeder' => $baseDir . '/database/seeders/SeatTypeSeeder.php',
     'Database\\Seeders\\ShowtimesSeeder' => $baseDir . '/database/seeders/ShowtimesSeeder.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
     'DeepCopy\\Exception\\CloneException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',

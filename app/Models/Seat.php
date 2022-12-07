@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Seat extends Model
 {
@@ -19,6 +20,7 @@ class Seat extends Model
         'row',
         'number',
         'seat_type_id',
+        'ticket_id',
     ];
     
     /**

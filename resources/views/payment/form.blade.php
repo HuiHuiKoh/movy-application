@@ -1,5 +1,7 @@
 @extends('layouts.app', ['pageTitle'=>'Payment'], ['title'=>'Payment'])
 
+use Illuminate\Support\Facades\Session;
+
 @push('css')
 <style>
     .payment-modal .close{
@@ -66,6 +68,55 @@
 @endpush
 
 @section('content')
+<?php
+$cNum = $_POST['cNum'] ?? null;
+$cName = $_POST['cName'] ?? null;
+$expDate = $_POST['expDate'] ?? null;
+$cvv = $_POST['cvv'] ?? null;
+$cancel = $_GET['cancel-payment'] ?? null;
+
+function validatecard($number) {
+    global $type;
+
+    $cardtype = array(
+        "visa" => "/^4[0-9]{12}(?:[0-9]{3})?$/",
+        "mastercard" => "/^5[1-5][0-9]{14}|^(222[1-9]|22[3-9]\\d|2[3-6]\\d{2}|27[0-1]\\d|2720)[0-9]{12}$/",
+    );
+
+    if (preg_match($cardtype['visa'], $number)) {
+        $type = "visa";
+        return 'visa';
+    } else if (preg_match($cardtype['mastercard'], $number)) {
+        $type = "mastercard";
+        return 'mastercard';
+    } else {
+        return false;
+    }
+}
+
+$cardError = array();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_POST['paybycard'])) {
+        if (validatecard($_POST['cNum']) != false) {
+            if (is_string($_POST['cName'])) {
+                if (is_numeric($_POST['cvv']) && $_POST['cvv'] <= 999) {
+                    $cardError = (array) null;
+                    session()->put('method', 'card');
+                    echo '<script>window.location.href="' . action('\App\Http\Controllers\PaymentController@add') . '"</script>';
+                } else {
+                    array_push($cardError, 'Please insert a valid CVV');
+                }
+            } else {
+                array_push($cardError, 'Please insert a valid Cardholder Name');
+            }
+        } else if (validatecard($_POST['cNum']) == false) {
+            array_push($cardError, 'Please insert a valid Card Number');
+        }
+    }
+}
+?>
 <section id="payment">
     <div class="container px-5 mt-5 mb-3 w-75 bg-black text-left">
         <div class="row">
@@ -84,13 +135,12 @@
                                 <span class="mr-5">x {{session()->get('classicQty')}}</span>
                             </div>
                             <div class="col text-right">
-                                <?php $totalClassic = 0; ?>
-                                <?php $totalClassic += ($seatType->where('seat_type', 'Classic')->first()->price) * (session()->get('classicQty')); ?>
+                                <?php $totalClassic = ($seatType->where('seat_type', 'Classic')->first()->price) * (session()->get('classicQty')); ?>
                                 <span>RM {{$totalClassic}}.00</span>
                             </div>
-                        </div>
+                        </div><hr>
                         @endif
-                        <hr>
+
                         @if(session()->get('twinQty')>0)
                         <div class="row">
                             <div class="col">
@@ -100,13 +150,12 @@
                                 <span class="mr-5">x {{session()->get('twinQty')}}</span>
                             </div>
                             <div class="col text-right">
-                                <?php $totalTwin = 0; ?>
-                                <?php $totalTwin += ($seatType->where('seat_type', 'Twin')->first()->price) * (session()->get('twinQty')); ?>
+                                <?php $totalTwin = ($seatType->where('seat_type', 'Twin')->first()->price) * (session()->get('twinQty')); ?>
                                 <span>RM {{$totalTwin}}.00</span>
                             </div>
-                        </div>
+                        </div><hr>
                         @endif
-                        <hr>
+
                         @foreach($cart as $item)
                         <div class="row">
                             <div class="col">
@@ -134,8 +183,17 @@
                             <span>TOTAL</span>
                         </div>
                         <div class="col text-right">
-                            <?php $totalPrice = $foodTotal + $totalClassic + $totalTwin; ?>
+                            <?php
+                            if (!isset($totalClassic)) {
+                                $totalClassic = 0;
+                            }
+                            if (!isset($totalTwin)) {
+                                $totalTwin = 0;
+                            }
+                            $totalPrice = $foodTotal + $totalClassic + $totalTwin;
+                            ?>
                             <span>RM {{$totalPrice}}.00</span>
+                            <?php session()->put('amount', $totalPrice) ?>
                         </div>
                     </div>
                 </div>
@@ -152,7 +210,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Cancel</h5>
+                    <h5 class="modal-title">Cancellation</h5>
                     <button type="button" class="close" onclick="hideCancel()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -162,7 +220,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="hideCancel()">Close</button>
-                    <button onclick="backToHome()" type="button" class="btn btn-danger">Cancel</button>
+                    <button type="submit" onclick="window.location.href ='{{action('\App\Http\Controllers\PaymentController@cancel')}}'" class="btn btn-danger">Cancel</button>
                 </div>
             </div>
         </div>
@@ -176,7 +234,7 @@
                     <div class="text-right"> 
                         <i class="fa fa-close close" data-dismiss="modal"></i> 
                     </div> 
-                    <div class="tabs mt-3">
+                    <div class="tabs">
                         <ul class="nav nav-tabs" id="myTab" role="tablist"> 
                             <li class="nav-item" role="presentation"> 
                                 <a class="nav-link active" id="visa-tab" data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true"> 
@@ -196,28 +254,36 @@
                                         <div class="h5">Credit card / Debit Card</div> 
                                     </div>
                                     <form action="" method="post">
-                                        <div class="form mt-3"> 
+                                        @csrf
+                                        <div class="form mt-3">
+                                            <div id="display-error" class="font-red">
+                                                <?php
+                                                foreach ($cardError as $err) {
+                                                    echo $err;
+                                                }
+                                                ?>
+                                            </div>
                                             <div class="inputbox">
                                                 <label for="cName">Cardholder Name</label>
-                                                <input type="text" name="cName" class="form-control" required="required"> 
+                                                <input type="text" name="cName" class="form-control" required="required" value="<?php echo $cName; ?>"> 
 
                                             </div> 
                                             <div class="inputbox"> 
                                                 <label for="cNum">Card Number</label>
-                                                <input type="text" name="cNum" class="form-control" required="required"> 
+                                                <input type="text" name="cNum" class="form-control" value="<?php echo $cNum; ?>" required="required"> 
                                             </div> 
                                             <div class="d-flex flex-row"> 
                                                 <div class="inputbox mx-1">
                                                     <label for="expDate">Expiration Date</label>
-                                                    <input type="month" name="expDate" class="form-control" min="2022-11" max="2028-12" required="required"> 
+                                                    <input type="month" name="expDate" id="expDate" class="form-control" min="2022-12" max="2028-12" value="<?php echo $expDate; ?>" required="required"> 
                                                 </div>
                                                 <div class="inputbox mx-1">
                                                     <label for="cvv">CVV</label>
-                                                    <input type="password" name="cvv" min="1" max="999" class="form-control" required="required"> 
+                                                    <input type="password" name="cvv" class="form-control" value="<?php echo $cvv; ?>" required="required"> 
                                                 </div> 
                                             </div> 
                                             <div class="px-5 pay">
-                                                <button type="submit" class="btn btn-success btn-block">Pay with Card</button>
+                                                <button type="submit" name="paybycard" class="btn btn-success btn-block">Pay with Card</button>
                                                 <button class="btn btn-secondary btn-block" data-dismiss='modal'>Cancel</button>
                                             </div>
                                         </div> 
@@ -225,7 +291,10 @@
                                 </div> 
                             </div> 
                             <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab"> 
-                                <div class="px-5 mt-5"> 
+                                <div class="px-5 mt-2">
+                                    <div class="text-center"> 
+                                        <div class="h5">PayPal</div> 
+                                    </div>
                                     <div class="inputbox"> 
                                         <label for="email">Email Address</label>
                                         <input type="email" name="email" class="form-control" required="required"> 
@@ -235,7 +304,7 @@
                                         <input type="password" name="pw" class="form-control" required="required"> 
                                     </div>
                                     <div class="pay px-5">
-                                        <button class="btn btn-primary btn-block">Pay with Paypal</button>
+                                        <button name="paybypaypal" class="btn btn-primary btn-block">Pay with Paypal</button>
                                         <button class="btn btn-secondary btn-block" data-dismiss='modal'>Cancel</button>
                                     </div> 
                                 </div> 
@@ -261,10 +330,6 @@
                         }
                         function hideCancel() {
                             $("#cancel").modal('hide');
-                        }
-                        function backToHome() {
-                            window.location.href = "<?php echo asset("home") ?>";
-//                            destroy session
                         }
 </script>
 @endpush

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use \Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Showtimes extends Model
 {
@@ -31,5 +31,13 @@ class Showtimes extends Model
     public function ticket()
     {
         return $this->belongsTo(Ticket::class);
+    }
+    
+    /**
+     * Get the associated movie.
+     */
+    public function movie()
+    {
+        return $this->belongsTo(Movies::class, 'movies_id');
     }
 }

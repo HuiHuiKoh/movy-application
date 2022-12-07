@@ -63,7 +63,9 @@ Auth::routes();
 //Payment
 Route::prefix('payment')->group(function () {
     Route::any('/form/store', [PaymentController::class, 'store']);
+    Route::any('/form/cancel', [PaymentController::class, 'cancel']);
     Route::get('/details', [PaymentController::class, 'details']);
+    Route::any('/details/add', [PaymentController::class, 'add']);
 });
 
 //Membership

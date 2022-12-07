@@ -18,6 +18,7 @@ class CreateSeatsTable extends Migration
             $table->string('row');
             $table->unsignedInteger('number');
             $table->foreignId('seat_type_id')->references('id')->on('seat_types')->onDelete('cascade');
+            $table->foreignId('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -106,12 +106,13 @@
                             <div class="modal-body">
                                 <div id="confirm-value"></div>
                                 <div id="confirm-price"></div>
-                                <div id="result"></div>
+                                <div class="text-center mt-2">Do you want to add food?</div>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" onclick="hideConfirmation()">Cancel</button>
-                                <button type="submit" name="continue-food" class="btn btn-primary btn-proceed">Continue</button>
+                                <button type="submit" name="continue-food" class="btn btn-primary btn-proceed">Yes, proceed</button>
+                                <button type="button" onclick="window.location.href='{{action('\App\Http\Controllers\PaymentController@store')}}'" class="btn btn-success">No, checkout</button>
                             </div>
 
                         </div>

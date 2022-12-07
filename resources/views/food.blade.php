@@ -33,6 +33,9 @@
 
 
         <div class=movie-title>
+            <div class="text-right">
+                <button onclick="window.location.href='{{asset('cart')}}'" class="btn orange-btn float-end">Go to Cart</button>
+            </div>
             <div class="text-left">
                 <a href="{{ asset('foods') }}" class="back-button" >Back</a>
             </div> 
@@ -55,6 +58,7 @@
                 <a href="#"><button class="btn-cart">&#128722;Add To Cart</button></a>
             </form>
         </div>
+
     </div>
 </section>
 

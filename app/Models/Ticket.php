@@ -19,8 +19,6 @@ class Ticket extends Model
     protected $fillable = [
         'total_amount',
         'showtimes_id',
-        'seat_id',
-        'membership_voucher_id',
         'payment_id',
         'user_id'
     ];
@@ -34,27 +32,11 @@ class Ticket extends Model
     }
     
     /**
-     * Get the seats associated with the ticket.
-     */
-    public function seats()
-    {
-        return $this->hasMany(Seat::class, 'seat_id');
-    }
-    
-    /**
      * Get the payments associated with the ticket.
      */
     public function payments()
     {
         return $this->hasMany(Payment::class, 'payment_id');
-    }
-    
-    /**
-     * Get the membership vouchers associated with the ticket.
-     */
-    public function membershipVouchers()
-    {
-        return $this->hasMany(MembershipVoucher::class, 'membership_voucher_id');
     }
     
     /**
