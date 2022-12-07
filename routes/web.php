@@ -119,6 +119,9 @@ Route::get('/movies/{id}', [MoviesController::class, 'moviesDetails']);
 Route::any('/foods', [FoodsController::class, 'showFoods']);
 Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 
+//delete cart
+Route::delete('destroy/{id}', [CartController::class, 'destroy']);
+
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);
 //login page
 Route::controller(UserController::class)->group(function () {
@@ -147,9 +150,6 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     Route::get('/salesReport', [ChartController::class, 'viewSales']);
     Route::POST('/chart', [ChartController::class, 'getNewUser']);
     Route::POST('/amountChart', [ChartController::class, 'getAmount']);
-
-    //delete cart
-    Route::delete('destroy/{id}', [CartController::class, 'destroy']);
 
     //add Movies
     Route::get('/addMovies', [MoviesController::class, 'newMovies']);
