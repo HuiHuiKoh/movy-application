@@ -205,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="button" class="btn orange-btn mb-5" data-toggle="modal" data-target="#staticBackdrop">Pay Now</button>
     </div>  
 
-    <!--Cancel Modal-->
+    <!--Cancellation Modal-->
     <div class="modal" id="cancel" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -220,7 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="hideCancel()">Close</button>
-                    <button type="submit" onclick="window.location.href ='{{action('\App\Http\Controllers\PaymentController@cancel')}}'" class="btn btn-danger">Cancel</button>
+                    <button type="button" onclick="window.location.href ='{{asset('payment/form/cancel')}}'" class="btn btn-danger">Cancel</button>
                 </div>
             </div>
         </div>

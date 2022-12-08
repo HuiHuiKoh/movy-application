@@ -1,8 +1,58 @@
-@extends('layouts.app', ['pageTitle'=>'Booking'], ['title'=>'Booking'])
+@extends('layouts.app', ['pageTitle'=>'Check Booking'], ['title'=>'Check Booking'])
 
 @section('content')
 <section id="booking">
-    <div>hi</div>
+    @if($tickets!=null)
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Movie</th>
+                <th scope="col">Cinema</th>
+                <th scope="col">Hall</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Seat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $result = 0; ?>
+            <tr>
+                <th scope="row"><?php echo ++$result; ?></th>
+                <td>@foreach($tickets as $ticket)
+                    {{$ticket->name}}
+                    @endforeach
+                </td>
+                <td>@foreach($showtimes as $show)
+                    {{$show->name}}
+                    @endforeach
+                </td>
+                <td>@foreach($showtimes as $show)
+                    {{$show->hall}}
+                    @endforeach
+                </td>
+                <td>@foreach($showtimes as $show)
+                    {{Carbon\Carbon::parse($show->dateTime)->format('d M Y')}}
+                    @endforeach
+                </td>
+                <td>@foreach($showtimes as $show)
+                    {{Carbon\Carbon::parse($show->dateTime)->format('h:i a')}}
+                    @endforeach
+                </td>
+                <td>@foreach($seats as $seat)
+                    {{$seat->row}}{{$seat->number}}
+                    @endforeach
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    @else
+    <h6 class="text-center my-4">You have no booking
+        <a href="{{asset('showtimes')}}">
+            <button class="btn orange-btn">View Movies</button>
+        </a>
+    </h6>
+    @endif
 </section>
 @endsection
 

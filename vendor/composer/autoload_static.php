@@ -564,6 +564,7 @@ class ComposerStaticInit9a41c1db6d0d35562137cb9ac504f123
         'App\\Models\\Reply' => __DIR__ . '/../..' . '/app/Models/Reply.php',
         'App\\Models\\Seat' => __DIR__ . '/../..' . '/app/Models/Seat.php',
         'App\\Models\\SeatType' => __DIR__ . '/../..' . '/app/Models/SeatType.php',
+        'App\\Models\\Session' => __DIR__ . '/../..' . '/app/Models/Session.php',
         'App\\Models\\Showtimes' => __DIR__ . '/../..' . '/app/Models/Showtimes.php',
         'App\\Models\\Thread' => __DIR__ . '/../..' . '/app/Models/Thread.php',
         'App\\Models\\Ticket' => __DIR__ . '/../..' . '/app/Models/Ticket.php',

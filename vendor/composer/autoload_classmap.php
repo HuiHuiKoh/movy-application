@@ -59,6 +59,7 @@ return array(
     'App\\Models\\Reply' => $baseDir . '/app/Models/Reply.php',
     'App\\Models\\Seat' => $baseDir . '/app/Models/Seat.php',
     'App\\Models\\SeatType' => $baseDir . '/app/Models/SeatType.php',
+    'App\\Models\\Session' => $baseDir . '/app/Models/Session.php',
     'App\\Models\\Showtimes' => $baseDir . '/app/Models/Showtimes.php',
     'App\\Models\\Thread' => $baseDir . '/app/Models/Thread.php',
     'App\\Models\\Ticket' => $baseDir . '/app/Models/Ticket.php',

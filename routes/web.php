@@ -32,8 +32,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('booking')->group(function () {
         Route::get('/{id}', [BookingController::class, 'index']);
         Route::post('/seats/store', [BookingController::class, 'store']);
-        Route::get('/check', [BookingController::class, 'check']);
     });
+    
+    Route::get('/check', [BookingController::class, 'check']);
 
     Route::post('addCart', [CartController::class, 'store']);
     //Cart
@@ -62,7 +63,7 @@ Auth::routes();
 //Ticketing
 //Payment
 Route::prefix('payment')->group(function () {
-    Route::any('/form/store', [PaymentController::class, 'store']);
+    Route::any('/form/view', [PaymentController::class, 'view']);
     Route::any('/form/cancel', [PaymentController::class, 'cancel']);
     Route::get('/details', [PaymentController::class, 'details']);
     Route::any('/details/add', [PaymentController::class, 'add']);

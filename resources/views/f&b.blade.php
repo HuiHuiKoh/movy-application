@@ -30,8 +30,10 @@
 @section('content')
 <!-- ======= Pricing Section ======= -->
 <section id="pricing" class="pricing">
-    <div class="container">
-
+    <div class="text-right m-3">
+        <button onclick="window.location.href ='{{asset('payment/form/view')}}'" class="btn orange-btn float-end">Checkout</button>
+    </div>
+    <div class="container my-3">
         <div class="row">
             @foreach($foods as $food)
             <div class="col-lg-3 col-md-6">

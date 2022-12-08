@@ -8,50 +8,73 @@
             <div class="card border-0 rounded-0 bg-black">
                 <div class="card-body p-4 font-white">
                     <div class="mt-3">
-                        <div class="row"><div class="col">Movie: </div><div class="col col-sm-10 font-weight-bold">
-                                @foreach($movies as $movie)
-                                <p>{{$movie->name}}</p>
-                                @endforeach</div></div>
-                        <div class="row"><div class="col">Cinema: </div><div class="col col-sm-10 font-weight-bold">
-                                @foreach($cinemas as $cinema)
-                                <p>{{$cinema->name}}</p>
-                                @endforeach</div></div>
-                        <div class="row"><div class="col">Hall: </div><div class="col col-sm-10 font-weight-bold">
-                                @foreach($movies as $movie)
-                                <p>{{$movie->hall}}</p>
-                                @endforeach</div></div>
-                        <div class="row"><div class="col">Date: </div><div class="col col-sm-10 font-weight-bold">
-                                @foreach($movies as $movie)
-                                <p>{{Carbon\Carbon::parse($movie->dateTime)->format('d M Y')}}</p>
-                                @endforeach</div></div>
-                        <div class="row"><div class="col">Time: </div><div class="col col-sm-10 font-weight-bold">
-                                @foreach($movies as $movie)
-                                <p>{{Carbon\Carbon::parse($movie->dateTime)->format('h:i a')}}</p>
-                                @endforeach</div></div>
+                        @if($tickets!=null)
+                        <div class="row"><div class="col">Movie: </div>
+                            <div class="col col-sm-10 font-weight-bold">
+                                @foreach($tickets as $ticket)
+                                <p>{{$ticket->name}}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="row"><div class="col">Cinema: </div>
+                            <div class="col col-sm-10 font-weight-bold">
+                                @foreach($showtimes as $show)
+                                <p>{{$show->name}}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="row"><div class="col">Hall: </div>
+                            <div class="col col-sm-10 font-weight-bold">
+                                @foreach($showtimes as $show)
+                                <p>{{$show->hall}}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="row"><div class="col">Date: </div>
+                            <div class="col col-sm-10 font-weight-bold">
+                                @foreach($showtimes as $show)
+                                <p>{{Carbon\Carbon::parse($show->dateTime)->format('d M Y')}}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="row"><div class="col">Time: </div>
+                            <div class="col col-sm-10 font-weight-bold">
+                                @foreach($showtimes as $show)
+                                <p>{{Carbon\Carbon::parse($show->dateTime)->format('h:i a')}}</p>
+                                @endforeach
+                            </div>
+                        </div>
                         <div class="row"><div class="col">Seat: </div>
                             <div class="col col-sm-10 font-weight-bold">
                                 <p>@foreach($seats as $seat)
                                     {{$seat->row}}{{$seat->number}}
-                                    @endforeach
-                                </p>
+                                    @endforeach</p>
                             </div>
                         </div>
+                        @endif
+                        @if($foods!=null)
                         <div class="row"><div class="col">F&B: </div>
                             <div class="col col-sm-10 font-weight-bold">
                                 <p>@foreach($foods as $food)
                                     {{$food->name}}
-                                    @endforeach
-                                </p>
+                                    @endforeach</p>
                             </div>
                         </div>
-                        <div class="row"><div class="col">Total: </div><div class="col col-sm-10 font-weight-bold">
+                        @endif
+                        <div class="row"><div class="col">Total: </div>
+                            <div class="col col-sm-10 font-weight-bold">
                                 @foreach($payments as $payment)
                                 <p>RM {{$payment->amount}}.00</p>
-                                @endforeach</div></div>
-                        <div class="row"><div class="col">Transaction: </div><div class="col col-sm-10 font-weight-bold">
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="row"><div class="col">Transaction: </div>
+                            <div class="col col-sm-10 font-weight-bold">
                                 @foreach($payments as $payment)
                                 <p>{{$payment->created_at}}</p>
-                                @endforeach</div></div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

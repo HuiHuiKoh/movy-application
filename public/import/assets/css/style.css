@@ -1599,6 +1599,9 @@ section {
 #seatsBlock .reserved:before{
     background-color:var(--red);
 }
+#seatsBlock .reserved:checked:before{
+    background-color:var(--red);
+}
 .twin-seats{
     list-style: none;
 }
@@ -1616,6 +1619,9 @@ section {
     font-size: 20px;
 }
 .twin-seats .reserved:before{
+    background-color:var(--red);
+}
+.twin-seats .reserved:checked:before{
     background-color:var(--red);
 }
 

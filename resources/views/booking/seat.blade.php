@@ -21,7 +21,7 @@
     </div>
 
     <section class="selectseats p-5 mt-3">
-        <form action="/foods" method="post">
+        <form action="{{ asset('/foods') }}" method="post">
             @csrf
             <h1 class="text-center">Seats</h1>
             <div class="row justify-content-center">
@@ -55,7 +55,7 @@
                     <tr>
                         <th class="pt-2">{{$char}}</th>
                         @for($i=0;$i<14;$i++)
-                        <td><input type="checkbox" name="classicSeat[]" class="seats single" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
+                        <td><input type="checkbox" name="classicSeat[]" class="seats single reserved" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
                         @endfor
                         <th class="pt-2">{{$char}}</th>
                     </tr>
@@ -67,7 +67,7 @@
                     <li class="d-inline-block position-relative pt-2">{{$char}}</li>
                     @for($i=0;$i<5;$i++)
                     <li class="d-inline-block position-relative mx-5">
-                        <input type="checkbox" class="seats twin" name="twinSeat[]" onclick="seatS()" value="{{$char}}{{$i+1}}">
+                        <input type="checkbox" class="seats twin reserved" name="twinSeat[]" onclick="seatS()" value="{{$char}}{{$i+1}}">
                     </li>
                     @endfor
                     <li class="d-inline-block position-relative pt-2">{{$char}}</li>
@@ -106,15 +106,12 @@
                             <div class="modal-body">
                                 <div id="confirm-value"></div>
                                 <div id="confirm-price"></div>
-                                <div class="text-center mt-2">Do you want to add food?</div>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" onclick="hideConfirmation()">Cancel</button>
-                                <button type="submit" name="continue-food" class="btn btn-primary btn-proceed">Yes, proceed</button>
-                                <button type="button" onclick="window.location.href='{{action('\App\Http\Controllers\PaymentController@store')}}'" class="btn btn-success">No, checkout</button>
+                                <button type="submit" name="continue-food" class="btn btn-primary btn-proceed">Proceed</button>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -135,11 +132,9 @@
                                     const inputTwin = $("#qtyTwin");
                                     const inputClassic = $("#qtyClassic");
                                     const formButton = $(".confirm-button");
-
                                     formButton.disabled = true;
                                     document.getElementById("qty-required").innerHTML =
                                             "Please insert ticket quantity";
-
                                     inputTwin.on('change', function () {
                                         if (inputTwin.value === 0) {
                                             formButton.disabled = true;
@@ -151,7 +146,6 @@
                                             showSeats();
                                         }
                                     });
-
                                     inputClassic.on('change', function () {
                                         if (inputClassic.value === 0) {
                                             formButton.disabled = true;
@@ -162,8 +156,7 @@
                                             document.getElementById("qty-required").innerHTML = "";
                                             showSeats();
                                         }
-                                    });
-</script>
+                                    });</script>
 <script>
 // Seats
     function showSeats() {

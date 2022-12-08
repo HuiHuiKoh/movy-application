@@ -13,8 +13,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
 use function abort;
 use function redirect;
 use function session;
@@ -25,28 +25,29 @@ use function view;
  */
 class PaymentController extends Controller {
 
-    public function store(Request $request) {
+    public function view(Request $request) {
+
         $seatType = SeatType::all();
         $cart = DB::table('carts')
                 ->select('foods.*', 'carts.quantity', 'carts.id as cartID')
                 ->join('foods', 'carts.foodID', '=', 'foods.id')
                 ->get();
+
+        $foodTotal = 0;
+        if (!$cart->isEmpty()) {
+            foreach ($cart as $item) {
+                $foodTotal += ($item->quantity * $item->price);
+            }
+        }
         return view('payment.form', [
-            'foodTotal' => $request->foodTotal,
+            'foodTotal' => $foodTotal,
             'seatType' => $seatType,
             'cart' => $cart
         ]);
     }
 
-    public function cancel(Request $request) {
-        $request->session()->forget('movie');
-        $request->session()->forget('cinema');
-        $request->session()->forget('datetime');
-        $request->session()->forget('twinSeat');
-        $request->session()->forget('classicSeat');
-        $request->session()->forget('twinQty');
-        $request->session()->forget('classicQty');
-
+    public function cancel() {
+        Session::forget(['movie', 'cinema', 'datetime', 'twinSeat', 'classicSeat', 'twinQty', 'classicQty']);
         return redirect('/home');
     }
 
@@ -108,29 +109,35 @@ class PaymentController extends Controller {
 
                 $ticketid = Ticket::latest()->first()->id;
 
-                foreach (session()->get('twinSeat') as $twin) {
-                    $row = substr($twin, 0, 1);
-                    $num = substr($twin, 1);
-                    Seat::create([
-                        'row' => $row,
-                        'number' => $num,
-                        'seat_type_id' => 1,
-                        'ticket_id' => $ticketid,
-                        'created_at' => Carbon::now()->toDateTimeString(),
-                    ]);
+                if (session()->has('twinSeat')) {
+                    foreach (session()->get('twinSeat') as $twin) {
+                        $row = substr($twin, 0, 1);
+                        $num = substr($twin, 1);
+                        Seat::create([
+                            'row' => $row,
+                            'number' => $num,
+                            'seat_type_id' => 1,
+                            'ticket_id' => $ticketid,
+                            'created_at' => Carbon::now()->toDateTimeString(),
+                        ]);
+                    }
                 }
 
-                foreach (session()->get('classicSeat') as $classic) {
-                    $row = substr($classic, 0, 1);
-                    $num = substr($classic, 1);
-                    Seat::create([
-                        'row' => $row,
-                        'number' => $num,
-                        'seat_type_id' => 2,
-                        'ticket_id' => $ticketid,
-                        'created_at' => Carbon::now()->toDateTimeString(),
-                    ]);
+                if (session()->has('classicSeat')) {
+                    foreach (session()->get('classicSeat') as $classic) {
+                        $row = substr($classic, 0, 1);
+                        $num = substr($classic, 1);
+                        Seat::create([
+                            'row' => $row,
+                            'number' => $num,
+                            'seat_type_id' => 2,
+                            'ticket_id' => $ticketid,
+                            'created_at' => Carbon::now()->toDateTimeString(),
+                        ]);
+                    }
                 }
+
+                Session::forget(['movie', 'cinema', 'datetime', 'twinSeat', 'classicSeat', 'twinQty', 'classicQty']);
             }
 
             return redirect('/payment/details');
@@ -140,45 +147,68 @@ class PaymentController extends Controller {
     }
 
     public function details(Request $request) {
-        $movies = DB::table('tickets')
+
+        $payments = DB::table('payments')
                 ->select('*')
-                ->where('tickets.id', '=', Ticket::latest()->first()->id)
+                ->where('id', Payment::latest()->first()->id)
+                ->get();
+
+        $tickets = DB::table('tickets')
+                ->select('*')
+                ->where('payment_id', '=', Payment::latest()->first()->id)
                 ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
                 ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
                 ->get();
 
-        $cinemas = DB::table('tickets')
+        $foods = DB::table('food_orders')
                 ->select('*')
-                ->where('tickets.id', '=', Ticket::latest()->first()->id)
-                ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
-                ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
+                ->where('payment_id', '=', Payment::latest()->first()->id)
                 ->get();
 
-        $seats = DB::table('seats')
-                ->select('*')
-                ->where('seats.ticket_id', '=', Ticket::latest()->first()->id)
-                ->join('tickets', 'seats.ticket_id', '=', 'tickets.id')
-                ->get();
+        if (!$tickets->isEmpty()) {
+            $seats = DB::table('seats')
+                    ->select('*')
+                    ->where('seats.ticket_id', '=', Ticket::latest()->first()->id)
+                    ->join('tickets', 'seats.ticket_id', '=', 'tickets.id')
+                    ->get();
+            $showtimes = DB::table('tickets')
+                    ->select('*')
+                    ->where('tickets.id', '=', Ticket::latest()->first()->id)
+                    ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
+                    ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
+                    ->get();
+            if ($seats->isEmpty()) {
+                $seats = null;
+            } else if ($showtimes->isEmpty()) {
+                $showtimes = null;
+            }
+        } else {
+            $tickets = null;
+            $showtimes = null;
+            $seats = null;
+        }
 
-        $foods = DB::table('tickets')
-                ->select('*')
-                ->join('food_orders', 'food_orders.payment_id', '=', 'tickets.payment_id')
-                ->join('ordered_food', 'ordered_food.food_order_id', '=', 'food_orders.id')
-                ->join('foods', 'ordered_food.food_id', '=', 'foods.id')
-                ->get();
+        if (!$foods->isEmpty()) {
+            $ordered_foods = DB::table('ordered_food')
+                    ->select('*')
+                    ->where('ordered_food.food_order_id', '=', FoodOrder::latest()->first()->id)
+                    ->join('foods', 'ordered_food.food_id', '=', 'foods.id')
+                    ->get();
 
-        $payments = DB::table('payments')
-                ->select('*')
-                ->join('tickets', 'tickets.payment_id', '=', 'payments.id')
-                ->where('tickets.id', Ticket::latest()->first()->id)
-                ->get();
+            if ($ordered_foods->isEmpty()) {
+                $ordered_foods = null;
+            }
+        } else {
+            $foods = null;
+            $ordered_foods = null;
+        }
 
         return view('payment.details', [
-            'movies' => $movies,
-            'cinemas' => $cinemas,
+            'tickets' => $tickets,
+            'showtimes' => $showtimes,
+            'payments' => $payments,
             'seats' => $seats,
-            'foods' => $foods,
-            'payments' => $payments
+            'foods' => $ordered_foods
         ]);
     }
 

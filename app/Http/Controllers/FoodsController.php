@@ -8,21 +8,27 @@ use App\Models\Foods;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use function abort;
 use function redirect;
 use function view;
 
 class FoodsController extends Controller {
 
-    public function showFoods(Request $req) {
-        $foods = Foods::all();
-//        store session quantity
-        $req->session()->put('twinQty', $req->qtyTwin);
-        $req->session()->put('classicQty', $req->qtyClassic);
-//        store session seat order
-        $req->session()->put('twinSeat', $req->twinSeat);
-        $req->session()->put('classicSeat', $req->classicSeat);
+    public function showFoods(Request $request) {
 
+//        store session seat quantity
+        Session::put('twinQty', $request->qtyTwin);
+        Session::put('classicQty', $request->qtyClassic);
+//        store session seat order
+        Session::put('twinSeat', $request->twinSeat);
+        Session::put('classicSeat', $request->classicSeat);
+        
+        echo '<script>console.log('.Session::get('twinQty').')</script>';
+//        echo '<script>console.log('.Session::get('cinema').')</script>';
+//        echo '<script>console.log('.Session::get('datetime').')</script>';
+
+        $foods = Foods::all();
         return view('f&b', ['foods' => $foods]);
     }
 

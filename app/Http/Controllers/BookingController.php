@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\SeatType;
+use App\Models\Ticket;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,12 +26,14 @@ class BookingController extends Controller {
                 ->select('*')
                 ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
                 ->where('showtimes.moviesID', '=', $id)
+                ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
                 ->get();
 
         $showCinema = DB::table('showtimes')
                 ->select('cinemas.id', 'cinemas.name')
                 ->distinct()
                 ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
+                ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
                 ->get();
 
         return view('booking.index', [
@@ -74,7 +78,39 @@ class BookingController extends Controller {
     }
 
     public function check() {
-        return view('booking.check');
+        $tickets = DB::table('tickets')
+                ->select('*')
+                ->where('tickets.payment_id', '=', Payment::latest()->first()->id)
+                ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
+                ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
+                ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
+                ->get();
+        
+        if ($tickets->isEmpty()) {
+            $tickets = null;
+            $showtimes = null;
+            $seats = null;
+        } else {
+            $seats = DB::table('seats')
+                    ->select('*')
+                    ->where('seats.ticket_id', '=', Ticket::latest()->first()->id)
+                    ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
+                    ->join('tickets', 'seats.ticket_id', '=', 'tickets.id')
+                    ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
+                    ->get();
+            $showtimes = DB::table('tickets')
+                    ->select('*')
+                    ->where('tickets.id', '=', Ticket::latest()->first()->id)
+                    ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
+                    ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
+                    ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
+                    ->get();
+        }
+        return view('booking.check',[
+            'tickets' => $tickets,
+            'showtimes' => $showtimes,
+            'seats' => $seats,
+        ]);
     }
 
 }

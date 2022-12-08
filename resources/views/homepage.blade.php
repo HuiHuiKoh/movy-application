@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="text-right">
-    <a href="{{ asset('booking/check') }}" class="orange-btn mt-5 mr-5">Check Booking</a>
+    <a href="{{ asset('/check') }}" class="orange-btn mt-5 mr-5">Check Booking</a>
 </div>
 <section id="homepage">
     <div class="container">
