@@ -56,7 +56,7 @@
                         </div>
                         <div class="card">
                             <label class="form-control-label px-3">Image<span class="text-danger"> *</span></label> 
-                            <input type="file" name="image" class="form-control" value="" accept="image/png, image/gif, image/jpeg , image/jpg">
+                            <input type="file" name="promotionImage" class="form-control" value="" accept="image/png, image/gif, image/jpeg , image/jpg">
                         </div>
 
                         <div class="card">

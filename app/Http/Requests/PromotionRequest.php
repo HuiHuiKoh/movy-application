@@ -14,7 +14,7 @@ class PromotionRequest extends FormRequest {
         return [
             'promotionTitle' => 'required',
             'promotionDescription' => 'required|min:10',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|',
+            'promotionImage' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|',
         ];
     }
 

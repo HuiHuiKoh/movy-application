@@ -68,7 +68,7 @@
                                 <img src="/assets/img/{{$promo['image']}}" width="150px" height="200px" alt="{{$promo['image']}}">
                             </div>
                             <br>
-                            <input type="file" name="image" value="/assets/img/{{$promo['image']}}" accept="image/png, image/gif, image/jpeg , image/jpg" />
+                            <input type="file" name="promotionImage" value="/assets/img/{{$promo['image']}}" accept="image/png, image/gif, image/jpeg , image/jpg" />
                         </div>
                         <div class="card">
                             <div class="row justify-content-center">

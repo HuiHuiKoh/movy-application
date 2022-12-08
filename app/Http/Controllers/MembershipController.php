@@ -102,28 +102,27 @@ class MembershipController extends Controller {
     }
 
     public function updatePromotion(Request $request, $id) {
-        $promos = Promotion::find($id);
-
-        $fileName = $promos->image;
+        $promotions = Promotion::find($id);
+        $fileName = $promotions->image;
 
         $this->validate($request, [
             'promotionTitle' => 'required',
             'promotionDescription' => 'required|min:10',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|',
+            'promotionImage' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|',
         ]);
-
-        if ($request->hasFile('image')) {
-            $file = $request->image;
+        
+        if ($request->hasFile('promotionImage')) {
+            $file = $request->promotionImage;
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->move(base_path('public\assets\img'), $fileName);
+            $file->move(base_path('\public\assets\img'), $fileName);
         }
 
-        $promos->title = $request->get('promotionTitle');
-        $promos->description = $request->get('promotionDescription');
-        $promos->updated_at = Carbon::now()->toDateTimeString();
-        $promos->image = $fileName;
+        $promotions->title = $request->promotionTitle;
+        $promotions->description = $request->promotionDescription;
+        $promotions->image = $request->promotionImage;
+        $promotions->updated_at = Carbon::now()->toDateTimeString();
 
-        $promos->save();
+        $promotions->save();
 
         return redirect('promotion/list')->with('success', 'Item has been updated.');
     }
