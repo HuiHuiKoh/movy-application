@@ -55,19 +55,26 @@
                     <tr>
                         <th class="pt-2">{{$char}}</th>
                         @for($i=0;$i<14;$i++)
-                        <td><input type="checkbox" name="classicSeat[]" class="seats single reserved" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
+                        <td><input type="checkbox" name="classicSeat[]" class="seats single" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
                         @endfor
                         <th class="pt-2">{{$char}}</th>
                     </tr>
                     @endforeach
                 </table>
 
+                <?php
+                $seatReserved = array();
+                foreach ($seats as $seat) {
+                    array_push($seatReserved, $seat->row . $seat->number);
+                } var_dump($seatReserved);
+                ?>
+
                 @foreach (range('G', 'H') as $char)
                 <ul class="text-center twin-seats font-white mt-4 pl-0">
                     <li class="d-inline-block position-relative pt-2">{{$char}}</li>
                     @for($i=0;$i<5;$i++)
                     <li class="d-inline-block position-relative mx-5">
-                        <input type="checkbox" class="seats twin reserved" name="twinSeat[]" onclick="seatS()" value="{{$char}}{{$i+1}}">
+                        <input type="checkbox" class="seats twin" name="twinSeat[]" onclick="seatS()" value="{{$char}}{{$i+1}}">
                     </li>
                     @endfor
                     <li class="d-inline-block position-relative pt-2">{{$char}}</li>
@@ -131,47 +138,65 @@
                                     //Disable button when no value input
                                     const inputTwin = $("#qtyTwin");
                                     const inputClassic = $("#qtyClassic");
-                                    const formButton = $(".confirm-button");
-                                    formButton.disabled = true;
                                     document.getElementById("qty-required").innerHTML =
                                             "Please insert ticket quantity";
                                     inputTwin.on('change', function () {
                                         if (inputTwin.value === 0) {
-                                            formButton.disabled = true;
                                             document.getElementById("qty-required").innerHTML =
                                                     "Please insert ticket quantity";
                                         } else if (inputTwin.value !== 0) {
-                                            formButton.disabled = false;
                                             document.getElementById("qty-required").innerHTML = "";
                                             showSeats();
                                         }
                                     });
                                     inputClassic.on('change', function () {
                                         if (inputClassic.value === 0) {
-                                            formButton.disabled = true;
                                             document.getElementById("qty-required").innerHTML =
                                                     "Please insert ticket quantity";
                                         } else if (inputClassic.value !== 0) {
-                                            formButton.disabled = false;
                                             document.getElementById("qty-required").innerHTML = "";
                                             showSeats();
                                         }
-                                    });</script>
+                                    });
+</script>
 <script>
 // Seats
     function showSeats() {
-        if (!formButton.disabled) {
-            $("#seatStructure").addClass("d-block");
+        $("#seatStructure").addClass("d-block");
+    }
+
+    var checkboxes = $('.seats');
+    var passedSeat =<?php echo json_encode($seatReserved); ?>;
+
+//Set reserved seat
+    for (var k = 0; k < checkboxes.length; k++) {
+        for (var i = 0; i < passedSeat.length; i++) {
+            if (checkboxes[k].value === passedSeat[i]) {
+                checkboxes[k].classList.add('reserved');
+                checkboxes[k].disabled = true;
+            }
         }
     }
 
 //Display seat order
     function seatS() {
-        var checkboxes = document.getElementsByClassName('seats');
+        var exist = false;
         var checkboxesChecked = [];
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                checkboxesChecked.push(checkboxes[i].value);
+
+        for (var k = 0; k < checkboxes.length; k++) {
+            if (checkboxes[k].checked) {
+                if (passedSeat.length > 0) {
+                    for (var i = 0; i < passedSeat.length; i++) {
+                        if (passedSeat.includes(checkboxes[k].value)) {
+                            exist = true;
+                        }
+                    }
+                    if (!exist) {
+                        checkboxesChecked.push(checkboxes[k].value);
+                    }
+                } else if (passedSeat.length === 0) {
+                    checkboxesChecked.push(checkboxes[k].value);
+                }
             }
         }
         document.getElementById("seatsDisplay").value = checkboxesChecked;

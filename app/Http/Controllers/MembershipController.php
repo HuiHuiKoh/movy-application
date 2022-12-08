@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Voucher;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 use function view;
 
 /**
@@ -28,7 +27,8 @@ class MembershipController extends Controller {
     }
 
     public function listPromotion() {
-        return view('admin.promotion.list');
+        return view('admin.promotion.list',[
+        ]);
     }
 
     public function deletePromotion() {

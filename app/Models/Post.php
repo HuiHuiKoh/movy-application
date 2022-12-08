@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Promotion extends Model {
-
+class Post extends Model
+{
     use HasFactory;
     use SoftDeletes;
 
@@ -18,16 +18,6 @@ class Promotion extends Model {
     ];
     protected $fillable = [
         'title',
-        'description',
-        'image',
+        'content',
     ];
-    
-    /**
-     * Get the associated user.
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
 }

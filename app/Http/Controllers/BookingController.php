@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use App\Models\Seat;
 use App\Models\SeatType;
 use App\Models\Ticket;
 use Carbon\Carbon;
@@ -62,6 +63,7 @@ class BookingController extends Controller {
                 ->get();
         
         $seatType = SeatType::all();
+        $seats = Seat::all();
         
         $request->session()->put('movie', $request->movie);
         $request->session()->put('cinema', $request->cinema);
@@ -69,6 +71,7 @@ class BookingController extends Controller {
         
         return view('booking.seat', [
             'seatTypes' => $seatType,
+            'seats' => $seats,
             'movieSel' => $movies,
             'cinemaSel' => $cinema,
             'showtimes' => $showtimes,

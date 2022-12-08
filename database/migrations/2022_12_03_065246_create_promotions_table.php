@@ -18,7 +18,6 @@ class CreatePromotionsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('image');
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

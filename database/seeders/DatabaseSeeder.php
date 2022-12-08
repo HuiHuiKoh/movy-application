@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder {
             MoviesSeeder::class,
             ShowtimesSeeder::class,
             SeatTypeSeeder::class,
+            PromotionSeeder::class,
+            VoucherSeeder::class,
         ]);
     }
 
