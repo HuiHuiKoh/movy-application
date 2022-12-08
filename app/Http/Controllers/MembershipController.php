@@ -2,7 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\PromotionRequest;
+use App\Http\Requests\VoucherRequest;
+use App\Models\Membership;
+use App\Models\MembershipVoucher;
+use App\Models\Promotion;
+use App\Models\Voucher;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use function abort;
+use function base_path;
+use function redirect;
 use function view;
 
 /**
@@ -11,48 +23,176 @@ use function view;
 class MembershipController extends Controller {
 
     public function index() {
-        return view('membership.promotion');
-    }
-
-    public function check() {
-        return view('membership.check_points');
-    }
-
-    public function voucher() {
-        return view('membership.voucher');
-    }
-
-    public function addPromotion() {
-        return view('admin.promotion.add');
-    }
-
-    public function listPromotion() {
-        return view('admin.promotion.list',[
+        $promotions = Promotion::all();
+        return view('membership.promotion', [
+            'promotions' => $promotions
         ]);
     }
 
-    public function deletePromotion() {
-        return view('admin.promotion.delete');
+    public function check() {
+        $membershipVouchers = MembershipVoucher::all();
+        if ($membershipVouchers->isEmpty()) {
+            $membershipVouchers = null;
+        }
+        $userid = Auth::user()->id;
+        $memberships = Membership::where('user_id', $userid);
+        return view('membership.check_points', [
+            'memVcs' => $membershipVouchers,
+            'members' => $memberships
+        ]);
     }
 
-    public function updatePromotion() {
-        return view('admin.promotion.update');
+    public function voucher() {
+        $vouchers = Voucher::all();
+        return view('membership.voucher', [
+            'vouchers' => $vouchers
+        ]);
+    }
+
+    public function addPromotion() {
+        return view('admin.promotion_add');
+    }
+
+    public function storePromotion(PromotionRequest $request) {
+        $request->validationData();
+
+        $file = $request->promotionImage;
+
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $file->move(base_path('public\assets\img'), $fileName);
+
+        try {
+            Promotion::create([
+                'title' => $request->get('promotionTitle'),
+                'description' => $request->get('promotionDescription'),
+                'image' => $fileName,
+                'created_at' => Carbon::now()->toDateTimeString(),
+            ]);
+            return redirect()->back()->with('success', 'New item has been added.');
+        } catch (QueryException $e) {
+            abort(500);
+        }
+    }
+
+    public function listPromotion() {
+        $promotions = Promotion::all();
+        return view('admin.promotion_list', [
+            'promotions' => $promotions
+        ]);
+    }
+
+    public function deletePromotion($id) {
+        try {
+            Promotion::find($id)->delete();
+            return redirect()->back()->with('success', 'Item has been deleted.');
+        } catch (QueryException $e) {
+            abort(500);
+        }
+        return view('admin.promotion_delete');
+    }
+
+    public function editPromotion($id) {
+        try {
+            $promo = Promotion::find($id);
+            return view('admin.promotion_update', compact('promo', 'id'));
+        } catch (QueryException $e) {
+            abort(500);
+        }
+        return view('admin.promotion_update');
+    }
+
+    public function updatePromotion(Request $request, $id) {
+        $promos = Promotion::find($id);
+
+        $fileName = $promos->image;
+
+        $this->validate($request, [
+            'promotionTitle' => 'required',
+            'promotionDescription' => 'required|min:10',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $file = $request->image;
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(base_path('public\assets\img'), $fileName);
+        }
+
+        $promos->title = $request->get('promotionTitle');
+        $promos->description = $request->get('promotionDescription');
+        $promos->updated_at = Carbon::now()->toDateTimeString();
+        $promos->image = $fileName;
+
+        $promos->save();
+
+        return redirect('promotion/list')->with('success', 'Item has been updated.');
     }
 
     public function addVoucher() {
-        return view('admin.voucher.add');
+        return view('admin.voucher_add');
+    }
+
+    public function storeVoucher(VoucherRequest $request) {
+        $request->validationData();
+
+        try {
+            Voucher::create([
+                'title' => $request->get('voucherTitle'),
+                'code' => $request->get('voucherCode'),
+                'discount_amount' => $request->get('discountAmount'),
+                'exp_date' => $request->get('expirationDate'),
+                'created_at' => Carbon::now()->toDateTimeString(),
+            ]);
+            return redirect()->back()->with('success', 'New item has been added.');
+        } catch (QueryException $e) {
+            abort(500);
+        }
     }
 
     public function listVoucher() {
-        return view('admin.voucher.list');
+        $vouchers = Voucher::all();
+        return view('admin.voucher_list', [
+            'vouchers' => $vouchers
+        ]);
     }
 
-    public function deleteVoucher() {
-        return view('admin.voucher.delete');
+    public function deleteVoucher($id) {
+        try {
+            Voucher::find($id)->delete();
+            return redirect()->back()->with('success', 'Item has been deleted.');
+        } catch (QueryException $e) {
+            abort(500);
+        }
     }
 
-    public function updateVoucher() {
-        return view('admin.voucher.update');
+    public function editVoucher($id) {
+        try {
+            $vc = Voucher::find($id);
+            return view('admin.voucher_update', compact('vc', 'id'));
+        } catch (QueryException $e) {
+            abort(500);
+        }
+    }
+
+    public function updateVoucher(Request $request, $id) {
+        $vouchers = Voucher::find($id);
+
+        $this->validate($request, [
+            'voucherTitle' => 'required',
+            'voucherCode' => 'required|max:10',
+            'discountAmount' => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
+            'expirationDate' => 'required|date|after:tomorrow',
+        ]);
+
+        $vouchers->title = $request->get('voucherTitle');
+        $vouchers->code = $request->get('voucherCode');
+        $vouchers->discount_amount = $request->get('discountAmount');
+        $vouchers->exp_date = $request->get('expirationDate');
+        $vouchers->updated_at = Carbon::now()->toDateTimeString();
+
+        $vouchers->save();
+
+        return redirect('voucher/list')->with('success', 'Item has been updated.');
     }
 
 }

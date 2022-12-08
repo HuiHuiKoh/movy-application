@@ -4,34 +4,41 @@
 <section id="membership">
     <div class="container">
         <div class="m-4">
-            <h3 class="my-5 text-center">Member Points and Vouchers</h3>
+            <h3 class="mt-5 text-center">Member Points and Vouchers</h3>
         </div>
-        <div class="">
-            <div class="mx-5 font-white">
-                <p class="d-inline">Collected Points: </p>
-                <h6 class="d-inline">53</h6>
+        <div class="p-5">
+            <div class="mx-5 font-white mb-5">
+                <p class="d-inline" style="font-size: large">Collected Points: </p>
+                <p class="font-size-normal mt-1 font-italic">*Each time purchase earns equal value points*</p>
+                @foreach($members as $member)
+                <h6 class="d-inline">{{$member->points}}</h6>
+                @endforeach
+                <input type="number" name="point-dc"><div class="btn orange-btn d-inline">Exchange</div>
             </div>
-            <div class="mx-5 mt-3 font-white">
-                <div class="row font-white my-5 justify-content-center">
-                    <p>Collected Vouchers: </p>
-                    <div class="col-md-7 border p-1">
-                        <a href="#">
-                            <p class="align-middle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-                        </a>
+
+            <div class="ml-5 mt-3 font-white"><p style="font-size: large">Collected Vouchers: </p>
+                <div class="row font-white justify-content-center">
+                    @if($memVcs == null)
+                    <h6>You have no collected voucher</h6>
+                    @else
+                    @foreach($memVcs as $vc)
+                    <div class="">
+                        <div class="col-md-5 border p-1">
+                            <a href="#">
+                                <p class="align-middle">{{$vc->title}}</p>
+                            </a>
+                        </div>
+                        <div class="col-md-2 border p-4">
+                            <h6>{{$vc->code}}</h6>
+                            @if($vc->redemption_date!=null)
+                            <p>Redeemed</p>
+                            @else
+                            <p>Active</p>
+                            @endif
+                        </div>
                     </div>
-                    <div class="col-md-2 border p-4">
-                        <h6>Voucher blaaaaaaaa</h6>
-                    </div>
-                </div>
-                <div class="row font-white my-5 justify-content-center">
-                    <div class="col-md-7 border p-1">
-                        <a href="#">
-                            <p class="align-middle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-                        </a>
-                    </div>
-                    <div class="col-md-2 border p-4">
-                        <h6>Voucher blaaaaaaaa</h6>
-                    </div>
+                    @endforeach
+                    @endif
                 </div>
             </div>
         </div>

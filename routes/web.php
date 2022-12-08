@@ -29,11 +29,13 @@ use Illuminate\Support\Facades\Route;
 //must login
 Route::group(['middleware' => ['auth']], function () {
 
+    //Ticketing
     Route::prefix('booking')->group(function () {
         Route::get('/{id}', [BookingController::class, 'index']);
         Route::post('/seats/store', [BookingController::class, 'store']);
     });
-    
+
+    //Check Booking
     Route::get('/check', [BookingController::class, 'check']);
 
     Route::post('addCart', [CartController::class, 'store']);
@@ -60,7 +62,6 @@ Auth::routes();
 
 //Koh Hui Hui
 //Client-Side
-//Ticketing
 //Payment
 Route::prefix('payment')->group(function () {
     Route::any('/form/view', [PaymentController::class, 'view']);
@@ -72,7 +73,7 @@ Route::prefix('payment')->group(function () {
 //Membership
 Route::prefix('membership')->group(function () {
     Route::get('/', [MembershipController::class, 'index']);
-    Route::get('/{memberId}/check', [MembershipController::class, 'check']);
+    Route::get('/check', [MembershipController::class, 'check']);
     Route::get('/voucher', [MembershipController::class, 'voucher']);
 });
 
@@ -94,24 +95,6 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-//Koh Hui Hui
-//Admin-Side
-//Membership Promotion
-Route::prefix('promotion')->group(function () {
-    Route::get('/add', [MembershipController::class, 'addPromotion']);
-    Route::get('/list', [MembershipController::class, 'listPromotion']);
-    Route::get('/delete/{id}', [MembershipController::class, 'deletePromotion']);
-    Route::get('/update/{id}', [MembershipController::class, 'updatePromotion']);
-});
-
-//Membership Voucher
-Route::prefix('voucher')->group(function () {
-    Route::get('/add', [MembershipController::class, 'addVoucher']);
-    Route::get('/list', [MembershipController::class, 'listVoucher']);
-    Route::get('/delete/{id}', [MembershipController::class, 'deleteVoucher']);
-    Route::get('/update/{id}', [MembershipController::class, 'updateVoucher']);
-});
-
 //Siah Xin Ying
 //Client-side
 //Movies
@@ -124,7 +107,6 @@ Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 
 //delete cart
 Route::delete('destroy/{id}', [CartController::class, 'destroy']);
-
 
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);
 //login page
@@ -207,4 +189,33 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
     //restore Showtimes
     Route::get('/restoreShowtimes', [ShowtimesController::class, 'showTrashed']);
     Route::get('restoreShowtimes/{id}', [ShowtimesController::class, 'restore']);
+
+    //Koh Hui Hui
+    //Membership Promotion
+    Route::prefix('promotion')->group(function () {
+//        Add Promotion
+        Route::get('/add', [MembershipController::class, 'addPromotion']);
+        Route::post('/add/store', [MembershipController::class, 'storePromotion']);
+//        List Promotion
+        Route::get('/list', [MembershipController::class, 'listPromotion']);
+//        Delete Promotion
+        Route::delete('/list/{id}', [MembershipController::class, 'deletePromotion']);
+//        Update Promotion
+        Route::get('/update/{id}', [MembershipController::class, 'editPromotion']);
+        Route::post('/update/{id}', [MembershipController::class, 'updatePromotion']);
+    });
+
+    //Membership Voucher
+    Route::prefix('voucher')->group(function () {
+//        Add Voucher
+        Route::get('/add', [MembershipController::class, 'addVoucher']);
+        Route::post('/add/store', [MembershipController::class, 'storeVoucher']);
+//        List Voucher
+        Route::get('/list', [MembershipController::class, 'listVoucher']);
+//        Delete Voucher
+        Route::delete('/list/{id}', [MembershipController::class, 'deleteVoucher']);
+//        Update Voucher
+        Route::get('/update/{id}', [MembershipController::class, 'editVoucher']);
+        Route::post('/update/{id}', [MembershipController::class, 'updateVoucher']);
+    });
 });

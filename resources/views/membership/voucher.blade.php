@@ -4,39 +4,22 @@
 <section id="membership">
     <div class="container">
         <h1 class="my-5 text-center">Vouchers</h1>
-        <div class="row font-white my-5 justify-content-center">
-            <div class="col-md-7 border p-1">
-                <a href="#">
-                    <p class="align-middle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-                </a>
+        @foreach($vouchers as $vc)
+        <div class="row font-white my-5 justify-content-center px-5">
+            <div class="col-md-2 border text-center">
+                <img width="80" src="{{asset('import/assets/img/logo.png')}}">
             </div>
-            <div class="col-md-4 border p-4 text-center">
-                <h6>Voucher blaaaaaaaa</h6>
+            <div class="col-md-7 border">
+                <h6 class="align-middle text-left d-inline">{{$vc->title}}</h6>
+                <p class="mt-2 font-size-normal"><i class="bi bi-calendar"></i> Expired Date: {{$vc->exp_date}}</p>
+            </div>
+            <div class="col-md-3 border p-2 text-center">
+                <h6>{{$vc->code}}</h6>
                 <button class="btn orange-btn ml-0">Collect Voucher</button>
+                <!--<button class="btn btn-secondary ml-0" disabled="true">Collected</button>-->
             </div>
         </div>
-        <div class="row font-white my-5 justify-content-center">
-            <div class="col-md-7 border p-1">
-                <a href="#">
-                    <p class="align-middle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-                </a>
-            </div>
-            <div class="col-md-4 border p-4 text-center">
-                <h6>Voucher blaaaaaaaa</h6>
-                <button class="btn orange-btn ml-0">Collect Voucher</button>
-            </div>
-        </div>
-        <div class="row font-white my-5 justify-content-center">
-            <div class="col-md-7 border p-1">
-                <a href="#">
-                    <p class="align-middle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-                </a>
-            </div>
-            <div class="col-md-4 border p-4 text-center">
-                <h6>Voucher blaaaaaaaa</h6>
-                <button class="btn orange-btn ml-0">Collect Voucher</button>
-            </div>
-        </div>
+        @endforeach
     </div>
 </section>
 @endsection

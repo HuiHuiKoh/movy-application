@@ -5,17 +5,19 @@
     <div class="container">
         <h1 class="my-4">Promotions</h1>
         <div class="row">
-            <div class="col-lg-6 mb-4">
+            @foreach($promotions as $promo)
+            <div class="col-lg-3 mb-4">
                 <div class="card h-100 bg-black font-white">
-                    <a href="#"><img class="card-img-top" src="https://via.placeholder.com/200x100" alt=""></a>
+                    <a href="#"><img class="card-img-top" height="200" src="{{asset('import/assets/img/'.$promo->image)}}" alt=""></a>
                     <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Promotion blaaaaaaaaaaaaaa</a>
-                        </h4>
-                        <p class="card-text">Description</p>
+                        <h6 class="card-title">
+                            <a href="#">{{$promo->title}}</a>
+                        </h6>
+                        <p class="card-text">{{$promo->description}}</p>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </section>

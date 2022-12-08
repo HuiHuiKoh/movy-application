@@ -20,7 +20,7 @@ class Voucher extends Model
         'title',
         'code',
         'discount_amount',
-        'expiry_date',
+        'exp_date',
     ];
     
     /**

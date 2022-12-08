@@ -79,7 +79,7 @@
                         @else
                         <li class="dropdown"><a href="#"><span>Membership</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a href="{{asset ('membership/1/check') }}">Check member points</a></li>
+                                <li><a href="{{asset ('membership/check') }}">Check member points</a></li>
                                 <li><a href="{{asset ('membership') }}">Promotions</a></li>
                                 <li><a href="{{asset ('membership/voucher') }}">Vouchers</a></li>
                             </ul>

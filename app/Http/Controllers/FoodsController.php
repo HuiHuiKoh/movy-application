@@ -23,10 +23,6 @@ class FoodsController extends Controller {
 //        store session seat order
         Session::put('twinSeat', $request->twinSeat);
         Session::put('classicSeat', $request->classicSeat);
-        
-        echo '<script>console.log('.Session::get('twinQty').')</script>';
-//        echo '<script>console.log('.Session::get('cinema').')</script>';
-//        echo '<script>console.log('.Session::get('datetime').')</script>';
 
         $foods = Foods::all();
         return view('f&b', ['foods' => $foods]);
