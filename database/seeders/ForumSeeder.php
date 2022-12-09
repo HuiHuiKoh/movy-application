@@ -35,6 +35,16 @@ class ForumSeeder extends Seeder {
                 'title' => "Actors, Awards, & Directors",
                 'created_at' => Carbon::now()->toDateTimeString(),
             ],
+            [
+                'id' => 5,
+                'title' => "Home Theater Questions & Information",
+                'created_at' => Carbon::now()->toDateTimeString(),
+            ],
+            [
+                'id' => 6,
+                'title' => "Upcoming Movies",
+                'created_at' => Carbon::now()->toDateTimeString(),
+            ],
         ]);
     }
 

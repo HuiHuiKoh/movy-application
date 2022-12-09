@@ -13,37 +13,42 @@
                 <th scope="col">Date</th>
                 <th scope="col">Time</th>
                 <th scope="col">Seat</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <?php $result = 0; ?>
+@for($i=0;$i< count($tickets);$i++)
             <tr>
                 <th scope="row"><?php echo ++$result; ?></th>
-                <td>@foreach($tickets as $ticket)
-                    {{$ticket->name}}
-                    @endforeach
+                <td>
+                    {{$tickets[$i]->name}}
                 </td>
-                <td>@foreach($showtimes as $show)
-                    {{$show->name}}
-                    @endforeach
+                <td>
+                    {{$showtimes[$i]->name}}
+
                 </td>
-                <td>@foreach($showtimes as $show)
-                    {{$show->hall}}
-                    @endforeach
+                <td>
+                    {{$showtimes[$i]->hall}}
                 </td>
-                <td>@foreach($showtimes as $show)
-                    {{Carbon\Carbon::parse($show->dateTime)->format('d M Y')}}
-                    @endforeach
+                <td>
+                    {{Carbon\Carbon::parse($showtimes[$i]->dateTime)->format('d M Y')}}
                 </td>
-                <td>@foreach($showtimes as $show)
-                    {{Carbon\Carbon::parse($show->dateTime)->format('h:i a')}}
-                    @endforeach
+                <td>
+                    {{Carbon\Carbon::parse($showtimes[$i]->dateTime)->format('h:i a')}}
                 </td>
-                <td>@foreach($seats as $seat)
+                <td>
+                    @foreach($seats as $seat)
+                    @if($seat->ticket_id == $tickets[$i]->id)
                     {{$seat->row}}{{$seat->number}}
+                    @endif
                     @endforeach
+                </td>
+                <td class="text-center">
+                    <a class="btn orange-outline-btn m-0" href="{{ asset('payment/ticket'.$tickets[$i]->id) }}">Print Ticket</a>
                 </td>
             </tr>
+@endfor
         </tbody>
     </table>
     @else

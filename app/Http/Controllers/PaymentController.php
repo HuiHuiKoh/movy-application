@@ -213,7 +213,108 @@ class PaymentController extends Controller {
     }
 
     public function print() {
-        return view('payment.print');
+        $payments = DB::table('payments')
+                ->select('*')
+                ->where('id', Payment::latest()->first()->id)
+                ->get();
+
+        $tickets = DB::table('tickets')
+                ->select('*')
+                ->where('payment_id', '=', Payment::latest()->first()->id)
+                ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
+                ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
+                ->get();
+
+        $foods = DB::table('food_orders')
+                ->select('*')
+                ->where('payment_id', '=', Payment::latest()->first()->id)
+                ->get();
+
+        if (!$tickets->isEmpty()) {
+            $seats = DB::table('seats')
+                    ->select('*')
+                    ->where('seats.ticket_id', '=', Ticket::latest()->first()->id)
+                    ->join('tickets', 'seats.ticket_id', '=', 'tickets.id')
+                    ->get();
+            $showtimes = DB::table('tickets')
+                    ->select('*')
+                    ->where('tickets.id', '=', Ticket::latest()->first()->id)
+                    ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
+                    ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
+                    ->get();
+            if ($seats->isEmpty()) {
+                $seats = null;
+            } else if ($showtimes->isEmpty()) {
+                $showtimes = null;
+            }
+        } else {
+            $tickets = null;
+            $showtimes = null;
+            $seats = null;
+        }
+
+        if (!$foods->isEmpty()) {
+            $ordered_foods = DB::table('ordered_food')
+                    ->select('*')
+                    ->where('ordered_food.food_order_id', '=', FoodOrder::latest()->first()->id)
+                    ->join('foods', 'ordered_food.food_id', '=', 'foods.id')
+                    ->get();
+
+            if ($ordered_foods->isEmpty()) {
+                $ordered_foods = null;
+            }
+        } else {
+            $foods = null;
+            $ordered_foods = null;
+        }
+
+        return view('payment.print', [
+            'tickets' => $tickets,
+            'showtimes' => $showtimes,
+            'payments' => $payments,
+            'seats' => $seats,
+            'foods' => $ordered_foods
+        ]);
+    }
+
+    public function ticket($id) {
+        $tickets = DB::table('tickets')
+                ->select('movies.name', 'tickets.id')
+                ->where('tickets.id', '=', $id)
+                ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
+                ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
+                ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
+                ->orderBy('showtimes.dateTime', 'asc')
+                ->get();
+
+        if ($tickets->isEmpty()) {
+            $tickets = null;
+            $showtimes = null;
+            $seats = null;
+        } else {
+            $seats = DB::table('seats')
+                    ->select('*')
+                    ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
+                    ->where('seats.ticket_id', '=', $id)
+                    ->join('tickets', 'seats.ticket_id', '=', 'tickets.id')
+                    ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
+                    ->orderBy('showtimes.dateTime', 'asc')
+                    ->get();
+            $showtimes = DB::table('tickets')
+                    ->select('*')
+                    ->where('tickets.id', '=', $id)
+                    ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
+                    ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
+                    ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
+                    ->orderBy('showtimes.dateTime', 'asc')
+                    ->get();
+        }
+        echo '<script>console.log(' . $seats . ')</script>';
+        return view('payment.print', [
+            'tickets' => $tickets,
+            'showtimes' => $showtimes,
+            'seats' => $seats,
+        ]);
     }
 
 }

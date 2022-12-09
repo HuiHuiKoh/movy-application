@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/details', [PaymentController::class, 'details']);
         Route::any('/details/add', [PaymentController::class, 'add']);
         Route::get('/print', [PaymentController::class, 'print']);
+        Route::get('/ticket{id}', [PaymentController::class, 'ticket']);
     });
     
     
@@ -72,7 +73,6 @@ Route::group(['middleware' => ['auth']], function () {
 //Forum
     Route::prefix('forum')->group(function () {
         Route::get('/', [ForumController::class, 'index']);
-        Route::get('/forum', [ForumController::class, 'forum']);
         Route::get('/thread', [ForumController::class, 'thread']);
     });
 

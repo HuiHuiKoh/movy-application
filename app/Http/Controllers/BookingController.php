@@ -28,6 +28,7 @@ class BookingController extends Controller {
                 ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
                 ->where('showtimes.moviesID', '=', $id)
                 ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
+                ->orderBy('showtimes.dateTime', 'asc')
                 ->get();
 
         $showCinema = DB::table('showtimes')
@@ -56,19 +57,19 @@ class BookingController extends Controller {
                 ->where('cinemaID', '=', $request->cinema)
                 ->where('datetime', '=', $request->datetime)
                 ->get();
-        
+
         $cinema = DB::table('cinemas')
                 ->select('*')
                 ->where('id', '=', $request->cinema)
                 ->get();
-        
+
         $seatType = SeatType::all();
         $seats = Seat::all();
-        
+
         $request->session()->put('movie', $request->movie);
         $request->session()->put('cinema', $request->cinema);
         $request->session()->put('datetime', $request->datetime);
-        
+
         return view('booking.seat', [
             'seatTypes' => $seatType,
             'seats' => $seats,
@@ -82,13 +83,13 @@ class BookingController extends Controller {
 
     public function check() {
         $tickets = DB::table('tickets')
-                ->select('*')
-                ->where('tickets.payment_id', '=', Payment::latest()->first()->id)
+                ->select('movies.name', 'tickets.id')
                 ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
                 ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
                 ->join('movies', 'showtimes.moviesID', '=', 'movies.id')
+                ->orderBy('showtimes.dateTime', 'asc')
                 ->get();
-        
+
         if ($tickets->isEmpty()) {
             $tickets = null;
             $showtimes = null;
@@ -96,20 +97,21 @@ class BookingController extends Controller {
         } else {
             $seats = DB::table('seats')
                     ->select('*')
-                    ->where('seats.ticket_id', '=', Ticket::latest()->first()->id)
                     ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
                     ->join('tickets', 'seats.ticket_id', '=', 'tickets.id')
                     ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
+                    ->orderBy('showtimes.dateTime', 'asc')
                     ->get();
             $showtimes = DB::table('tickets')
                     ->select('*')
-                    ->where('tickets.id', '=', Ticket::latest()->first()->id)
                     ->where('showtimes.dateTime', '>', Carbon::now()->toDateTimeString())
                     ->join('showtimes', 'tickets.showtimes_id', '=', 'showtimes.id')
                     ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
+                    ->orderBy('showtimes.dateTime', 'asc')
                     ->get();
         }
-        return view('booking.check',[
+        echo '<script>console.log(' . $seats . ')</script>';
+        return view('booking.check', [
             'tickets' => $tickets,
             'showtimes' => $showtimes,
             'seats' => $seats,

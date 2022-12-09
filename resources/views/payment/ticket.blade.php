@@ -12,7 +12,6 @@
         <div class="card col-md-6">
             <div class="card-body">
                 <div class="row">
-                    
                     <div class="col-md-3">
                         {!! QrCode::size(100)->generate('
                         Movie: '.$ticket->name.', 

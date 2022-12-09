@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['paybycard'])) {
         if (validatecard($_POST['cNum']) != false) {
             if (is_string($_POST['cName'])) {
-                if (is_numeric($_POST['cvv']) && $_POST['cvv'] <= 999) {
+                if (is_numeric($_POST['cvv']) && $_POST['cvv'] <= 999 && $_POST['cvv'] >=100) {
                     $cardError = (array) null;
                     session()->put('method', 'card');
                     echo '<script>window.location.href="' . action('\App\Http\Controllers\PaymentController@add') . '"</script>';
@@ -237,15 +237,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="tabs">
                         <ul class="nav nav-tabs" id="myTab" role="tablist"> 
                             <li class="nav-item" role="presentation"> 
-                                <a class="nav-link active" id="visa-tab" data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true"> 
-                                    <img src="https://d3.harvard.edu/platform-digit/wp-content/uploads/sites/2/2020/02/visa-logo-png-2026-1.png" width="80"> 
+                                <a class="nav-link" id="visa-tab" data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true"> 
+                                    <img src="https://d3.harvard.edu/platform-digit/wp-content/uploads/sites/2/2020/02/visa-logo-png-2026-1.png" width="100"> 
                                 </a>
                             </li> 
-                            <li class="nav-item" role="presentation"> 
+<!--                            <li class="nav-item" role="presentation"> 
                                 <a class="nav-link" id="paypal-tab" data-toggle="tab" href="#paypal" role="tab" aria-controls="paypal" aria-selected="false"> 
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" width="80"> 
                                 </a> 
-                            </li> 
+                            </li> -->
                         </ul> 
                         <div class="tab-content" id="myTabContent"> 
                             <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab"> 
@@ -283,7 +283,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 </div> 
                                             </div> 
                                             <div class="px-5 pay">
-                                                <button type="submit" name="paybycard" class="btn btn-success btn-block">Pay with Card</button>
+                                                <button type="submit" name="paybycard" class="btn btn-success btn-block">Pay</button>
                                                 <button class="btn btn-secondary btn-block" data-dismiss='modal'>Cancel</button>
                                             </div>
                                         </div> 

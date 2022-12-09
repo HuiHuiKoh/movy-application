@@ -84,7 +84,7 @@
                                 <li><a href="{{asset ('membership/voucher') }}">Vouchers</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{asset ('forum/forum') }}">Forum</a></li>
+                        <li><a href="{{asset ('forum') }}">Forum</a></li>
                         <li><a href="{{asset ('cart') }}">Cart</a></li>
                         <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>

@@ -17,7 +17,8 @@ use function view;
 class ForumController extends Controller {
 
     public function index() {
-        return view('forum.index');
+        $forums = Forum::all();
+        return view('forum.index', compact('forums'));
     }
 
     public function forum() {
@@ -55,7 +56,7 @@ class ForumController extends Controller {
             abort(500);
         }
     }
-    
+
     public function edit($id) {
         try {
             $forums = Forum::find($id);
@@ -89,7 +90,7 @@ class ForumController extends Controller {
             abort(500);
         }
     }
-    
+
     public function renew() {
         try {
             $forums = Forum::onlyTrashed()->get();
