@@ -54,6 +54,7 @@
             <p class="col1">Synopsis </p>
             <p class="col2">{{$movies->synopsis}}</p>
             <a href="{{ action('\App\Http\Controllers\BookingController@index',$movies->id) }}"><button class="btn-booking">&#127915;Booking</button></a>
+            
         </div>
     </div>
 

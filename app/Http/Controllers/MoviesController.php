@@ -29,6 +29,7 @@ class MoviesController extends Controller {
 
         $movies = Movies::find($id);
         return view('movies', compact('movies', 'id'));
+
     }
 
     public function newMovies() {
