@@ -16,9 +16,11 @@ class CreateForumUsersTable extends Migration
         Schema::create('forum_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('username');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('forum_user_type_id')->references('id')->on('forum_user_types')->onDelete('cascade');
-            $table->softDeletes();
+            $table->rememberToken();
+            $table->foreignId('forum_user_type_id')->references('id')->on('forum_user_types')->onDelete('cascade')->default(1);
             $table->timestamps();
         });
     }

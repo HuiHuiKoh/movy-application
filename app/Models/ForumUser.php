@@ -18,6 +18,7 @@ class ForumUser extends Model
     ];
     protected $fillable = [
         'username',
+        'email',
         'password',
         'forum_user_type_id'
     ];
@@ -25,10 +26,20 @@ class ForumUser extends Model
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $hidden = [
-        'password'
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
     
     /**
