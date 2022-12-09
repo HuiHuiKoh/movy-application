@@ -65,10 +65,10 @@
                         <div class="card">
                             <label class="form-control-label px-3">Image<span class="text-danger"> *</span></label> 
                             <div id="imageCenter">
-                                <img src="/assets/img/{{$promotion->image}}" width="150px" height="200px" alt="{{$promotion->image}}">
+                                <img src="/assets/img/{{$promotion['image']}}" width="150px" height="200px" alt="{{$promotion['image']}}">
                             </div>
                             <br>
-                            <input type="file" name="promotionImage" value="/assets/img/{{$promotion->image}}" accept="image/png, image/gif, image/jpeg , image/jpg" />
+                            <input type="file" name="promotionImage" value="/assets/img/{{$promotion['image']}}" accept="image/png, image/gif, image/jpeg , image/jpg" />
                         </div>
 
                         <div class="card">

@@ -109,19 +109,19 @@ class MembershipController extends Controller {
         $this->validate($request, [
             'promotionTitle' => 'required',
             'promotionDescription' => 'required|min:10',
-            'promotionImage' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|',
+            'promotionImage' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|',
         ]);
 
         if ($request->hasFile('promotionImage')) {
-            $file = $request->get('promotionImage');
+            $file = $request->promotionImage;
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move(base_path('\public\assets\img'), $fileName);
         }
 
         $promotions->title = $request->get('promotionTitle');
         $promotions->description = $request->get('promotionDescription');
-        $promotions->image = $request->get('promotionImage');
         $promotions->updated_at = Carbon::now()->toDateTimeString();
+        $promotions->image = $fileName;
 
         $promotions->save();
 

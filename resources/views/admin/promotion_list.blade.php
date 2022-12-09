@@ -54,7 +54,7 @@
                         @foreach ($promotions as $promo)
                         <tr>
                             <td>{{$promo['id']}}</td>
-                            <td><img src="{{asset('assets/img/'.$promo['image'])}}" width="100" height="130" alt="{{$promo['image']}}"></td>
+                            <td><img src="{{asset('/assets/img/'.$promo['image'])}}" width="100" height="130" alt="{{$promo['image']}}"></td>
                             <td>{{$promo['title']}}</td>
                             <td>{{$promo['description']}}</td>
                             <td>
