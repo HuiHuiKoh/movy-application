@@ -203,6 +203,9 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 //        Update Promotion
         Route::get('/update/{id}', [MembershipController::class, 'editPromotion']);
         Route::post('/update/{id}', [MembershipController::class, 'updatePromotion']);
+//        Restore Promotion
+        Route::get('/restore', [MembershipController::class, 'renewPromotion']);
+        Route::get('restore/{id}', [MembershipController::class, 'restorePromotion']);
     });
 
     //Membership Voucher
@@ -217,5 +220,8 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 //        Update Voucher
         Route::get('/update/{id}', [MembershipController::class, 'editVoucher']);
         Route::post('/update/{id}', [MembershipController::class, 'updateVoucher']);
+//        Restore Voucher
+        Route::get('/restore', [MembershipController::class, 'renewVoucher']);
+        Route::get('restore/{id}', [MembershipController::class, 'restoreVoucher']);
     });
 });

@@ -16,7 +16,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Edit Promotion</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ asset('promotion/list') }}">Promotion List</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('promotion/list') }}">Promotion List</a></li>
             <li class="breadcrumb-item">Edit Promotion</li>
         </ol>
 
@@ -52,24 +52,25 @@
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-12 flex-column d-flex"> 
                                     <label class="form-control-label px-3">Title<span class="text-danger"> *</span></label> 
-                                    <input type="text" id="title" name="promotionTitle" placeholder="" value="{{$promo['title']}}"> 
+                                    <input type="text" id="name" name="promotionTitle" placeholder="" value="{{$promotion->title}}"> 
                                 </div>
-                            </div>                                                   
+                            </div>                                                                                                         
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-12 flex-column d-flex"> 
-                                    <label class="form-control-label px-3">Description<span class="text-danger"> *</span></label> 
-                                    <textarea id="desc" name="promotionDescription" placeholder="">{{$promo['description']}}</textarea>
+                                    <label class="form-control-label px-3">Description</label> 
+                                    <textarea id="description" name="promotionDescription" placeholder="">{{$promotion->description}}</textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="card">
                             <label class="form-control-label px-3">Image<span class="text-danger"> *</span></label> 
                             <div id="imageCenter">
-                                <img src="/assets/img/{{$promo['image']}}" width="150px" height="200px" alt="{{$promo['image']}}">
+                                <img src="/assets/img/{{$promotion->image}}" width="150px" height="200px" alt="{{$promotion->image}}">
                             </div>
                             <br>
-                            <input type="file" name="promotionImage" value="/assets/img/{{$promo['image']}}" accept="image/png, image/gif, image/jpeg , image/jpg" />
+                            <input type="file" name="promotionImage" value="/assets/img/{{$promotion->image}}" accept="image/png, image/gif, image/jpeg , image/jpg" />
                         </div>
+
                         <div class="card">
                             <div class="row justify-content-center">
                                 <button type="submit" class="btn-block btn-info btn-lg" style="background: #EFDDB8; border-color:#EFDDB8;">Update</button> 

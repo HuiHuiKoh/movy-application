@@ -85,7 +85,7 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{ asset('promotion/list') }}"><div class="sb-nav-link-icon"><i class="fa fa-list-alt"></i></div>Promotion List</a>
                                 <a class="nav-link" href="{{ asset('promotion/add') }}"><div class="sb-nav-link-icon"><i class="fa fa-folder"></i></div>Add new Promotion</a>
-                                <a class="nav-link" href="{{ url('book_restore')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Promotion</a>
+                                <a class="nav-link" href="{{ asset('promotion/restore')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Promotion</a>
                             </nav>
                         </div>
                         <?php $collapse++ ?>
@@ -98,7 +98,7 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{ asset('voucher/list') }}"><div class="sb-nav-link-icon"><i class="fa fa-list-alt"></i></div>Voucher List</a>
                                 <a class="nav-link" href="{{ asset('voucher/add') }}"><div class="sb-nav-link-icon"><i class="fa fa-folder"></i></div>Add new Voucher</a>
-                                <a class="nav-link" href="{{ url('book_restore')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Voucher</a>
+                                <a class="nav-link" href="{{ asset('voucher/restore')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Voucher</a>
                             </nav>
                         </div>
 

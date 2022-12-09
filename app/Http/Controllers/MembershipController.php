@@ -22,6 +22,7 @@ use function view;
  */
 class MembershipController extends Controller {
 
+//    Client Side
     public function index() {
         $promotions = Promotion::all();
         return view('membership.promotion', [
@@ -49,6 +50,7 @@ class MembershipController extends Controller {
         ]);
     }
 
+//    Admin Side - Promotion CRUD
     public function addPromotion() {
         return view('admin.promotion_add');
     }
@@ -93,12 +95,11 @@ class MembershipController extends Controller {
 
     public function editPromotion($id) {
         try {
-            $promo = Promotion::find($id);
-            return view('admin.promotion_update', compact('promo', 'id'));
+            $promotion = Promotion::find($id);
+            return view('admin.promotion_update', compact('promotion', 'id'));
         } catch (QueryException $e) {
             abort(500);
         }
-        return view('admin.promotion_update');
     }
 
     public function updatePromotion(Request $request, $id) {
@@ -110,16 +111,16 @@ class MembershipController extends Controller {
             'promotionDescription' => 'required|min:10',
             'promotionImage' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|',
         ]);
-        
+
         if ($request->hasFile('promotionImage')) {
-            $file = $request->promotionImage;
+            $file = $request->get('promotionImage');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move(base_path('\public\assets\img'), $fileName);
         }
 
-        $promotions->title = $request->promotionTitle;
-        $promotions->description = $request->promotionDescription;
-        $promotions->image = $request->promotionImage;
+        $promotions->title = $request->get('promotionTitle');
+        $promotions->description = $request->get('promotionDescription');
+        $promotions->image = $request->get('promotionImage');
         $promotions->updated_at = Carbon::now()->toDateTimeString();
 
         $promotions->save();
@@ -127,6 +128,25 @@ class MembershipController extends Controller {
         return redirect('promotion/list')->with('success', 'Item has been updated.');
     }
 
+    public function renewPromotion() {
+        try {
+            $promotions = Promotion::onlyTrashed()->get();
+            return view('admin.promotion_restore', compact('promotions'));
+        } catch (QueryException $e) {
+            abort(500);
+        }
+    }
+
+    public function restorePromotion($id) {
+        try {
+            Promotion::onlyTrashed()->find($id)->restore();
+            return redirect()->back()->with('success', 'Item has been restored.');
+        } catch (QueryException $e) {
+            abort(500);
+        }
+    }
+
+//    Admin Side - Voucher CRUD
     public function addVoucher() {
         return view('admin.voucher_add');
     }
@@ -192,6 +212,24 @@ class MembershipController extends Controller {
         $vouchers->save();
 
         return redirect('voucher/list')->with('success', 'Item has been updated.');
+    }
+
+    public function renewVoucher() {
+        try {
+            $vouchers = Voucher::onlyTrashed()->get();
+            return view('admin.voucher_restore', compact('vouchers'));
+        } catch (QueryException $e) {
+            abort(500);
+        }
+    }
+
+    public function restoreVoucher($id) {
+        try {
+            Voucher::onlyTrashed()->find($id)->restore();
+            return redirect()->back()->with('success', 'Item has been restored.');
+        } catch (QueryException $e) {
+            abort(500);
+        }
     }
 
 }
