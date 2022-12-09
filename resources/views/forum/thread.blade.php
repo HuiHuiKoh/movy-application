@@ -1,4 +1,4 @@
-@extends('forum.layouts.app')
+@extends('forum.layouts.auth')
 
 @section('forum')
 <div class="row text-left mb-5">

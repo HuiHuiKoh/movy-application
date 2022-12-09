@@ -101,6 +101,19 @@
                                 <a class="nav-link" href="{{ asset('voucher/restore')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Voucher</a>
                             </nav>
                         </div>
+                        <?php $collapse++ ?>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts<?php echo $collapse ?>" aria-expanded="false" aria-controls="collapseLayouts<?php echo $collapse ?>">
+                            <div class="sb-nav-link-icon"><i class="fa fa-reorder"></i></div>
+                            Forums
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts<?php echo $collapse ?>" aria-labelledby="heading<?php echo $collapse ?>" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ asset('forum/list') }}"><div class="sb-nav-link-icon"><i class="fa fa-list-alt"></i></div>Forum List</a>
+                                <a class="nav-link" href="{{ asset('forum/add') }}"><div class="sb-nav-link-icon"><i class="fa fa-folder"></i></div>Add new Forum</a>
+                                <a class="nav-link" href="{{ asset('forum/restore')}}"><div class="sb-nav-link-icon"><i class="fa fa-archive"></i></div>Restore Forum</a>
+                            </nav>
+                        </div>
 
                         
 

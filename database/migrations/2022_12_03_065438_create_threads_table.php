@@ -18,7 +18,7 @@ class CreateThreadsTable extends Migration
             $table->string('title');
             $table->unsignedBigInteger('view_count');
             $table->foreignId('forum_id')->references('id')->on('forums')->onDelete('cascade');
-            $table->foreignId('forum_user_id')->references('id')->on('forum_users')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -81,6 +81,7 @@ class ComposerStaticInit9a41c1db6d0d35562137cb9ac504f123
             'Symfony\\Component\\ErrorHandler\\' => 31,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'SimpleSoftwareIO\\' => 17,
         ),
         'R' => 
         array (
@@ -300,6 +301,10 @@ class ComposerStaticInit9a41c1db6d0d35562137cb9ac504f123
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'SimpleSoftwareIO\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -508,6 +513,13 @@ class ComposerStaticInit9a41c1db6d0d35562137cb9ac504f123
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
             ),
         ),
+        'B' => 
+        array (
+            'BaconQrCode' => 
+            array (
+                0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -543,9 +555,12 @@ class ComposerStaticInit9a41c1db6d0d35562137cb9ac504f123
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\FoodRequest' => __DIR__ . '/../..' . '/app/Http/Requests/FoodRequest.php',
+        'App\\Http\\Requests\\ForumRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ForumRequest.php',
         'App\\Http\\Requests\\MoviesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/MoviesRequest.php',
+        'App\\Http\\Requests\\PromotionRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PromotionRequest.php',
         'App\\Http\\Requests\\ShowtimesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ShowtimesRequest.php',
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
+        'App\\Http\\Requests\\VoucherRequest' => __DIR__ . '/../..' . '/app/Http/Requests/VoucherRequest.php',
         'App\\Models\\Cart' => __DIR__ . '/../..' . '/app/Models/Cart.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Cinema' => __DIR__ . '/../..' . '/app/Models/Cinema.php',
@@ -580,6 +595,45 @@ class ComposerStaticInit9a41c1db6d0d35562137cb9ac504f123
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'BaconQrCode\\Common\\AbstractEnum' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/AbstractEnum.php',
+        'BaconQrCode\\Common\\BitArray' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/BitArray.php',
+        'BaconQrCode\\Common\\BitMatrix' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/BitMatrix.php',
+        'BaconQrCode\\Common\\BitUtils' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/BitUtils.php',
+        'BaconQrCode\\Common\\CharacterSetEci' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/CharacterSetEci.php',
+        'BaconQrCode\\Common\\EcBlock' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/EcBlock.php',
+        'BaconQrCode\\Common\\EcBlocks' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/EcBlocks.php',
+        'BaconQrCode\\Common\\ErrorCorrectionLevel' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/ErrorCorrectionLevel.php',
+        'BaconQrCode\\Common\\FormatInformation' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/FormatInformation.php',
+        'BaconQrCode\\Common\\Mode' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/Mode.php',
+        'BaconQrCode\\Common\\ReedSolomonCodec' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/ReedSolomonCodec.php',
+        'BaconQrCode\\Common\\Version' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/Version.php',
+        'BaconQrCode\\Encoder\\BlockPair' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/BlockPair.php',
+        'BaconQrCode\\Encoder\\ByteMatrix' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/ByteMatrix.php',
+        'BaconQrCode\\Encoder\\Encoder' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/Encoder.php',
+        'BaconQrCode\\Encoder\\MaskUtil' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/MaskUtil.php',
+        'BaconQrCode\\Encoder\\MatrixUtil' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/MatrixUtil.php',
+        'BaconQrCode\\Encoder\\QrCode' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/QrCode.php',
+        'BaconQrCode\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/ExceptionInterface.php',
+        'BaconQrCode\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/InvalidArgumentException.php',
+        'BaconQrCode\\Exception\\OutOfBoundsException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/OutOfBoundsException.php',
+        'BaconQrCode\\Exception\\RuntimeException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/RuntimeException.php',
+        'BaconQrCode\\Exception\\UnexpectedValueException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/UnexpectedValueException.php',
+        'BaconQrCode\\Exception\\WriterException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/WriterException.php',
+        'BaconQrCode\\Renderer\\Color\\Cmyk' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/Cmyk.php',
+        'BaconQrCode\\Renderer\\Color\\ColorInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/ColorInterface.php',
+        'BaconQrCode\\Renderer\\Color\\Gray' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/Gray.php',
+        'BaconQrCode\\Renderer\\Color\\Rgb' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/Rgb.php',
+        'BaconQrCode\\Renderer\\Image\\AbstractRenderer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/AbstractRenderer.php',
+        'BaconQrCode\\Renderer\\Image\\Decorator\\DecoratorInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Decorator/DecoratorInterface.php',
+        'BaconQrCode\\Renderer\\Image\\Decorator\\FinderPattern' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Decorator/FinderPattern.php',
+        'BaconQrCode\\Renderer\\Image\\Eps' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Eps.php',
+        'BaconQrCode\\Renderer\\Image\\Png' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Png.php',
+        'BaconQrCode\\Renderer\\Image\\RendererInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/RendererInterface.php',
+        'BaconQrCode\\Renderer\\Image\\Svg' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Svg.php',
+        'BaconQrCode\\Renderer\\RendererInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/RendererInterface.php',
+        'BaconQrCode\\Renderer\\Text\\Html' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Text/Html.php',
+        'BaconQrCode\\Renderer\\Text\\Plain' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Text/Plain.php',
+        'BaconQrCode\\Writer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Writer.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',
         'Brick\\Math\\BigNumber' => __DIR__ . '/..' . '/brick/math/src/BigNumber.php',
@@ -691,7 +745,9 @@ class ComposerStaticInit9a41c1db6d0d35562137cb9ac504f123
         'Database\\Seeders\\CinemaSeeder' => __DIR__ . '/../..' . '/database/seeders/CinemaSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'Database\\Seeders\\FoodsSeeder' => __DIR__ . '/../..' . '/database/seeders/FoodsSeeder.php',
+        'Database\\Seeders\\ForumSeeder' => __DIR__ . '/../..' . '/database/seeders/ForumSeeder.php',
         'Database\\Seeders\\MoviesSeeder' => __DIR__ . '/../..' . '/database/seeders/MoviesSeeder.php',
+        'Database\\Seeders\\PromotionSeeder' => __DIR__ . '/../..' . '/database/seeders/PromotionSeeder.php',
         'Database\\Seeders\\SeatTypeSeeder' => __DIR__ . '/../..' . '/database/seeders/SeatTypeSeeder.php',
         'Database\\Seeders\\ShowtimesSeeder' => __DIR__ . '/../..' . '/database/seeders/ShowtimesSeeder.php',
         'Database\\Seeders\\VoucherSeeder' => __DIR__ . '/../..' . '/database/seeders/VoucherSeeder.php',

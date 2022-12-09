@@ -125,7 +125,7 @@ class MembershipController extends Controller {
 
         $promotions->save();
 
-        return redirect('promotion/list')->with('success', 'Item has been updated.');
+        return redirect()->back()->with('success', 'Item has been updated.');
     }
 
     public function renewPromotion() {
@@ -211,7 +211,7 @@ class MembershipController extends Controller {
 
         $vouchers->save();
 
-        return redirect('voucher/list')->with('success', 'Item has been updated.');
+        return redirect()->back()->with('success', 'Item has been updated.');
     }
 
     public function renewVoucher() {

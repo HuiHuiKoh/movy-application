@@ -17,7 +17,7 @@ class CreateRepliesTable extends Migration
             $table->bigIncrements('id');
             $table->string('content');
             $table->foreignId('thread_id')->references('id')->on('threads')->onDelete('cascade');
-            $table->foreignId('forum_user_id')->references('id')->on('forum_users')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

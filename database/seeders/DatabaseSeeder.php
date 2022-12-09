@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder {
             SeatTypeSeeder::class,
             PromotionSeeder::class,
             VoucherSeeder::class,
+            ForumSeeder::class,
         ]);
     }
 

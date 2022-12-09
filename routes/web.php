@@ -26,74 +26,73 @@ use Illuminate\Support\Facades\Route;
   |
  */
 
-//must login
+
+Route::get('/home', [HomeController::class, 'index']);
+//About
+Route::get('/about', function () {
+    return view('about');
+});
+//Contact
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+//User must login
 Route::group(['middleware' => ['auth']], function () {
 
-    //Ticketing
+//Koh Hui Hui
+//Client-Side
+//Ticketing
     Route::prefix('booking')->group(function () {
         Route::get('/{id}', [BookingController::class, 'index']);
         Route::post('/seats/store', [BookingController::class, 'store']);
     });
 
-    //Check Booking
+//Payment
+    Route::prefix('payment')->group(function () {
+        Route::any('/form/view', [PaymentController::class, 'view']);
+        Route::any('/form/cancel', [PaymentController::class, 'cancel']);
+        Route::get('/details', [PaymentController::class, 'details']);
+        Route::any('/details/add', [PaymentController::class, 'add']);
+    });
+
+//Membership
+    Route::prefix('membership')->group(function () {
+        Route::get('/', [MembershipController::class, 'index']);
+        Route::get('/check', [MembershipController::class, 'check']);
+        Route::get('/voucher', [MembershipController::class, 'voucher']);
+    });
+
+//Check Booking
     Route::get('/check', [BookingController::class, 'check']);
 
+//Forum
+    Route::prefix('forum')->group(function () {
+        Route::get('/', [ForumController::class, 'index']);
+        Route::get('/forum', [ForumController::class, 'forum']);
+        Route::get('/thread', [ForumController::class, 'thread']);
+    });
+
+//Siah Xin Ying
+//Client-Side
     Route::post('addCart', [CartController::class, 'store']);
-    //Cart
+//Cart
     Route::get('cart', [CartController::class, 'cartList']);
 
-    //Purchase History
+//Purchase History
     Route::get('purchaseHistory', [HistoryController::class, 'view']);
     Route::post('purchaseHistoryDetails/{id}', [HistoryController::class, 'paymentDetails']);
     Route::get('purchaseHistoryDetails/{id}', [HistoryController::class, 'details']);
 
-    //Categories function
+//Categories function
     Route::get('category/{slug}', [MoviesController::class, 'viewCategory']);
 
-    //Search Function
+//Search Function
     Route::get('search', [MoviesController::class, 'search']);
 });
 
-Route::get('/home', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 // Auth::routes();
 Auth::routes();
-
-//Koh Hui Hui
-//Client-Side
-//Payment
-Route::prefix('payment')->group(function () {
-    Route::any('/form/view', [PaymentController::class, 'view']);
-    Route::any('/form/cancel', [PaymentController::class, 'cancel']);
-    Route::get('/details', [PaymentController::class, 'details']);
-    Route::any('/details/add', [PaymentController::class, 'add']);
-});
-
-//Membership
-Route::prefix('membership')->group(function () {
-    Route::get('/', [MembershipController::class, 'index']);
-    Route::get('/check', [MembershipController::class, 'check']);
-    Route::get('/voucher', [MembershipController::class, 'voucher']);
-});
-
-//Forum
-Route::prefix('forum')->group(function () {
-    Route::get('/forum', [ForumController::class, 'forum']);
-    Route::get('/thread', [ForumController::class, 'thread']);
-    Route::get('/login', [ForumController::class, 'login']);
-    Route::get('/register', [ForumController::class, 'register']);
-});
-
-//About
-Route::get('/about', function () {
-    return view('about');
-});
-
-//Contact
-Route::get('/contact', function () {
-    return view('contact');
-});
 
 //Siah Xin Ying
 //Client-side
@@ -127,70 +126,71 @@ Route::controller(UserController::class)->group(function () {
 //only admin can see it
 Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 
-    //Siah Xin Ying
-    //Dashbroad
+//Siah Xin Ying
+//Dashbroad
     Route::get('/dashboard', [UserController::class, 'viewDash']);
 
-    //Chart
+//Chart
     Route::get('/userReport', [ChartController::class, 'viewUser']);
     Route::get('/salesReport', [ChartController::class, 'viewSales']);
     Route::POST('/chart', [ChartController::class, 'getNewUser']);
     Route::POST('/amountChart', [ChartController::class, 'getAmount']);
 
-    //add Movies
+//add Movies
     Route::get('/addMovies', [MoviesController::class, 'newMovies']);
     Route::get('/addMovies', [MoviesController::class, 'categoryOption']);
     Route::post('/addMovies/store', [MoviesController::class, 'store']);
 
-    //delete Movies
+//delete Movies
     Route::delete('moviesList/{id}', [MoviesController::class, 'destroy']);
 
-    //show Movies List
+//show Movies List
     Route::get('/moviesList', [MoviesController::class, 'showMoviesList']);
 
-    //update Movies
-    //Route::get('updateMovies/{id}', [MoviesController::class, 'category']);
+//update Movies
+//Route::get('updateMovies/{id}', [MoviesController::class, 'category']);
     Route::get('updateMovies/{id}', [MoviesController::class, 'edit']);
     Route::post('updateMovies/{id}', [MoviesController::class, 'update']);
 
-    //restore Movies
+//restore Movies
     Route::get('/restoreMovies', [MoviesController::class, 'showTrashed']);
     Route::get('restoreMovies/{id}', [MoviesController::class, 'restore']);
 
-    //add Foods
+//add Foods
     Route::get('/addFoods', [FoodsController::class, 'newFoods']);
     Route::post('/addFoods/store', [FoodsController::class, 'store']);
 
-    //delete Food
+//delete Food
     Route::delete('foodList/{id}', [FoodsController::class, 'destroy']);
 
-    //show Food List
+//show Food List
     Route::get('/foodList', [FoodsController::class, 'showFoodsList']);
 
-    //update Foods
+//update Foods
     Route::get('updateFoods/{id}', [FoodsController::class, 'edit']);
     Route::post('updateFoods/{id}', [FoodsController::class, 'update']);
 
-    //restore Foods
+//restore Foods
     Route::get('/restoreFoods', [FoodsController::class, 'showTrashed']);
     Route::get('restoreFoods/{id}', [FoodsController::class, 'restore']);
 
-    //add Showtimes
+//add Showtimes
     Route::get('/addShowtimes', [ShowtimesController::class, 'newShowtimes']);
     Route::get('/addShowtimes', [ShowtimesController::class, 'cinemaOption']);
     Route::post('/addShowtimes/store', [ShowtimesController::class, 'store']);
 
-    //delete Showtimes
+//delete Showtimes
     Route::delete('showtimesList/{id}', [ShowtimesController::class, 'destroy']);
 
-    //show Showtimes List
+//show Showtimes List
     Route::get('showtimesList', [ShowtimesController::class, 'showList']);
 
-    //restore Showtimes
+//restore Showtimes
     Route::get('/restoreShowtimes', [ShowtimesController::class, 'showTrashed']);
     Route::get('restoreShowtimes/{id}', [ShowtimesController::class, 'restore']);
 
     //Koh Hui Hui
+    //Admin-side
     //Membership Promotion
     Route::prefix('promotion')->group(function () {
 //        Add Promotion
@@ -223,5 +223,22 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
 //        Restore Voucher
         Route::get('/restore', [MembershipController::class, 'renewVoucher']);
         Route::get('restore/{id}', [MembershipController::class, 'restoreVoucher']);
+    });
+    
+    //Forum
+    Route::prefix('forum')->group(function () {
+//        Add Forum
+        Route::get('/add', [ForumController::class, 'add']);
+        Route::post('/add/store', [ForumController::class, 'store']);
+//        List Forum
+        Route::get('/list', [ForumController::class, 'list']);
+//        Delete Forum
+        Route::delete('/list/{id}', [ForumController::class, 'delete']);
+//        Update Forum
+        Route::get('/update/{id}', [ForumController::class, 'edit']);
+        Route::post('/update/{id}', [ForumController::class, 'update']);
+//        Restore Forum
+        Route::get('/restore', [ForumController::class, 'renew']);
+        Route::get('restore/{id}', [ForumController::class, 'restore']);
     });
 });
