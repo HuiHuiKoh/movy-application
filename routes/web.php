@@ -86,12 +86,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('purchaseHistory', [HistoryController::class, 'view']);
     Route::post('purchaseHistoryDetails/{id}', [HistoryController::class, 'paymentDetails']);
     Route::get('purchaseHistoryDetails/{id}', [HistoryController::class, 'details']);
-
-//Categories function
-    Route::get('category/{slug}', [MoviesController::class, 'viewCategory']);
-
-//Search Function
-    Route::get('search', [MoviesController::class, 'search']);
 });
 
 // Auth::routes();
@@ -109,6 +103,12 @@ Route::get('/foodInfo/{id}', [FoodsController::class, 'foodInfo']);
 
 //delete cart
 Route::delete('destroy/{id}', [CartController::class, 'destroy']);
+
+//Categories function
+Route::get('category/{slug}', [MoviesController::class, 'viewCategory']);
+
+//Search Function
+Route::get('search', [MoviesController::class, 'search']);
 
 //Route::get('destroy/{id}',[CartController::class, 'destroy']);
 //login page
@@ -227,7 +227,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         Route::get('/restore', [MembershipController::class, 'renewVoucher']);
         Route::get('restore/{id}', [MembershipController::class, 'restoreVoucher']);
     });
-    
+
     //Forum
     Route::prefix('forum')->group(function () {
 //        Add Forum
