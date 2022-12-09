@@ -54,7 +54,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::any('/form/cancel', [PaymentController::class, 'cancel']);
         Route::get('/details', [PaymentController::class, 'details']);
         Route::any('/details/add', [PaymentController::class, 'add']);
+        Route::get('/print', [PaymentController::class, 'print']);
     });
+    
+    
 
 //Membership
     Route::prefix('membership')->group(function () {

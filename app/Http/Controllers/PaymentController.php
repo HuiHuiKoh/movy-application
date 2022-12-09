@@ -212,4 +212,8 @@ class PaymentController extends Controller {
         ]);
     }
 
+    public function print() {
+        return view('payment.print');
+    }
+
 }
