@@ -4,15 +4,13 @@
 <section id="membership">
     <div class="container">
         <h1 class="my-4">Promotions</h1>
-        <div class="row">
+        <div class="row m-5">
             @foreach($promotions as $promo)
-            <div class="col-lg-3 mb-4">
-                <div class="card h-100 bg-black font-white">
-                    <a href="#"><img class="card-img-top" height="200" src="{{asset('import/assets/img/'.$promo->image)}}" alt=""></a>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow" style="height: 400px; width:300px">
+                    <img class="card-img-top" src="{{asset('assets/img/'.$promo->image)}}" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
                     <div class="card-body">
-                        <h6 class="card-title">
-                            <a href="#">{{$promo->title}}</a>
-                        </h6>
+                        <h6 class="card-text">{{$promo->title}}</h6>
                         <p class="card-text">{{$promo->description}}</p>
                     </div>
                 </div>

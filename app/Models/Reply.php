@@ -19,7 +19,7 @@ class Reply extends Model
     protected $fillable = [
         'content',
         'thread_id',
-        'forum_user_id'
+        'user_id'
     ];
     
     /**

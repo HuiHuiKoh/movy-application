@@ -73,7 +73,13 @@ Route::group(['middleware' => ['auth']], function () {
 //Forum
     Route::prefix('forum')->group(function () {
         Route::get('/', [ForumController::class, 'index']);
-        Route::get('/thread', [ForumController::class, 'thread']);
+        Route::get('/thread/{id}', [ForumController::class, 'thread']);
+        Route::get('/post/{id}', [ForumController::class, 'post']);
+        Route::get('/reply/{id}', [ForumController::class, 'reply']);
+        Route::get('/create', [ForumController::class, 'create']);
+        Route::delete('reply/{id}', [ForumController::class, 'deleteReply']);
+        Route::post('reply/store', [ForumController::class, 'storeReply']);
+        Route::post('post/store', [ForumController::class, 'storePost']);
     });
 
 //Siah Xin Ying

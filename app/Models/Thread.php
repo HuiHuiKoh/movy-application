@@ -18,9 +18,9 @@ class Thread extends Model
     ];
     protected $fillable = [
         'title',
-        'view_count',
+        'content',
         'forum_id',
-        'forum_user_id'
+        'user_id'
     ];
     
     /**

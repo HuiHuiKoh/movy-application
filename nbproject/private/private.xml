@@ -3,19 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/MOVY/movy-application/app/Http/Controllers/ForumController.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/MOVY/movy-application/app/Http/Controllers/MembershipController.php</file>
-            <file>file:/F:/BACHELOR%20OF%20INFORMATION%20TECHNOLOGY/GitHub/GitHub/MOVY/movy-application/app/Http/Controllers/UserController.php</file>
-=======
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/assets/css/moviesInfo.css</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/routes/web.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/food.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/cart.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/layouts/app.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/resources/views/movies.blade.php</file>
-            <file>file:/C:/Users/USER/Documents/GitHub/movy-application/public/assets/css/foodInfo.css</file>
->>>>>>> Stashed changes
+            <file>file:/C:/MOVY/movy-application/resources/views/forum/layouts/app.blade.php</file>
+            <file>file:/C:/MOVY/movy-application/resources/views/forum/index.blade.php</file>
+            <file>file:/C:/MOVY/movy-application/resources/views/layouts/app.blade.php</file>
+            <file>file:/C:/MOVY/movy-application/routes/web.php</file>
         </group>
     </open-files>
 </project-private>
