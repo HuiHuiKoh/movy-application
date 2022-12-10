@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PromotionRequest;
 use App\Http\Requests\VoucherRequest;
-use App\Models\Membership;
 use App\Models\MembershipVoucher;
 use App\Models\Promotion;
 use App\Models\Voucher;
@@ -12,6 +11,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use function abort;
 use function base_path;
 use function redirect;
@@ -36,10 +36,13 @@ class MembershipController extends Controller {
             $membershipVouchers = null;
         }
         $userid = Auth::user()->id;
-        $memberships = Membership::where('user_id', $userid);
+        $members = DB::table('memberships')
+                ->where('memberships.user_id', $userid)
+                ->select('memberships.*', 'memberships.id as memberId')
+                ->get();
         return view('membership.check_points', [
             'memVcs' => $membershipVouchers,
-            'members' => $memberships
+            'members' => $members
         ]);
     }
 
@@ -227,6 +230,23 @@ class MembershipController extends Controller {
         try {
             Voucher::onlyTrashed()->find($id)->restore();
             return redirect()->back()->with('success', 'Item has been restored.');
+        } catch (QueryException $e) {
+            abort(500);
+        }
+    }
+
+    public function collectVoucher($id) {
+        $vouchers = Voucher::where('id', $id);
+
+        try {
+            MembershipVoucher::create([
+                'title' => $request->get('voucherTitle'),
+                'code' => $request->get('voucherCode'),
+                'discount_amount' => $request->get('discountAmount'),
+                'exp_date' => $request->get('expirationDate'),
+                'created_at' => Carbon::now()->toDateTimeString(),
+            ]);
+            return redirect()->back()->with('success', 'New item has been added.');
         } catch (QueryException $e) {
             abort(500);
         }

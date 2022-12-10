@@ -29,12 +29,4 @@ class Reply extends Model
     {
         return $this->belongsTo(Thread::class, 'thread_id');
     }
-    
-    /**
-     * Get the associated forum user.
-     */
-    public function forumUser()
-    {
-        return $this->belongsTo(ForumUser::class, 'forum_user_id');
-    }
 }

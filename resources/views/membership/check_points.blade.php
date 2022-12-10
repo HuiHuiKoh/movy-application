@@ -1,6 +1,11 @@
 @extends('layouts.app', ['pageTitle'=>'Membership'], ['title'=>'Membership'])
 
 @section('content')
+<?php
+$change = $_POST['point-dc'];
+
+
+?>
 <section id="membership">
     <div class="container">
         <div class="m-4">
@@ -8,12 +13,15 @@
         </div>
         <div class="p-5">
             <div class="mx-5 font-white mb-5">
-                <p class="d-inline" style="font-size: large">Collected Points: </p>
-                <p class="font-size-normal mt-1 font-italic">*Each time purchase earns equal value points*</p>
-                @foreach($members as $member)
-                <h6 class="d-inline">{{$member->points}}</h6>
-                @endforeach
-                <input type="number" name="point-dc"><div class="btn orange-btn d-inline">Exchange</div>
+
+                <p class="d-inline" style="font-size: large">Collected Points: 
+                    @foreach($members as $member)
+                    {{$member->points}}
+                    @endforeach
+                </p>
+                <p class="font-size-normal mt-1 font-italic">*Each time purchase earns points with equal value*</p>
+                <input type="number" placeholder="How many vouchers do you want to exchange?" class="w-50" name="point-dc">
+                <button type="submit" class="btn orange-btn d-inline">Exchange Voucher</button>
             </div>
 
             <div class="ml-5 mt-3 font-white"><p style="font-size: large">Collected Vouchers: </p>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\FoodOrder;
+use App\Models\Membership;
 use App\Models\OrderedFood;
 use App\Models\Payment;
 use App\Models\Seat;
@@ -64,6 +65,25 @@ class PaymentController extends Controller {
             ]);
 
             $paymentid = Payment::latest()->first()->id;
+
+            $payments = DB::table('payments')
+                    ->where('id', $paymentid)
+                    ->select('*')
+                    ->get();
+
+            $members = Membership::where('user_id', $userid)->first();
+
+            $oldPoints = $members->points;
+
+            foreach ($payments as $payment) {
+                $point = $oldPoints + $payment->amount;
+            }
+
+            $members->points = $point;
+            $members->user_id = $userid;
+            $members->updated_at = Carbon::now()->toDateTimeString();
+
+            $members->save();
 
             $cart = DB::table('carts')
                     ->select('*')

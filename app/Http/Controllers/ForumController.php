@@ -24,7 +24,8 @@ class ForumController extends Controller {
 
     public function index() {
         $forums = Forum::all();
-        return view('forum.index', compact('forums'));
+        $threads = Thread::all();
+        return view('forum.index', compact('forums'), ['threads' => $threads]);
     }
 
     public function forum() {
@@ -47,23 +48,24 @@ class ForumController extends Controller {
 
     public function reply($id) {
 //        try {
-            $threads = DB::table('threads')
-                    ->select('*')
-                    ->where('threads.id', '=', $id)
-                    ->join('users', 'threads.user_id', '=', 'users.id')
-                    ->get();
-            $replies = DB::table('replies')
-                    ->select('*')
-                    ->where('replies.thread_id', '=', $id)
-                    ->join('users', 'replies.user_id', '=', 'users.id')
-                    ->get();
-            if ($replies->isEmpty()) {
-                $replies = null;
-            }
-            return view('forum.reply', [
-                'replies' => $replies,
-                'threads' => $threads
-            ]);
+        $threads = DB::table('threads')
+                ->select('threads.id', 'users.name', 'threads.content', 'threads.created_at')
+                ->where('threads.id', '=', $id)
+                ->join('users', 'threads.user_id', '=', 'users.id')
+                ->get();
+        $replies = DB::table('replies')
+                ->select('replies.id', 'users.name', 'replies.content', 'replies.created_at')
+                ->where('replies.thread_id', '=', $id)
+                ->where('replies.deleted_at', '=', NULL)
+                ->join('users', 'replies.user_id', '=', 'users.id')
+                ->get();
+        if ($replies->isEmpty()) {
+            $replies = null;
+        }
+        return view('forum.reply', [
+            'replies' => $replies,
+            'threads' => $threads
+        ]);
 //        } catch (QueryException $e) {
 //            abort(500);
 //        }

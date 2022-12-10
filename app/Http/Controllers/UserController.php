@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Hash;
-use Session;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
+use App\Models\Membership;
+use App\Models\User;
 use Carbon\Carbon;
+use Hash;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Session;
+use function abort;
+use function redirect;
+use function view;
 
 class UserController extends Controller {
 
@@ -39,6 +44,12 @@ class UserController extends Controller {
                 'phone' => $request->get('phone'),
                 'password' => Hash::make($request->get('password')),
                 'birth' => $request->get('birth'),
+                'created_at' => Carbon::now()->toDateTimeString(),
+            ]);
+            $userid = User::latest()->first()->id;
+            Membership::create([
+                'points' => 0,
+                'user_id' => $userid,
                 'created_at' => Carbon::now()->toDateTimeString(),
             ]);
             return redirect('login')->with('success', 'Registration Completed, now you can login.');
