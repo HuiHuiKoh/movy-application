@@ -63,8 +63,9 @@ Route::group(['middleware' => ['auth']], function () {
 //Membership
     Route::prefix('membership')->group(function () {
         Route::get('/', [MembershipController::class, 'index']);
-        Route::get('/check', [MembershipController::class, 'check']);
+        Route::any('/check', [MembershipController::class, 'check']);
         Route::get('/voucher', [MembershipController::class, 'voucher']);
+        Route::any('/point', [MembershipController::class, 'points']);
     });
 
 //Check Booking

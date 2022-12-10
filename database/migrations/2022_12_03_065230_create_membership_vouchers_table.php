@@ -17,9 +17,8 @@ class CreateMembershipVouchersTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('code');
-            $table->date('redemption_date');
+            $table->date('redemption_date')->nullable();
             $table->foreignId('member_id')->references('id')->on('memberships')->onDelete('cascade');
-            $table->foreignId('voucher_id')->references('id')->on('vouchers')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

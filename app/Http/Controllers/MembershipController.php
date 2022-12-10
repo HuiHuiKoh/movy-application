@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PromotionRequest;
 use App\Http\Requests\VoucherRequest;
+use App\Models\Membership;
 use App\Models\MembershipVoucher;
 use App\Models\Promotion;
 use App\Models\Voucher;
@@ -51,6 +52,53 @@ class MembershipController extends Controller {
         return view('membership.voucher', [
             'vouchers' => $vouchers
         ]);
+    }
+
+    public function points(Request $request) {
+
+        $points = $request->pointDc;
+        $change = $_POST['pointDc'] ?? 0;
+        $userid = Auth::user()->id;
+        $membership = Membership::where('user_id', $userid)->first();
+        if (isset($_POST['btnSubmit'])) {
+            if ($change > 0) {
+                $dcVal = $change * 100;
+                $oldPoints = $membership->points;
+                $amt = $oldPoints - $dcVal;
+                if ($amt > 0) {
+                    
+
+                    echo '<script>console.log(' . $dcVal . ')</script>';
+
+                    $newPoints = $oldPoints - $dcVal;
+
+                    $membership->points = $newPoints;
+                    $membership->user_id = $userid;
+                    $membership->updated_at = Carbon::now()->toDateTimeString();
+
+                    echo '<script>console.log(' . $newPoints . ')</script>';
+                    $membership->save();
+
+                    for ($i = 0;
+                            $i < $points;
+                            $i++) {
+                        MembershipVoucher::create([
+                            'title' => "Exchange voucher on member points accumulated",
+                            'code' => "VC05",
+                            'redemption_date' => null,
+                            'member_id' => $membership->id,
+                            'created_at' => Carbon::now()->toDateTimeString(),
+                        ]);
+                    }
+
+                    return redirect()->back()->with('success', 'Voucher exchanged successfully');
+                } else {
+                    return redirect()->back()->with('error', 'Please insert a valid amount');
+                }
+            }
+        } else {
+            return redirect()->back();
+        }
     }
 
 //    Admin Side - Promotion CRUD

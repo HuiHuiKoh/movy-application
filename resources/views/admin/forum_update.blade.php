@@ -34,13 +34,13 @@
     </div>
     @endif
 
-    <!--    @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <ul>
-                <li>{!! \Session::get('success') !!}</li>
-            </ul>
-        </div>
-        @endif-->
+<!--    @if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+    @endif-->
 
     <div class="card-body">
         <div class="container-fluid px-1 py-5 mx-auto">

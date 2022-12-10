@@ -1,11 +1,25 @@
 @extends('layouts.app', ['pageTitle'=>'Membership'], ['title'=>'Membership'])
 
 @section('content')
-<?php
-$change = $_POST['point-dc'];
 
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
-?>
+@if (\Session::has('success'))
+<div class="alert alert-success">
+    <ul>
+        <li>{!! \Session::get('success') !!}</li>
+    </ul>
+</div>
+@endif
+
 <section id="membership">
     <div class="container">
         <div class="m-4">
@@ -20,8 +34,11 @@ $change = $_POST['point-dc'];
                     @endforeach
                 </p>
                 <p class="font-size-normal mt-1 font-italic">*Each time purchase earns points with equal value*</p>
-                <input type="number" placeholder="How many vouchers do you want to exchange?" class="w-50" name="point-dc">
-                <button type="submit" class="btn orange-btn d-inline">Exchange Voucher</button>
+                <form action="{{action('\App\Http\Controllers\MembershipController@points')}}" method="post">
+                    @csrf
+                    <input type="number" placeholder="How many vouchers do you want to exchange?" class="w-50" name="pointDc">
+                    <button type="submit" name="btnSubmit" class="btn orange-btn d-inline">Exchange Voucher</button>
+                </form>
             </div>
 
             <div class="ml-5 mt-3 font-white"><p style="font-size: large">Collected Vouchers: </p>
@@ -30,7 +47,7 @@ $change = $_POST['point-dc'];
                     <h6>You have no collected voucher</h6>
                     @else
                     @foreach($memVcs as $vc)
-                    <div class="">
+                    <div class="row">
                         <div class="col-md-5 border p-1">
                             <a href="#">
                                 <p class="align-middle">{{$vc->title}}</p>
