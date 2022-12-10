@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/MOVY/movy-application/database/seeders/DatabaseSeeder.php</file>
             <file>file:/C:/MOVY/movy-application/database/seeders/VoucherSeeder.php</file>
+            <file>file:/C:/MOVY/movy-application/resources/views/booking/seat.blade.php</file>
             <file>file:/C:/MOVY/movy-application/app/Http/Controllers/MembershipController.php</file>
             <file>file:/C:/MOVY/movy-application/resources/views/payment/form.blade.php</file>
         </group>
