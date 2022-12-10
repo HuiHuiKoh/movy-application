@@ -69,6 +69,7 @@
                                 <a href="{{action('\App\Http\Controllers\MoviesController@restore',$shows['id'])}}"
                                    class="btn btn-outline-warning" onclick="return confirm('Are you sure to restore?')">Restore</a>
                             </td>
+                            
                         </tr>
                         @endforeach
                     </tbody>

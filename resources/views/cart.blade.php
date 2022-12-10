@@ -67,14 +67,16 @@
                 <div class="col">TOTAL</div>
                 <div class="col text-right">RM {{$total}}</div>
             </div>
-            
-            <form action="{{ action('\App\Http\Controllers\PaymentController@view') }}" method="post">
-                @csrf
-                <input type="hidden" name="foodTotal" value="{{$total}}">
-                <button type="submit" class="btn">CHECKOUT</button>
-            </form>
+          
+            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0; "></div>
+
+                <form action="{{ action('\App\Http\Controllers\PaymentController@view') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="foodTotal" value="{{$total}}">
+                    <button type="submit" class="btn">CHECKOUT</button>
+                </form>
+            </div>
         </div>
+
+
     </div>
-
-
-</div>
