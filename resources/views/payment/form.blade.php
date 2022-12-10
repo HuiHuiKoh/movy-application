@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['paybycard'])) {
         if (validatecard($_POST['cNum']) != false) {
             if (is_string($_POST['cName'])) {
-                if (is_numeric($_POST['cvv']) && $_POST['cvv'] <= 999 && $_POST['cvv'] >=100) {
+                if (is_numeric($_POST['cvv']) && $_POST['cvv'] <= 999 && $_POST['cvv'] >= 100) {
                     $cardError = (array) null;
                     session()->put('method', 'card');
                     echo '<script>window.location.href="' . action('\App\Http\Controllers\PaymentController@add') . '"</script>';
@@ -171,12 +171,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <hr>
                         @endforeach
 
-                        <div>
-                            <button class="btn orange-outline-btn square-btn font-weight-normal float-end">ADD</button>
-                        </div>
-                        <div>
-                            <button class="btn orange-outline-btn square-btn disabled font-weight-normal">Voucher Code</button>
-                        </div>
+<!--                        <form action="" method="post">
+                            @csrf
+                            <div>
+                                <button type="submit" class="btn orange-outline-btn square-btn font-weight-normal float-end">ADD</button>
+                            </div>
+                            <div>
+                                <input type="text" name="apply" placeholder="Voucher Code">
+                                <button class="btn orange-outline-btn square-btn disabled font-weight-normal">Voucher Code</button>
+                            </div>
+                        </form>-->
                     </div>
                     <div class="row">
                         <div class="col">
@@ -241,11 +245,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <img src="https://d3.harvard.edu/platform-digit/wp-content/uploads/sites/2/2020/02/visa-logo-png-2026-1.png" width="100"> 
                                 </a>
                             </li> 
-<!--                            <li class="nav-item" role="presentation"> 
-                                <a class="nav-link" id="paypal-tab" data-toggle="tab" href="#paypal" role="tab" aria-controls="paypal" aria-selected="false"> 
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" width="80"> 
-                                </a> 
-                            </li> -->
+                            <!--                            <li class="nav-item" role="presentation"> 
+                                                            <a class="nav-link" id="paypal-tab" data-toggle="tab" href="#paypal" role="tab" aria-controls="paypal" aria-selected="false"> 
+                                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" width="80"> 
+                                                            </a> 
+                                                        </li> -->
                         </ul> 
                         <div class="tab-content" id="myTabContent"> 
                             <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab"> 
@@ -290,25 +294,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </form>
                                 </div> 
                             </div> 
-                            <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab"> 
-                                <div class="px-5 mt-2">
-                                    <div class="text-center"> 
-                                        <div class="h5">PayPal</div> 
-                                    </div>
-                                    <div class="inputbox"> 
-                                        <label for="email">Email Address</label>
-                                        <input type="email" name="email" class="form-control" required="required"> 
-                                    </div>
-                                    <div class="inputbox">
-                                        <label for="pw">Password</label>
-                                        <input type="password" name="pw" class="form-control" required="required"> 
-                                    </div>
-                                    <div class="pay px-5">
-                                        <button name="paybypaypal" class="btn btn-primary btn-block">Pay with Paypal</button>
-                                        <button class="btn btn-secondary btn-block" data-dismiss='modal'>Cancel</button>
-                                    </div> 
-                                </div> 
-                            </div> 
+                            <!--                            <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab"> 
+                                                            <div class="px-5 mt-2">
+                                                                <div class="text-center"> 
+                                                                    <div class="h5">PayPal</div> 
+                                                                </div>
+                                                                <div class="inputbox"> 
+                                                                    <label for="email">Email Address</label>
+                                                                    <input type="email" name="email" class="form-control" required="required"> 
+                                                                </div>
+                                                                <div class="inputbox">
+                                                                    <label for="pw">Password</label>
+                                                                    <input type="password" name="pw" class="form-control" required="required"> 
+                                                                </div>
+                                                                <div class="pay px-5">
+                                                                    <button name="paybypaypal" class="btn btn-primary btn-block">Pay with Paypal</button>
+                                                                    <button class="btn btn-secondary btn-block" data-dismiss='modal'>Cancel</button>
+                                                                </div> 
+                                                            </div> 
+                                                        </div> -->
                         </div>
                     </div> 
                 </div> 

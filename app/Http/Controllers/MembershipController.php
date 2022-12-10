@@ -65,6 +65,20 @@ class MembershipController extends Controller {
             'found' => $foundVc,
         ]);
     }
+//
+//    public function apply(Request $request) {
+//        $inputCode = $request->apply;
+//        if (MembershipVoucher::where('code', '=', $inputCode)->exists()) {
+//            $membershipVouchers = MembershipVoucher::all();
+//            foreach ($membershipVouchers as $membershipVoucher) {
+//                $membershipVouchers = DB::table('membership_vouchers')
+//                        ->where('membership_vouchers.user_id', $userid)
+//                        ->select('membership_vouchers.*', 'membership_vouchers.id as memberId')
+//                        ->join('membership_vouchers', 'memberships.code')
+//                        ->get();
+//            }
+//        }
+//    }
 
     public function collect($id) {
         $vouchers = Voucher::find($id);
@@ -83,7 +97,6 @@ class MembershipController extends Controller {
     }
 
     public function points(Request $request) {
-
         $points = $request->pointDc;
         $change = $_POST['pointDc'] ?? 0;
         $userid = Auth::user()->id;

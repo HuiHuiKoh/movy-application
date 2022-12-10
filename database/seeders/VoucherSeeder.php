@@ -33,7 +33,7 @@ class VoucherSeeder extends Seeder {
             ],
             [
                 'id' => 3,
-                'title' => "Grab Up To 50% OFF Christmas Deals",
+                'title' => "Grab Up To RM50 OFF Christmas Deals",
                 'code' => 'VC50P',
                 'discount_amount' => 50.00,
                 'exp_date' => '2023-12-31',
@@ -41,7 +41,7 @@ class VoucherSeeder extends Seeder {
             ],
             [
                 'id' => 4,
-                'title' => "Get 35% OFF Movy Promo Code On Food Purchase",
+                'title' => "Get RM35 OFF Movy Promo Code On Food Purchase",
                 'code' => 'VC35P',
                 'discount_amount' => 35.00,
                 'exp_date' => '2023-01-31',
