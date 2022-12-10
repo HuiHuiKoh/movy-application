@@ -15,8 +15,17 @@
             </div>
             <div class="col-md-3 border p-2 text-center">
                 <h6>{{$vc->code}}</h6>
-                <button class="btn orange-btn ml-0">Collect Voucher</button>
-                <!--<button class="btn btn-secondary ml-0" disabled="true">Collected</button>-->
+                <?php $bool = false; ?>
+                @foreach($found as $exist) 
+                @if($exist == $vc->code)
+                <?php $bool = true; ?>
+                @endif
+                @endforeach
+                <?php if ($bool == true) { ?>
+                    <button class="btn btn-secondary ml-0" disabled="true">Collected</button>
+                <?php } else { ?>
+                    <button type="submit" onclick="window.location.href ='{{asset('membership/collect/'.$vc->id)}}'" class="btn orange-btn ml-0">Collect Voucher</button>
+                <?php } ?>
             </div>
         </div>
         @endforeach

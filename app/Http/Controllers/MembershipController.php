@@ -49,9 +49,37 @@ class MembershipController extends Controller {
 
     public function voucher() {
         $vouchers = Voucher::all();
+        $membershipVouchers = MembershipVoucher::all();
+        if ($membershipVouchers->isEmpty()) {
+            $membershipVouchers = null;
+        }
+        $foundVc = array();
+        foreach ($membershipVouchers as $membershipVoucher) {
+            if (Voucher::where('code', '=', $membershipVoucher->code)->exists()) {
+                array_push($foundVc, $membershipVoucher->code);
+            }
+        }
         return view('membership.voucher', [
-            'vouchers' => $vouchers
+            'vouchers' => $vouchers,
+            'memVcs' => $membershipVouchers,
+            'found' => $foundVc,
         ]);
+    }
+
+    public function collect($id) {
+        $vouchers = Voucher::find($id);
+        $userid = Auth::user()->id;
+        $membership = Membership::where('user_id', $userid)->first();
+
+        MembershipVoucher::create([
+            'title' => $vouchers->title,
+            'code' => $vouchers->code,
+            'redemption_date' => null,
+            'member_id' => $membership->id,
+            'created_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        return redirect()->back()->with('success', 'Voucher is collected successfully');
     }
 
     public function points(Request $request) {
@@ -66,7 +94,7 @@ class MembershipController extends Controller {
                 $oldPoints = $membership->points;
                 $amt = $oldPoints - $dcVal;
                 if ($amt > 0) {
-                    
+
 
                     echo '<script>console.log(' . $dcVal . ')</script>';
 
