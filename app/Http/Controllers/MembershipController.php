@@ -54,9 +54,11 @@ class MembershipController extends Controller {
             $membershipVouchers = null;
         }
         $foundVc = array();
-        foreach ($membershipVouchers as $membershipVoucher) {
-            if (Voucher::where('code', '=', $membershipVoucher->code)->exists()) {
-                array_push($foundVc, $membershipVoucher->code);
+        if ($membershipVouchers != null) {
+            foreach ($membershipVouchers as $membershipVoucher) {
+                if (Voucher::where('code', '=', $membershipVoucher->code)->exists()) {
+                    array_push($foundVc, $membershipVoucher->code);
+                }
             }
         }
         return view('membership.voucher', [
@@ -65,6 +67,7 @@ class MembershipController extends Controller {
             'found' => $foundVc,
         ]);
     }
+
 //
 //    public function apply(Request $request) {
 //        $inputCode = $request->apply;
