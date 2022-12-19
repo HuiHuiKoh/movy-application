@@ -39,7 +39,9 @@ class HistoryController extends Controller {
                 ->join('cinemas', 'showtimes.cinemaID', '=', 'cinemas.id')
                 ->where('payments.user_id', $userid)
                 ->where('payments.id',$id)
-                ->select('movies.*', 'showtimes.dateTime', 'cinemas.name as cinemaName','tickets.total_amount as ticketsAmount')
+                ->select('movies.*', 'showtimes.dateTime', 
+                        'cinemas.name as cinemaName',
+                        'tickets.total_amount as ticketsAmount')
                 ->get();
         
         $foods = DB::table('foods')

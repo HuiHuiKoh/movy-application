@@ -11,6 +11,15 @@ function myFunction() {
     x.type = "password";
   }
 }
+
+function confirmFunction() {
+  var x = document.getElementById("password-confirm");
+  if (x.type === "password ") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
 </script>
 
 <body class="my-login-page">
@@ -44,7 +53,7 @@ function myFunction() {
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Enter confirm password">
                                     <span class="text-danger">@error('password_confirmation'){{$message}} @enderror</span>
                                     <div>
-                                        <input type="checkbox" onclick="myFunction()" style="margin:2%;margin-left: 2%" ><span style="font-size: 0.9em;color: white"> Show Password</span>
+                                        <input type="checkbox" onclick="confirmFunction()" style="margin:2%;margin-left: 2%" ><span style="font-size: 0.9em;color: white"> Show Password</span>
                                     </div>
                                 </div>
 

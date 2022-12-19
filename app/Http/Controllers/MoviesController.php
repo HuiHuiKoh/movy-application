@@ -103,17 +103,12 @@ class MoviesController extends Controller {
     public function update(Request $request, $id) {
 
         $moviesID = Movies::find($id);
-
-//        $products = DB::table('carts')
-//                ->join('products', 'carts.product_id', '=', 'products.id')
-//                ->where('carts.user_id', $userid)
-//                ->select('products.*', 'carts.quantity', 'carts.id as cart_id')
-//                ->get();
-//        
+      
         $movies = DB::table('movies')
                 ->join('categories', 'movies.categoryID', '=', 'categories.id')
-//                ->where('movies.categoryID', 'categories.id')
-                ->select('movies.*', 'categories.*', 'categories.id as categoryID', 'categories.category as categoriesName')
+                ->select('movies.*', 'categories.*', 
+                        'categories.id as categoryID', 
+                        'categories.category as categoriesName')
                 ->get();
 
         $fileName = $moviesID->image;
@@ -121,7 +116,8 @@ class MoviesController extends Controller {
         $this->validate($request, [
             'name' => 'required|string|max:250',
             'synopsis' => 'required|string',
-            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=200,min_height=200,max_width=1000,max_height=1000',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=200,min_height=200,'
+            . 'max_width=1000,max_height=1000',
             'casts' => 'required|string|max:400',
             'language' => 'required|string|max:20|min:3',
             'type' => 'required|string|max:100',
