@@ -15,8 +15,10 @@
     <div class="card my-3 p-2">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-8 ml-4"><a href="{{asset('forum/thread/'.$forum->id)}}"><h6>{{$forum->title}}</h6></a></div>
-                <div class="col-md-3 text-right"><i class="bi bi-chat mx-1" style="font-size: 20px"></i><?php echo $count ?></div>
+                <div class="col-md-8 ml-4"><a href="{{asset('forum/thread/'.$forum->id)}}">
+                        <h6>{{$forum->title}}</h6></a></div>
+                <div class="col-md-3 text-right"><i class="bi bi-chat mx-1" 
+                                                    style="font-size: 20px"></i><?php echo $count ?></div>
             </div>
         </div>
     </div>

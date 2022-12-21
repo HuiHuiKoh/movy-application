@@ -30,9 +30,12 @@
                         <div id="qty-required" class="font-red text-center my-2"></div>
                         @foreach($seatTypes as $seatType)
                         <tr>
-                            <td><label class="quantity m-3 d-inline align-middle" for="qtyTwin">{{ $seatType->seat_type }}</label></td>
-                            <td><p class="d-inline font-softOrange mb-0 mr-2 align-middle">RM {{ $seatType->price }}</p></td>
-                            <td><input type="number" id="qty{{ $seatType->seat_type }}" name="qty{{ $seatType->seat_type }}" value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
+                            <td><label class="quantity m-3 d-inline align-middle" for="qtyTwin">
+                                    {{ $seatType->seat_type }}</label></td>
+                            <td><p class="d-inline font-softOrange mb-0 mr-2 align-middle">
+                                    RM {{ $seatType->price }}</p></td>
+                            <td><input type="number" id="qty{{ $seatType->seat_type }}" name="qty{{ $seatType->seat_type }}"
+                                       value="0" class="seats-num px-6 py-2" min="0" max="10" required></td>
                         </tr>
                         @endforeach
                     </table>
@@ -55,7 +58,8 @@
                     <tr>
                         <th class="pt-2">{{$char}}</th>
                         @for($i=0;$i<14;$i++)
-                        <td><input type="checkbox" name="classicSeat[]" class="seats single" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
+                        <td><input type="checkbox" name="classicSeat[]" 
+                                   class="seats single" onclick="seatS()" value="{{$char}}{{$i+1}}"></td>
                         @endfor
                         <th class="pt-2">{{$char}}</th>
                     </tr>
@@ -74,7 +78,8 @@
                     <li class="d-inline-block position-relative pt-2">{{$char}}</li>
                     @for($i=0;$i<5;$i++)
                     <li class="d-inline-block position-relative mx-5">
-                        <input type="checkbox" class="seats twin" name="twinSeat[]" onclick="seatS()" value="{{$char}}{{$i+1}}">
+                        <input type="checkbox" class="seats twin" name="twinSeat[]" 
+                               onclick="seatS()" value="{{$char}}{{$i+1}}">
                     </li>
                     @endfor
                     <li class="d-inline-block position-relative pt-2">{{$char}}</li>

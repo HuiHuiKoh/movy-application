@@ -83,7 +83,8 @@
     <div class="col text-center">
         <button type="button" onclick="window.location.href ='{{asset('home')}}'" class="btn orange-btn mb-5">Back to Homepage</button>
         @if($tickets!=null)
-        <a href="{{asset('payment/print')}}"><button type="button" class="btn orange-btn mb-5" data-toggle="modal" data-target="#staticBackdrop">Print Ticket</button></a>
+        <a href="{{asset('payment/print')}}"><button type="button" class="btn orange-btn mb-5" 
+            data-toggle="modal" data-target="#staticBackdrop">Print Ticket</button></a>
         @endif
     </div>  
 

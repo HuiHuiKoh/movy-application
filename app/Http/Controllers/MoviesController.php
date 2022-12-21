@@ -68,7 +68,7 @@ class MoviesController extends Controller {
         $file = $request->image;
 
         $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->move('C:\Users\USER\Documents\GitHub\movy-application\public\assets\img', $fileName);
+        $file->move(base_path('public\assets\img'), $fileName);
 
         try {
             Movies::create([
@@ -131,7 +131,7 @@ class MoviesController extends Controller {
         if ($request->hasFile('image')) {
             $file = $request->image;
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->move('C:\Users\USER\Documents\GitHub\movy-application\public\assets\img', $fileName);
+            $file->move(base_path('public\assets\img'), $fileName);
         }
 
         $moviesID->name = $request->get('name');

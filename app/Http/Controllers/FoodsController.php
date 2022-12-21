@@ -65,7 +65,7 @@ class FoodsController extends Controller {
         $file = $request->image;
 
         $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->move('C:\Users\USER\Documents\GitHub\movy-application\public\assets\img', $fileName);
+        $file->move(base_path('public\assets\img'), $fileName);
 
         try {
             Foods::create([
@@ -106,7 +106,7 @@ class FoodsController extends Controller {
         if ($request->hasFile('image')) {
             $file = $request->image;
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->move('C:\Users\USER\Documents\GitHub\movy-application\public\assets\img', $fileName);
+            $file->move(base_path('public\assets\img'), $fileName);
         }
 
         $foods->name = $request->get('name');
