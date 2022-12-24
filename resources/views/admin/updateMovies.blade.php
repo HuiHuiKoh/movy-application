@@ -97,13 +97,14 @@
                             </div>
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-12 flex-column d-flex"> 
-                                    <label class="form-control-label px-3">Trailer Link</label> 
+                                    <label class="form-control-label px-3">Trailer Link<span class="text-danger"> *</span></label> 
                                     <textarea id="trailer" name="trailer" placeholder="">{{$movies->trailer}}</textarea>
+                                    <p class="text-danger"><i>Replace the trailer link /watch**=/ to /embed/</i></p>
                                 </div>
                             </div>
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-12 flex-column d-flex"> 
-                                    <label class="form-control-label px-3">Synopsis</label> 
+                                    <label class="form-control-label px-3">Synopsis<span class="text-danger"> *</span></label> 
                                     <textarea id="synopsis" name="synopsis" placeholder="">{{$movies->synopsis}}</textarea>
                                 </div>
                             </div>

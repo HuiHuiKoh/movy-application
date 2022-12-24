@@ -82,7 +82,8 @@
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-12 flex-column d-flex"> 
                                     <label class="form-control-label px-3">Trailer Link<span class="text-danger"> *</span></label> 
-                                    <textarea id="trailer" name="trailer" placeholder=""></textarea>
+                                    <textarea id="trailer" name="trailer" placeholder="Eg: https://www.youtube.com/embed/Q73UhUTs6y0"></textarea>
+                                    <p class="text-danger"><i>Replace the trailer link /watch**=/ to /embed/</i></p>
                                 </div>
                             </div>
                             <div class="row justify-content-between text-left">
